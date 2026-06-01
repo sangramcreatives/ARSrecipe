@@ -1,0 +1,2714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARS Recipes — Blue Ocean Fizz & Gourmet Drinks</title>
+  <!-- SEO & Meta -->
+  <meta name="description" content="ARS Recipes: Professional beverage guides, layering structures, and operational secrets for high-volume food stalls.">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-canvas: #f8f8f8;
+      --bg-surface: #ffffff;
+      --border-color: #e8e8e8;
+      --border-color-hover: #cfcfcf;
+      --text-main: #1c1c1c;
+      --text-muted: #4f4f4f;
+      --text-light: #828282;
+      --accent-blue: #e23744; /* Zomato Red */
+      --accent-blue-light: #fcebec;
+      --accent-emerald: #24963f; /* Zomato Ratings Green */
+      --accent-emerald-light: #e1f5e5;
+      --accent-amber: #e2ba37; /* Zomato Gold */
+      --accent-amber-light: #fdfae6;
+      --font-serif: 'Quicksand', sans-serif;
+      --font-sans: 'Quicksand', sans-serif;
+      --shadow-sm: 0 2px 8px rgba(28, 28, 28, 0.04);
+      --shadow-md: 0 4px 12px rgba(28, 28, 28, 0.06);
+      --shadow-lg: 0 8px 24px rgba(28, 28, 28, 0.08);
+      --transition-base: all 0.25s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 2.5rem 1.5rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      transition: var(--transition-base);
+    }
+
+    /* Minimal ARS Recipes Header */
+    header {
+      padding: 2.5rem 3rem 1.5rem 3rem;
+      border-bottom: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .brand svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--accent-blue);
+      fill: none;
+    }
+
+    .brand h1 {
+      font-family: var(--font-serif);
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      color: var(--text-main);
+    }
+
+    .brand h1 span {
+      font-weight: 300;
+      color: var(--text-light);
+    }
+
+    .tagline {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* Navigation & Interface Controls */
+    .controls-wrapper {
+      padding: 1.5rem 3rem;
+      background: #fdfdfd;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    /* Search Bar */
+    /* Search Bar */
+    .search-container {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 30px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      padding: 0.35rem 1.25rem;
+      width: 100%;
+      transition: var(--transition-base);
+    }
+
+    .search-container:focus-within {
+      box-shadow: var(--shadow-lg);
+      border-color: var(--border-color-hover);
+    }
+
+    .location-block {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+      cursor: default;
+    }
+
+    .location-icon {
+      width: 18px;
+      height: 18px;
+      stroke: var(--accent-blue);
+      fill: none;
+    }
+
+    .location-text {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .search-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--border-color);
+      margin: 0 1rem;
+    }
+
+    .search-input-block {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      padding: 0.4rem 0.5rem 0.4rem 2rem;
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      color: var(--text-main);
+    }
+
+    .search-input:focus {
+      outline: none;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 0.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      stroke: var(--text-light);
+      fill: none;
+      pointer-events: none;
+    }
+
+    /* Filter Pills */
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.25rem;
+    }
+
+    .filter-pill {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 0.4rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: var(--transition-base);
+    }
+
+    .filter-pill:hover {
+      background: var(--bg-canvas);
+      border-color: var(--border-color-hover);
+    }
+
+    .filter-pill.active {
+      background: var(--accent-blue-light);
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+      font-weight: 600;
+    }
+
+    /* Dropdown Selector */
+    .dropdown-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-top: 0.25rem;
+    }
+
+    .dropdown-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-light);
+    }
+
+    .dropdown-select {
+      width: 100%;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-main);
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23475569' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 1.25rem;
+      transition: var(--transition-base);
+    }
+
+    .dropdown-select:focus {
+      outline: none;
+      border-color: var(--accent-blue);
+    }
+
+    .dropdown-select:hover {
+      border-color: var(--border-color-hover);
+    }
+
+    /* Recipe Presentation Area */
+    .recipe-body {
+      padding: 3rem;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 1.25rem;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-title svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--accent-blue);
+      fill: none;
+    }
+
+    /* 1. Drink Overview Section */
+    .overview-header {
+      margin-bottom: 2rem;
+    }
+
+    .drink-title {
+      font-family: var(--font-serif);
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+    }
+
+    .drink-flavor {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      padding-left: 0.75rem;
+      border-left: 3px solid var(--accent-blue);
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .overview-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      transition: var(--transition-base);
+    }
+
+    .overview-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .card-lbl {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-light);
+      margin-bottom: 0.25rem;
+    }
+
+    .card-val {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .card-val.val-gold {
+      color: var(--accent-amber);
+    }
+
+    .card-val.val-green {
+      color: var(--accent-emerald);
+    }
+
+    /* 2. Ingredients Section */
+    .table-container {
+      overflow-x: auto;
+      margin-bottom: 3rem;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    th {
+      background: var(--bg-canvas);
+      color: var(--text-muted);
+      font-weight: 600;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-main);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: #fafafa;
+    }
+
+    .td-highlight {
+      font-weight: 600;
+      color: var(--accent-blue);
+    }
+
+    /* 3. Layer Structure & Interactive Visual Glass */
+    .layer-section {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 2.5rem;
+      align-items: center;
+      margin-bottom: 3rem;
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .layer-section {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+      }
+    }
+
+    .glass-visual {
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Elegant Custom Interactive Glass Graphic */
+    .mock-cup {
+      width: 140px;
+      height: 220px;
+      border: 4px solid #363636;
+      border-top: none;
+      border-radius: 0 0 24px 24px;
+      position: relative;
+      background: transparent;
+      overflow: hidden;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04);
+    }
+
+    .mock-cup::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 10px;
+      right: 10px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.4);
+      z-index: 10;
+    }
+
+    /* Floating Garnish Representation inside Cup */
+    .cup-mint {
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      width: 24px;
+      height: 14px;
+      background: #10b981;
+      border-radius: 50% 0 50% 0;
+      transform: rotate(-15deg);
+      z-index: 5;
+      opacity: 0.85;
+      animation: gentle-float 4s infinite ease-in-out;
+    }
+
+    .cup-lime-top {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      width: 32px;
+      height: 12px;
+      background: #eab308;
+      border-radius: 10px;
+      transform: rotate(20deg);
+      z-index: 5;
+      opacity: 0.9;
+    }
+
+    .cup-lime-middle {
+      position: absolute;
+      top: 100px;
+      left: 8px;
+      width: 12px;
+      height: 40px;
+      background: rgba(234, 179, 8, 0.7);
+      border-radius: 6px;
+      z-index: 4;
+    }
+
+    .cup-straw {
+      position: absolute;
+      width: 10px;
+      height: 260px;
+      background: repeating-linear-gradient(45deg, #cbd5e1, #cbd5e1 10px, #ffffff 10px, #ffffff 20px);
+      left: 85px;
+      top: -30px;
+      transform: rotate(-12deg);
+      z-index: 6;
+      border-radius: 4px;
+    }
+
+    .cup-chocolate-drizzle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(
+        135deg,
+        transparent,
+        transparent 15px,
+        rgba(69, 26, 3, 0.4) 15px,
+        rgba(69, 26, 3, 0.4) 22px
+      );
+      z-index: 3;
+      pointer-events: none;
+      display: none;
+    }
+
+
+    /* Glass Layers */
+    .layer-top {
+      position: absolute;
+      bottom: 130px;
+      left: 0;
+      right: 0;
+      height: 86px;
+      background: rgba(224, 242, 254, 0.4);
+      border-bottom: 2px dashed rgba(2, 132, 199, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #0369a1;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .layer-middle {
+      position: absolute;
+      bottom: 50px;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: linear-gradient(to top, rgba(14, 165, 233, 0.8), rgba(224, 242, 254, 0.4));
+      border-bottom: 2px dashed rgba(2, 132, 199, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #0369a1;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .layer-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50px;
+      background: #0284c7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .layer-info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .layer-info-item {
+      display: flex;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+    }
+
+    .layer-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+
+    .dot-blue { background: #0284c7; }
+    .dot-ombre { background: linear-gradient(to top, rgba(14, 165, 233, 0.8), rgba(224, 242, 254, 0.4)); border: 1px solid var(--border-color); }
+    .dot-clear { background: rgba(224, 242, 254, 0.4); border: 1px solid var(--border-color); }
+
+    .layer-title-text {
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.15rem;
+    }
+
+    .layer-desc-text {
+      color: var(--text-muted);
+    }
+
+    /* 4. Professional Preparation Method Timeline */
+    .timeline {
+      position: relative;
+      margin-bottom: 3.5rem;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border-color);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-badge {
+      position: absolute;
+      left: -2rem;
+      top: 0.15rem;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      border: 3px solid var(--border-color);
+      transition: var(--transition-base);
+    }
+
+    .timeline-item.active .timeline-badge {
+      border-color: var(--accent-blue);
+      background: var(--accent-blue);
+    }
+
+    .time-lbl {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.25rem;
+    }
+
+    .step-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 0.35rem;
+    }
+
+    .step-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Interactive Simulation Timer Bar */
+    .sim-bar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 0.75rem 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .sim-btn {
+      background: var(--accent-blue);
+      color: white;
+      border: none;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 0.8rem;
+      padding: 0.4rem 0.85rem;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: var(--transition-base);
+    }
+
+    .sim-btn:hover {
+      opacity: 0.9;
+    }
+
+    .sim-progress-track {
+      flex: 1;
+      height: 6px;
+      background: var(--border-color);
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .sim-progress-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0%;
+      background: var(--accent-blue);
+      transition: width 0.1s linear;
+    }
+
+    .sim-timer-val {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-main);
+      min-width: 48px;
+      text-align: right;
+    }
+
+    /* 5. Pro Tips & Common Mistakes Layout */
+    .tips-mistakes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 3.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .tips-mistakes-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card-list-box {
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    .card-list-box.box-tips {
+      background: rgba(16, 185, 129, 0.02);
+      border-color: rgba(16, 185, 129, 0.1);
+    }
+
+    .card-list-box.box-mistakes {
+      background: rgba(239, 68, 68, 0.02);
+      border-color: rgba(239, 68, 68, 0.1);
+    }
+
+    .box-title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .box-title.title-tips { color: #047857; }
+    .box-title.title-mistakes { color: #b91c1c; }
+
+    .bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .bullet-item {
+      display: flex;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .bullet-marker {
+      font-weight: 700;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .bullet-marker.mark-tip { color: var(--accent-emerald); }
+    .bullet-marker.mark-mistake { color: #ef4444; }
+
+    .bullet-header {
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.15rem;
+    }
+
+    .bullet-desc {
+      color: var(--text-muted);
+    }
+
+    /* 6. Variations Card Layout */
+    .variations-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .variations-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .variation-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 1.5rem;
+      transition: var(--transition-base);
+    }
+
+    .variation-card:hover {
+      border-color: var(--border-color-hover);
+      box-shadow: var(--shadow-md);
+    }
+
+    .var-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 0.25rem 0.55rem;
+      border-radius: 6px;
+      margin-bottom: 0.75rem;
+    }
+
+    .var-badge.badge-budget {
+      background: var(--accent-emerald-light);
+      color: #047857;
+    }
+
+    .var-badge.badge-kids {
+      background: var(--accent-blue-light);
+      color: #0369a1;
+    }
+
+    .var-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+    }
+
+    .var-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Footer Styling */
+    footer {
+      padding: 2rem 3rem;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+
+    /* Custom Animations */
+    @keyframes gentle-float {
+      0%, 100% { transform: rotate(-15deg) translateY(0); }
+      50% { transform: rotate(-10deg) translateY(-4px); }
+    }
+
+    /* Global Mobile Responsiveness Overrides */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 0.5rem;
+      }
+      .container {
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(28, 28, 28, 0.05);
+      }
+      header {
+        padding: 1.5rem 1.5rem 1rem 1.5rem;
+      }
+      .controls-wrapper {
+        padding: 1rem 1.5rem;
+      }
+      .recipe-body {
+        padding: 1.5rem;
+      }
+      footer {
+        padding: 1.5rem;
+      }
+      .overview-grid {
+        gap: 0.75rem;
+      }
+      .overview-card {
+        padding: 0.75rem 0.5rem;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .search-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.6rem;
+        border-radius: 16px;
+        padding: 0.6rem 1rem;
+      }
+      .search-divider {
+        display: none;
+      }
+      .location-block {
+        padding: 0;
+        justify-content: center;
+      }
+      .search-input-block {
+        padding-top: 0.5rem;
+        border-top: 1px solid var(--border-color);
+      }
+      .search-input {
+        padding: 0.4rem 0.5rem 0.4rem 1.75rem;
+        font-size: 0.9rem;
+      }
+      .search-icon {
+        left: 0.1rem;
+      }
+      .filter-pills {
+        justify-content: center;
+      }
+      .filter-pill {
+        padding: 0.35rem 0.85rem;
+        font-size: 0.8rem;
+      }
+      .dropdown-select {
+        padding: 0.65rem 0.85rem;
+        font-size: 0.9rem;
+      }
+      .overview-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .section-title {
+        font-size: 1.2rem;
+      }
+      .drink-title {
+        font-size: 1.6rem;
+      }
+      .drink-flavor {
+        font-size: 0.9rem;
+        padding-left: 0.5rem;
+      }
+      .sim-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+      }
+      .sim-timer-val {
+        text-align: center;
+        min-width: unset;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="brand">
+        <!-- Zomato Inspired Modern Leaf/Beverage Logo -->
+        <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="stroke: var(--accent-blue);">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+          <path d="M2 17l10 5 10-5"></path>
+          <path d="M2 12l10 5 10-5"></path>
+        </svg>
+        <h1 style="color: var(--text-main); font-weight: 700; font-family: var(--font-sans);">ARS <span style="color: var(--accent-blue); font-weight: 400;">Recipes</span></h1>
+      </div>
+      <p class="tagline" style="color: var(--text-light); font-size: 0.8rem; font-weight: 600; letter-spacing: 1px;">PREMIUM COMMERCIAL STALL BLUEPRINTS</p>
+    </header>
+
+    <!-- Controls Area: Zomato Location, Search Bar & Interactive Filter Pills -->
+    <div class="controls-wrapper">
+      
+      <!-- Zomato Unified Capsule: Location (Left) + Search (Right) -->
+      <div class="search-container">
+        <!-- Location Block -->
+        <div class="location-block">
+          <svg class="location-icon" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span class="location-text">Bhubaneswar HQ</span>
+        </div>
+        
+        <!-- Divider -->
+        <div class="search-divider"></div>
+        
+        <!-- Search Input Block -->
+        <div class="search-input-block">
+          <svg class="search-icon" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="recipeSearch" class="search-input" placeholder="Search dish, ingredients, operational secrets..." autocomplete="off">
+        </div>
+      </div>
+
+      <!-- Zomato Restaurant-Style Category Filter Pills -->
+      <div class="filter-pills" id="categoryFilterPills">
+        <div class="filter-pill active" data-category="all">All Blueprints</div>
+        <div class="filter-pill" data-category="cooler">Mojitos & Coolers</div>
+        <div class="filter-pill" data-category="frappe">Blended Frappés</div>
+        <div class="filter-pill" data-category="iced-coffee">Layered Iced Coffees</div>
+      </div>
+
+      <!-- Dropdown selector where recipe lives -->
+      <div class="dropdown-container">
+        <label class="dropdown-label" for="recipeDropdown">Select Active Formula</label>
+        <select id="recipeDropdown" class="dropdown-select">
+          <option value="blue-ocean-fizz">Blue Ocean Fizz (Premium Blue Curaçao Mocktail)</option>
+          <option value="classic-green-mojito">Classic Green Mint Mojito (Virgin)</option>
+          <option value="strawberry-crimson-fizz">Strawberry Crimson Fizz (Premium Strawberry Mocktail)</option>
+          <option value="golden-pineapple-cooler">Golden Pineapple Tropical Cooler (Premium Pineapple Cooler)</option>
+          <option value="citrus-orange-splash">Citrus Orange Splash (Premium Orange Splash)</option>
+          <option value="mango-madness">Mango Madness (Tropical Fizz)</option>
+          <option value="spicy-kala-khatta">Spicy Kala Khatta Fizz (Premium Spiced Jamun)</option>
+          <option value="hazelnut-cold-coffee">Creamy Hazelnut Frappé / Cold Coffee</option>
+          <option value="classic-cold-coffee">Classic Frothy Cold Coffee</option>
+          <option value="classic-cafe-frappe">Classic Café Frappé</option>
+          <option value="blue-strawberry-fizz">Blue Strawberry Crimson Fizz (Twilight Sparkler)</option>
+          <option value="mango-mint-mojito">Golden Mango Mint Mojito</option>
+          <option value="tropical-sunset">Tropical Sunset Fizz</option>
+          <option value="spiced-kala-khatta-mint">Spiced Kala Khatta Mint Cooler (Premium Spiced Jamun & Mint)</option>
+          <option value="blue-pineapple-ocean">Blue Pineapple Ocean Punch (Tropical Ocean Shimmer)</option>
+          <option value="orange-blue-twist">Electric Orange Blue Twist (Electric Fire-and-Ice)</option>
+          <option value="strawberry-mango-blast">Strawberry Mango Sunset Blast (Tropical Sunset Fruit Fusion)</option>
+          <option value="tiranga-electric-fizz">Tiranga Electric Fizz (Tricolour Soda Flag Split)</option>
+          <option value="roasted-hazelnut-frappe">Roasted Hazelnut Frappé (Premium Café Blended)</option>
+          <option value="mango-coffee-frappe">Alphonso Coffee Frappé (Exotic Mango & Espresso Blend)</option>
+          <option value="strawberry-frappe">Velvet Strawberry Crimson Frappé (Premium Creamy Berry)</option>
+          <option value="roasted-hazelnut-iced-coffee">Roasted Hazelnut Iced Coffee (Layered Marble Float)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Active Recipe Body -->
+    <main class="recipe-body" id="recipeContent">
+      <!-- Generated dynamically based on dropdown selection & search filtering -->
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      © 2026 ARS Recipes. Built for culinary precision and high-volume food stalls.
+    </footer>
+  </div>
+
+  <!-- JAVASCRIPT ENGINE -->
+  <script>
+    // Detailed Recipe Database loaded dynamically
+    const recipeDb = {
+      "blue-ocean-fizz": {
+        title: "Blue Ocean Fizz",
+        subtitle: "Premium Blue Curaçao Mocktail",
+        flavorProfile: "Vibrant citrus-forward, crisp, refreshing, with a distinct sweet-tart balance and a clean, bubbly finish.",
+        metrics: [
+          { label: "Sweetness", val: "6.5 / 10" },
+          { label: "Acidity", val: "6.0 / 10" },
+          { label: "Prep Ease", val: "Very Easy" },
+          { label: "Food Cost", val: "₹12 to ₹15", highlight: "green" },
+          { label: "Selling Price", val: "₹50 to ₹70", highlight: "gold" }
+        ],
+        ingredients: [
+          { name: "Blue Curaçao Syrup", qty: "20 ml", note: "Premium commercial brand (e.g., Monin, Mapro, or Mala's)" },
+          { name: "Plain Sugar Syrup", qty: "15 ml", note: "1:1 ratio (equal parts sugar and water by weight), completely clear" },
+          { name: "Fresh Lime Juice", qty: "15 ml", note: "Approx. 1 medium lime, freshly squeezed (avoid bottled juice)" },
+          { name: "Fresh Mint Leaves", qty: "4 to 5 leaves", note: "Gently clapped, not shredded" },
+          { name: "Lime Wheels", qty: "2 thin slices", note: "For visual layering and garnish" },
+          { name: "Carbonated Water (Soda)", qty: "~180 to 200 ml", note: "Chilled, highly carbonated (or Sprite if sugar syrup is reduced)" },
+          { name: "Ice Cubes", qty: "120 grams", note: "Solid, clear ice cubes (approx. 6–7 standard cubes)" }
+        ],
+        layers: [
+          { title: "Top Layer (The Crystal Clear)", desc: "Crisp, clear carbonated soda topped with floating green mint and a bright yellow-green lime wheel.", type: "clear" },
+          { title: "Middle Layer (The Ombré Transition)", desc: "Solid ice cubes packed tightly. As soda is poured slowly over the ice, it creates a gorgeous dark-to-light blue gradient transition.", type: "ombre" },
+          { title: "Bottom Layer (The Deep Blue)", desc: "Blue Curaçao syrup mixed with plain sugar syrup and lime juice. This creates a high-density, heavy sugar base that anchors itself at the bottom.", type: "blue" }
+        ],
+        steps: [
+          { time: "0 – 10s", title: "The Base Mix", desc: "Pour 20 ml Blue Curaçao syrup, 15 ml plain sugar syrup, and 15 ml fresh lime juice directly into the 350 ml plastic glass. Stir with a long bar spoon for 3 seconds just to combine the syrups." },
+          { time: "11 – 15s", title: "The Mint Infusion", desc: "Take 4–5 fresh mint leaves, place them in the palm of your hand, and slap them sharply once. Drop them into the syrup base. Do not muddle them in the cup to save time and prevent bitter notes." },
+          { time: "16 – 25s", title: "The Ice Lock", desc: "Fill the glass completely to the brim with 120g of solid ice cubes. Halfway through filling, slide one thin lime wheel flat against the side of the plastic glass, then lock it in place with the remaining ice." },
+          { time: "26 – 35s", title: "The Soda Pour", desc: "Open a fresh, highly chilled soda bottle. Pour ~180 ml slowly and directly over the topmost ice cube. Watch the beautiful color separation form naturally." },
+          { time: "36 – 45s", title: "Top Garnish & Cap", desc: "Drop the second lime wheel and a neat sprig of mint right on top. Snap the dome lid on immediately, insert a fat straw, and serve." }
+        ],
+        tips: [
+          { title: "Batch Your Citrus", desc: "Pre-squeeze your fresh lime juice before opening hours. Strain it through a fine mesh sieve to remove seeds and heavy pulp, then store it in a squeeze bottle kept on ice. Lasts 6–8 hours perfectly." },
+          { title: "Calibrated Pumps", desc: "Replace pour spouts with calibrated 10 ml bottle pumps. Two pumps of Blue Curaçao, one and a half pumps of sugar syrup. This eliminates measuring cups, cuts prep time in half, and ensures flavor consistency." },
+          { title: "The 'Slap' Technique", desc: "Never shred mint. Tearing or over-muddling releases chlorophyll and bitter tannins. A single, hard slap ruptures the aromatic oil cells on the surface, giving maximum fragrance with zero bitterness." },
+          { title: "Ice Integrity", desc: "Never use melting, watery ice from a warm cooler box. Watery ice dilutes the syrups instantly and destroys the layer separation. Use solid, dry ice straight from an insulated chest." },
+          { title: "Pre-Chill Soda", desc: "Keep soda bottles in a deep chiller or ice-salt bath. Warm soda loses carbonation almost instantly when poured, leaving the drink tasting flat and cheap." },
+          { title: "Sugar Syrup Ratio", desc: "Stick to a strict 1:1 weight ratio of refined sugar to water for your clear syrup. Dissolve without boiling too long to keep it crystal clear and fluid enough to mix quickly." },
+          { title: "Siphon from Bottom", desc: "Train your staff to tell customers: 'Give it a quick stir from the bottom up before drinking!' This interactive step ensures they get the full flavor experience rather than plain soda or pure syrup." }
+        ],
+        mistakes: [
+          { title: "Sprite without Sugar Adjustment", desc: "If you use Sprite or 7Up, completely eliminate the plain sugar syrup from the recipe, otherwise the drink becomes sickeningly sweet." },
+          { title: "Leaving Seeds in the Drink", desc: "Customers hate sucking up bitter lime seeds through a straw. Always fine-strain your pre-squeezed lime juice." },
+          { title: "Bruised, Black Mint", desc: "Brown or wilted mint looks unhygienic. Keep picked mint wrapped in a damp paper towel inside a sealed container in your cooler box." },
+          { title: "Skimping on Ice", desc: "If you use only 3–4 ice cubes, layers bleed instantly, soda goes flat faster, and the drink looks half-empty once melted. Fill to the top." }
+        ],
+        variations: [
+          { badge: "budget", title: "Budget-Friendly (Blue Lemonade Shaker)", desc: "Replace carbonated soda with highly chilled water and a pinch of black salt (kala namak). Shake for 3 seconds, pour over ice. Lowers cost, adds a localized savory twist Indian street-food consumers love." },
+          { badge: "kids", title: "Kids Version (The Bubblegum Ocean)", desc: "Swap carbonated soda for Sprite, drop the fresh mint leaves entirely, and reduce lime juice to 5 ml. Top with a sweet maraschino cherry instead of a lime wheel for a colorful kid-friendly treat." }
+        ]
+      },
+      "classic-green-mojito": {
+        title: "Classic Green Mint Mojito",
+        subtitle: "Virgin",
+        flavorProfile: "Ultra-refreshing, crisp, sharp citrus with an intense cooling herbaceous mint finish.",
+        metrics: [
+          { label: "Sweetness", val: "6.0 / 10" },
+          { label: "Acidity", val: "7.0 / 10" },
+          { label: "Prep Ease", val: "Easy" },
+          { label: "Food Cost", val: "₹10 to ₹13", highlight: "green" },
+          { label: "Selling Price", val: "₹45 to ₹60", highlight: "gold" }
+        ],
+        ingredients: [
+          { name: "Green Mint Syrup", qty: "15 ml", note: "Commercial Mojito Mint syrup (e.g., Monin, Mala's, or Mapro)" },
+          { name: "Plain Sugar Syrup", qty: "20 ml", note: "1:1 clear sugar syrup (balances the fresh lime juice)" },
+          { name: "Fresh Lime Juice", qty: "20 ml", note: "Squeezed fresh (approx. 1 large lime) for that raw, premium bite" },
+          { name: "Fresh Mint Leaves", qty: "6 to 8 large leaves", note: "Vibrant green, completely unblemished" },
+          { name: "Lime Wedges", qty: "3 small wedges", note: "Cut into quarters for muddling" },
+          { name: "Carbonated Water (Soda)", qty: "~160 to 180 ml", note: "Chilled, hard carbonation" },
+          { name: "Ice Cubes", qty: "130 grams", note: "Crushed ice or small solid cubes filled to the top" }
+        ],
+        layers: [
+          { title: "Top Layer (Sparkling Crown)", desc: "Sparkling clear effervescence with a floating crown of mint leaves and a fresh lime wheel right under the dome lid.", type: "clear" },
+          { title: "Middle Layer (Suspended Suspension)", desc: "A dense pack of ice that traps 2–3 fresh mint leaves flat against the transparent plastic walls.", type: "ombre" },
+          { title: "Bottom Layer (Muddled Green Base)", desc: "Muddled lime wedges, crushed essential oils from the mint, fresh lime juice, and the sweet green syrup base.", type: "blue" }
+        ],
+        steps: [
+          { time: "0 – 12s", title: "The Quick Muddle", desc: "Drop 3 lime wedges and 6-8 fresh mint leaves into the 350 ml cup. Add 20 ml plain sugar syrup. Take your muddler and press firmly exactly 3 times down and twist. Do not smash the lime pith or shred the leaves." },
+          { time: "13 – 20s", title: "The Flavor Lift", desc: "Pour in 15 ml Green Mint syrup and 20 ml fresh lime juice. Give it a quick 2-second swirl with a bar spoon to integrate the sweet and sour layers around the muddled base." },
+          { time: "21 – 30s", title: "The Ice Suspension", desc: "Fill the glass 3/4 full with crushed ice (preferred for mojitos) or small ice cubes. Drop 2 fresh un-muddled mint leaves against the cup wall, then top up with more ice until it is completely full to the brim." },
+          { time: "31 – 45s", title: "The Flash Finish", desc: "Slowly pour the highly carbonated chilled soda over the ice. Top with a final fresh mint sprig facing upward. Snap the dome lid on, slide in a wide-bore green or black straw, and serve." }
+        ],
+        tips: [
+          { title: "Crushed Ice is King", desc: "If your stall has access to an ice crusher, use it. Crushed ice melts slightly faster to create the perfect mix, looks far more premium than big cubes, and holds the mint pieces in place much better." },
+          { title: "Pre-Cut Wedges", desc: "De-seed and pre-cut your lime wedges before opening hours. Store them in a sealed container over an ice bed so they stay firm and don't dry out." },
+          { title: "The 3-Strike Rule", desc: "Train staff to never over-muddle. Squeezing the lime skin too hard releases limonene from the peel, which makes the drink taste terribly bitter after sitting for 5 minutes. Three presses is all it takes." },
+          { title: "Keep Mint Cold", desc: "Store your plucked mint leaves in an airtight plastic container lined with damp paper towels inside your cooler. If mint is left out in hot weather, it turns black and droopy within an hour." },
+          { title: "Calibrated Pump Deployment", desc: "Set up a 10 ml pump on your sugar syrup bottle (2 pumps) and your mint syrup bottle (1.5 pumps) to ensure every single cup across different shifts tastes identical." },
+          { title: "Soda Fizz Retention", desc: "Tilt the cup slightly while pouring the soda to minimize splashing. This retains maximum carbonation bubbles inside the drink." },
+          { title: "The Double-Action Stir", desc: "Tell the customer: 'Give it a quick poke and swirl with your straw to mix the mint at the bottom!'" },
+          { title: "Avoid Dry Sugars", desc: "Never use powdered or granular sugar in a fast-paced food stall. It takes too long to dissolve in cold liquids, leaving gritty crystals at the bottom of the cup." },
+          { title: "Color Balance", desc: "Pure fresh mint and lime juice produce a pale, slightly cloudy yellowish-green color. Adding exactly 15 ml of vibrant green commercial mint syrup provides that unmistakable electric green pop that attracts customers from across the street." },
+          { title: "Clean Mudding", desc: "Wipe down the head of your muddler between drinks with a clean, damp microfiber cloth to avoid transferring old, crushed pulp bits into the next fresh cup." }
+        ],
+        mistakes: [
+          { title: "Shredding Mint Leaves into Flakes", desc: "Tiny mint fragments clog the straw and get stuck in the customer's teeth. Keep the leaves whole during the muddle." },
+          { title: "Using Stale Lime Juice", desc: "Squeezed lime juice older than 8 hours oxidizes and tastes metallic. Always prep fresh daily." },
+          { title: "Using Generic Lemons", desc: "Always buy dark green, thin-skinned juicy limes (Nimbu). Large yellow lemons do not give the correct, sharp mojito bite." }
+        ],
+        variations: [
+          { badge: "budget", title: "The Desi Nimbu Mojito", desc: "Replace commercial carbonated soda with chilled filtered water and add a generous pinch of chaat masala and roasted cumin powder (bhuna jeera) along with the mint muddle. Creates an refreshing 'Shikanji-Mojito Fusion' exceptionally suited for hot Indian weather." },
+          { badge: "kids", title: "Green Apple-Mint Sparkler", desc: "Swap sugar syrup and carbonated soda for Sprite or green apple carbonated drink. Drop lime wedges entirely from muddle, using only 5 ml lime juice and one pump of mint syrup. Removes bitterness and heavy acidity for a sweet, bubbly green treat." }
+        ]
+      },
+      "strawberry-crimson-fizz": {
+        title: "Strawberry Crimson Fizz",
+        subtitle: "Premium Strawberry Mocktail",
+        flavorProfile: "Sweet, jammy, and intensely fruity strawberry base balanced by a sharp, crisp citrus bite and clean effervescence.",
+        metrics: [
+          { label: "Sweetness", val: "7.0 / 10" },
+          { label: "Acidity", val: "5.5 / 10" },
+          { label: "Prep Ease", val: "Very Easy" },
+          { label: "Food Cost", val: "₹13 to ₹16", highlight: "green" },
+          { label: "Selling Price", val: "₹60 to ₹80", highlight: "gold" }
+        ],
+        ingredients: [
+          { name: "Premium Strawberry Crush/Syrup", qty: "25 ml", note: "High-fruit content crush (e.g., Mala's, Mapro, or Monin)" },
+          { name: "Plain Sugar Syrup", qty: "10 ml", note: "1:1 clear sugar syrup (keeps the sweetness clean)" },
+          { name: "Fresh Lime Juice", qty: "15 ml", note: "Squeezed fresh (approx. 1 medium lime)" },
+          { name: "Fresh Strawberry Slices (Seasonal)", qty: "1 medium", note: "Sliced vertically into 3–4 thin pieces" },
+          { name: "Fresh Mint Leaf", qty: "1 sprig", note: "For top garnish color contrast" },
+          { name: "Carbonated Water (Soda)", qty: "~180 ml", note: "Chilled, high-carbonation soda" },
+          { name: "Ice Cubes", qty: "120 grams", note: "Solid, clear ice cubes filled to the top" }
+        ],
+        layers: [
+          { title: "Top Layer (Crystal Sparkle)", desc: "Crystal-clear, bubbling carbonated soda with floating red strawberry slices and a striking green mint sprig at the very top.", type: "clear" },
+          { title: "Middle Layer (The Gradient)", desc: "A clean wall of solid ice cubes. As the sparkling soda is poured over, it creates a beautiful pink-to-red bleeding gradient where the syrup meets the water.", type: "ombre" },
+          { title: "Bottom Layer (The Crimson Base)", desc: "A rich, deep-red mixture of strawberry crush, plain sugar syrup, and fresh lime juice. This sits heavily at the base.", type: "blue" }
+        ],
+        steps: [
+          { time: "0 – 10s", title: "The Crimson Anchor", desc: "Pour 25 ml Strawberry Crush, 10 ml plain sugar syrup, and 15 ml fresh lime juice directly into the 350 ml plastic cup. Give it a quick 2-second swirl with a bar spoon to blend the liquids into a uniform deep red base." },
+          { time: "11 – 20s", title: "The Glass Dressing", desc: "Slide 2 thin slices of fresh strawberry flat against opposite sides of the plastic cup's interior wall. Drop in 120g of solid ice cubes immediately to pin the fruit slices firmly against the plastic." },
+          { time: "21 – 35s", title: "The Fizz Diffusion", desc: "Open a fresh, ice-cold soda bottle. Tilt the cup slightly and pour ~180 ml of soda slowly over the top ice cube. The clear soda will sit beautifully on top of the heavy red base." },
+          { time: "36 – 45s", title: "The Crown & Cap", desc: "Drop the remaining strawberry slice and a clapped green mint sprig on top of the ice. Snap the dome lid on immediately, insert a wide straw, and serve." }
+        ],
+        tips: [
+          { title: "Use High-Pulp Crush", desc: "Do not buy cheap, clear strawberry 'syrups' that look like cough medicine. Use a 'Fruit Crush' (like Mapro or Mala's) which contains real fruit pieces and seeds. It tastes far more authentic and looks premium." },
+          { title: "Keep Soda Near Freezing", desc: "Warm soda will cause the thick strawberry crush to expand and mix instantly, destroying the layered look. Keep your soda bottles sub-zero in an ice-salt matrix." },
+          { title: "Calibrate the Pumps", desc: "Use a standard 10 ml pump on your bottles. 2.5 pumps of strawberry, 1 pump of sugar syrup. This keeps execution flawless during rush hour." },
+          { title: "Off-Season Strawberry Prep", desc: "When fresh strawberries are out of season or too expensive, substitute the fresh strawberry slices with a single canned maraschino cherry or drop the wall-dressing step entirely." },
+          { title: "Pre-Squeeze the Lime", desc: "Never squeeze individual limes during a rush. Keep fresh lime juice ready in a squeeze bottle to shave 15 seconds off every order." },
+          { title: "Control the Pour Speed", desc: "Pouring the soda too fast will agitate the bottom layer and turn the whole drink pink instantly. Teach your staff the 'slow glide' over the ice." },
+          { title: "Spoon Mixing Pitch", desc: "Always tell the customer: 'Please stir well from the bottom before your first sip to mix the real fruit base!'" },
+          { title: "Avoid Frozen Berries", desc: "Frozen strawberries turn mushy, dark, and unappealing as they thaw in a cup. Stick to fresh fruit for garnishing." },
+          { title: "Clear Sugar Syrup Consistency", desc: "Ensure your plain sugar syrup is perfectly clear and completely cooled. Warm syrup will melt the ice instantly." },
+          { title: "Linear Station Layout", desc: "Line up your ingredients in order of build: Cups -> Crush & Juices -> Fresh Fruit & Ice -> Chilled Soda -> Lids." }
+        ],
+        mistakes: [
+          { title: "Over-sweetening the drink", desc: "Strawberry crush is incredibly sweet on its own. If you add too much plain sugar syrup, the drink becomes heavy and cloying. Keep the fresh lime juice high to cut through the sugar." },
+          { title: "Using a thin straw", desc: "Strawberry pulp bits and seeds will instantly block narrow straws, resulting in customer frustration. Always hand out wide-bore straws." },
+          { title: "Letting the layers sit mixed", desc: "If a batch is prepared ahead of time, the layers bleed together into a flat pink color. Always build this drink fresh right in front of the customer." }
+        ],
+        variations: [
+          { badge: "budget", title: "Strawberry Lemonade Shaker", desc: "Replace carbonated soda with ice-cold filtered water. Shake crush, lime juice, sugar syrup, water, and ice in a shaker for 5 seconds and pour. Creates a beautiful frothy pink foam at the top of the cup." },
+          { badge: "kids", title: "Strawberry Candy Blast", desc: "Swap carbonated soda for Sprite or 7Up, completely eliminate fresh lime juice, and drop plain sugar syrup. Intensely sweet, bubbly green/red candy treat kids love." }
+        ]
+      },
+      "golden-pineapple-cooler": {
+        title: "Golden Pineapple Tropical Cooler",
+        subtitle: "Premium Pineapple Cooler",
+        flavorProfile: "Intensely tropical, tangy, and sweet with a crisp, effervescent bite that perfectly cuts through the rich pineapple notes.",
+        metrics: [
+          { label: "Sweetness", val: "6.5 / 10" },
+          { label: "Acidity", val: "6.5 / 10" },
+          { label: "Prep Ease", val: "Very Easy" },
+          { label: "Food Cost", val: "₹11 to ₹14", highlight: "green" },
+          { label: "Selling Price", val: "₹50 to ₹70", highlight: "gold" }
+        ],
+        ingredients: [
+          { name: "Premium Pineapple Syrup/Crush", qty: "25 ml", note: "Thick, high-flavor commercial syrup (e.g., Monin, Mala's, or Mapro)" },
+          { name: "Plain Sugar Syrup", qty: "10 ml", note: "1:1 ratio, clear and completely transparent" },
+          { name: "Fresh Lime Juice", qty: "15 ml", note: "Approx. 1 medium lime, freshly squeezed (essential to cut the syrup sweetness)" },
+          { name: "Black Salt (Kala Namak)", qty: "1 tiny pinch", note: "~0.5 grams (The secret weapon for Indian tastebuds)" },
+          { name: "Fresh Pineapple Wedge", qty: "1 triangular slice", note: "Thinly sliced for glass attachment/garnish" },
+          { name: "Fresh Mint Leaves", qty: "1 sprig", note: "For top garnish color contrast" },
+          { name: "Carbonated Water (Soda)", qty: "~180 ml", note: "Chilled, hard-carbonation soda" },
+          { name: "Ice Cubes", qty: "120 grams", note: "Solid, clear ice cubes filled to the top" }
+        ],
+        layers: [
+          { title: "Top Layer (Island Sparkle)", desc: "Crystal-clear, bubbling carbonated soda topped with a bright green mint leaf and a golden pineapple wedge peeking through the dome.", type: "clear" },
+          { title: "Middle Layer (Sunburst Gradient)", desc: "A dense pack of solid ice cubes. As the soda is poured, a natural ombré transition forms, fading from deep gold at the bottom to a light pastel yellow in the middle.", type: "ombre" },
+          { title: "Bottom Layer (Golden Tropical Base)", desc: "Pineapple syrup, plain sugar syrup, fresh lime juice, and a pinch of black salt. This forms a dense, sweet, and heavily concentrated yellow base.", type: "blue" }
+        ],
+        steps: [
+          { time: "0 – 10s", title: "The Tropical Foundation", desc: "Pour 25 ml Pineapple Syrup, 10 ml plain sugar syrup, 15 ml fresh lime juice, and 1 tiny pinch of black salt directly into the 350 ml cup. Give it a quick 3-second stir with a long spoon to thoroughly integrate the salt and citrus." },
+          { time: "11 – 18s", title: "The Ice Anchoring", desc: "Slide a thin, triangular fresh pineapple wedge flat against the inside wall of the cup. Immediately fill the glass completely to the top with 120g of solid ice cubes to pin the wedge securely in place." },
+          { time: "19 – 32s", title: "The Slow Fizz Infusion", desc: "Open an ice-cold soda bottle. Tilt the cup slightly and pour ~180 ml of soda slowly directly over the highest ice cube. Watch the clear soda settle beautifully on top of the golden base." },
+          { time: "33 – 45s", title: "The Island Finish", desc: "Slap a fresh mint sprig against your hand to activate the aroma and drop it right on top of the ice. Snap the dome lid on firmly, insert a wide straw, and serve." }
+        ],
+        tips: [
+          { title: "Never Skip the Black Salt", desc: "A tiny pinch of kala namak completely transforms pineapple flavor. It interacts with the tropical sweetness to create a deeply addictive, multi-dimensional flavor profile that Indian palates prefer." },
+          { title: "Calibrate Bottle Pumps", desc: "Fit a standard 10 ml pump to your bottles. Two and a half pumps of pineapple, one pump of sugar syrup. This keeps execution flawless during rush hour." },
+          { title: "Pre-Squeeze the Lime", desc: "Keep fresh lime juice ready in a squeeze bottle over an ice bed. Squeezing individual limes during a rush will destroy your speed optimization." },
+          { title: "Use Sub-Zero Soda", desc: "If the soda is warm, it will instantly mix the syrup base and go flat. Keep your soda bottles in a deep ice-salt matrix." },
+          { title: "Off-Season Garnishing", desc: "If fresh pineapple is unavailable or too expensive to source, replace the fresh wedge garnish with a single maraschino cherry floating on top. The yellow-and-red contrast looks stunning." },
+          { title: "Keep the Ice Solid", desc: "Watery ice dilutes the drink immediately. Use dry, hard ice straight from an insulated chest." },
+          { title: "The 'Slow Glide' Pour", desc: "Teach staff to pour soda gently against the side of the glass or over an ice cube, rather than rushing it down the middle." },
+          { title: "The Mixing Pitch", desc: "Train your staff to tell the customer: 'Give it a solid mix from the bottom up using your straw to blend the tropical flavors!'" },
+          { title: "Linear Layout Setup", desc: "Cups -> Syrups & Citrus -> Fresh Fruit & Ice -> Chilled Soda -> Lids & Straws. Keep the movement flowing in one direction." },
+          { title: "Pre-Cut the Fruit", desc: "Slice your pineapple wedges into uniform sizes during morning prep. Keep them stored in a sealed container in your cooler box." }
+        ],
+        mistakes: [
+          { title: "Using Warm Ingredients", desc: "Hot sugar syrup or warm soda will melt the ice instantly, leaving a flat, diluted drink. Ensure everything is thoroughly chilled before building." },
+          { title: "Over-Adding Black Salt", desc: "A tiny pinch creates magic; too much will make the drink taste like a savory salad. Use a small measuring dash or a tightly controlled salt shaker." },
+          { title: "Using Weak, Pale Syrups", desc: "Some cheap pineapple flavors look clear or faint yellow. Source a brand with a strong, rich golden color to preserve the visual appeal." }
+        ],
+        variations: [
+          { badge: "budget", title: "Pineapple Shaker Nimbu Paani", desc: "Replace bottled carbonated soda with ice-cold filtered water. Shake syrup, lime, sugar syrup, black salt, water, and ice in a shaker for 5 seconds and pour into the cup. Creates a beautiful, frothy yellow head." },
+          { badge: "kids", title: "The Pineapple Bubblegum Pop", desc: "Swap out carbonated soda for Sprite or 7Up, completely eliminate black salt, and drop fresh lime juice down to just 5 ml. Sweet, carbonated, liquid-candy style drink kids love." }
+        ]
+      },
+      "citrus-orange-splash": {
+        title: "Citrus Orange Splash",
+        subtitle: "Premium Orange Splash",
+        flavorProfile: "Bright, zesty, and intensely refreshing juicy orange flavor with a crisp, tangy undertone and a sparkling finish.",
+        metrics: [
+          { label: "Sweetness", val: "6.5 / 10" },
+          { label: "Acidity", val: "6.0 / 10" },
+          { label: "Prep Ease", val: "Very Easy" },
+          { label: "Food Cost", val: "₹11 to ₹14", highlight: "green" },
+          { label: "Selling Price", val: "₹50 to ₹70", highlight: "gold" }
+        ],
+        ingredients: [
+          { name: "Premium Orange Syrup/Crush", qty: "25 ml", note: "High-color, intense orange syrup (e.g., Monin, Mala's, or Mapro)" },
+          { name: "Plain Sugar Syrup", qty: "10 ml", note: "1:1 ratio, clear and completely transparent" },
+          { name: "Fresh Lime Juice", qty: "15 ml", note: "Squeezed fresh (approx. 1 medium lime) to cut through the heavy syrup profile" },
+          { name: "Black Salt (Kala Namak)", qty: "1 tiny pinch", note: "~0.5 grams (The ultimate flavor enhancer for Indian palate)" },
+          { name: "Fresh Orange Slices", qty: "1 or 2 thin wheels", note: "Cut thin for glass placement and top garnish" },
+          { name: "Fresh Mint Leaves", qty: "1 sprig", note: "For top garnish color contrast" },
+          { name: "Carbonated Water (Soda)", qty: "~180 ml", note: "Chilled, high-carbonation soda" },
+          { name: "Ice Cubes", qty: "120 grams", note: "Solid, clear ice cubes filled to the top" }
+        ],
+        layers: [
+          { title: "Top Layer (Crystal Sparkle)", desc: "Crystal-clear, bubbling carbonated soda topped with a bright green mint leaf and a vivid orange wheel peeking through the dome.", type: "clear" },
+          { title: "Middle Layer (The Ombré Gradient)", desc: "A packed wall of solid ice cubes. As the soda is poured over, a natural fire-and-ice gradient forms, fading from deep orange at the bottom to a light translucent orange in the middle.", type: "ombre" },
+          { title: "Bottom Layer (The Citric Anchor)", desc: "Orange syrup, plain sugar syrup, fresh lime juice, and a pinch of black salt. This forms a dense, sweet, and heavily concentrated bright orange base.", type: "blue" }
+        ],
+        steps: [
+          { time: "0 – 10s", title: "The Zesty Base", desc: "Pour 25 ml Orange Syrup, 10 ml plain sugar syrup, 15 ml fresh lime juice, and 1 tiny pinch of black salt directly into the 350 ml cup. Give it a quick 3-second swirl with a bar spoon to combine the syrups and dissolve the salt." },
+          { time: "11 – 18s", title: "The Orange Lock", desc: "Slide one thin orange wheel flat against the inside wall of the cup. Immediately fill the glass completely to the top with 120g of solid ice cubes to pin the wheel securely against the plastic." },
+          { time: "19 – 32s", title: "The Slow Splash Pour", desc: "Open an ice-cold soda bottle. Tilt the cup slightly and pour ~180 ml of soda slowly directly over the highest ice cube. Watch the clear soda settle beautifully on top of the orange base." },
+          { time: "33 – 45s", title: "The Crown & Serve", desc: "Slap a fresh mint sprig against your hand to activate its aromatic oils and drop it right on top of the ice along with a second thin orange slice. Snap the dome lid on firmly, insert a wide straw, and serve." }
+        ],
+        tips: [
+          { title: "The Black Salt Secret", desc: "Never omit the black salt (kala namak). Orange profiles can sometimes taste flat or artificial on their own; a tiny pinch of black salt interacts with the orange citrus to create a highly addictive sweet-and-tangy flavor profile that keeps customers returning." },
+          { title: "Calibrate Bottle Pumps", desc: "Fit a standard 10 ml pump to your syrup bottles. 2.5 pumps of orange syrup, 1 pump of sugar syrup. This eliminates measuring errors during high-volume rush hours." },
+          { title: "Pre-Squeeze the Lime", desc: "Keep fresh lime juice ready in a squeeze bottle resting over an ice bed. Squeezing individual limes per order during a rush will destroy your speed optimization." },
+          { title: "Sub-Zero Soda Mandatory", desc: "If the soda is warm, it will instantly mix the layers and go flat. Keep your soda bottles in a deep ice-salt matrix." },
+          { title: "Orange Selection", desc: "Buy thin-skinned, bright orange fruits (Nagpur oranges or Malta). Avoid thick-skinned, pale green oranges as they look unappealing when sliced as a garnish." },
+          { title: "Keep the Ice Solid", desc: "Watery ice dilutes the drink immediately. Use dry, hard ice straight from an insulated chest." },
+          { title: "The 'Slow Glide' Pour", desc: "Teach staff to pour soda gently against the side of the glass or over a high ice cube, rather than rushing it down the middle." },
+          { title: "The Interactive Pitch", desc: "Train your staff to tell the customer: 'Give it a solid mix from the bottom up using your straw to unlock the full flavor!'" },
+          { title: "Linear Layout Setup", desc: "Arrange your station left-to-right: Cups -> Syrups & Citrus -> Fresh Fruit & Ice -> Chilled Soda -> Lids & Straws. Keep the movement flowing in one direction." },
+          { title: "Pre-Slice Fruit", desc: "Slice your orange wheels into uniform, thin sizes during morning prep. Keep them stored in a sealed container lined with a damp paper towel in your cooler box so they stay fresh." }
+        ],
+        mistakes: [
+          { title: "Using Warm Ingredients", desc: "Hot sugar syrup or warm soda will melt the ice instantly, leaving a flat, unappealing, diluted drink. Ensure everything is thoroughly chilled before building." },
+          { title: "Over-Adding Black Salt", desc: "A tiny pinch creates magic; too much will make the drink taste like a savory salad. Use a small measuring dash or a tightly controlled salt shaker." },
+          { title: "Using Artificial Squashes", desc: "Avoid cheap breakfast squashes that taste like synthetic medicine. Invest in a premium commercial syrup or high-fruit content fruit crush to preserve taste integrity." }
+        ],
+        variations: [
+          { badge: "budget", title: "Orange Shaker Nimbu Paani", desc: "Replace bottled carbonated soda with ice-cold filtered water. Shake syrup, lime, sugar syrup, black salt, water, and ice in a shaker for 5 seconds and pour into the cup. Creates a beautiful, frothy orange head." },
+          { badge: "kids", title: "The Orange Creamsicle Pop", desc: "Swap out carbonated soda for Sprite or 7Up, completely eliminate black salt, and drop fresh lime juice down to just 5 ml. Sweet, carbonated, liquid-candy style drink kids love." }
+        ]
+      },
+      "mango-madness": {
+        title: "Mango Madness",
+        subtitle: "Tropical Fizz",
+        flavorProfile: "Luscious, velvety, authentic sweet mango flavor sharply balanced by a crisp, bubbly carbonated kick and a zesty lime undertone.",
+        metrics: [
+          { label: "Sweetness", val: "7.5 / 10" },
+          { label: "Acidity", val: "5.5 / 10" },
+          { label: "Prep Ease", val: "Very Easy" },
+          { label: "Food Cost", val: "₹12 to ₹15", highlight: "green" },
+          { label: "Selling Price", val: "₹55 to ₹75", highlight: "gold" }
+        ],
+        ingredients: [
+          { name: "Premium Mango Alphonso Crush/Syrup", qty: "30 ml", note: "High-fruit content pulp crush (e.g., Mala's, Mapro, or Monin)" },
+          { name: "Plain Sugar Syrup", qty: "10 ml", note: "1:1 ratio, clear and completely transparent" },
+          { name: "Fresh Lime Juice", qty: "15 ml", note: "Approx. 1 medium lime, freshly squeezed (critical to break up the thick pulp texture)" },
+          { name: "Black Salt (Kala Namak)", qty: "1 tiny pinch", note: "~0.5 grams (Balances the rich mango sweetness beautifully)" },
+          { name: "Lime Wheel or Mint Leaf", qty: "1 slice / 1 sprig", note: "For top garnish color contrast" },
+          { name: "Carbonated Water (Soda)", qty: "~170 ml", note: "Chilled, high-carbonation soda" },
+          { name: "Ice Cubes", qty: "120 grams", note: "Solid, clear ice cubes filled to the top" }
+        ],
+        layers: [
+          { title: "Top Layer (Effervescent Crown)", desc: "Crystal-clear, intensely bubbling soda topped with a bright green mint sprig or a yellow-green lime wheel.", type: "clear" },
+          { title: "Middle Layer (Sun-Bleed Gradient)", desc: "A tightly packed wall of ice cubes. When the soda hits the ice, it slow-diffuses, creating a gorgeous golden-to-pastel ombré transition.", type: "ombre" },
+          { title: "Bottom Layer (Mango Velvet Base)", desc: "A thick, opaque, deep-gold mixture of mango crush, sugar syrup, fresh lime juice, and a pinch of black salt. This sits heavily at the base.", type: "blue" }
+        ],
+        steps: [
+          { time: "0 – 10s", title: "The Golden Foundation", desc: "Pour 30 ml Mango Crush, 10 ml plain sugar syrup, 15 ml fresh lime juice, and 1 tiny pinch of black salt directly into the 350 ml cup. Stir rapidly for 3 seconds with a long bar spoon to thoroughly blend the thick pulp with the citrus." },
+          { time: "11 – 18s", title: "The Ice Pack", desc: "Fill the glass completely to the top with 120g of solid, dry ice cubes. Ensure the cubes are packed tightly to create a sturdy barrier." },
+          { time: "19 – 32s", title: "The Slow Carbonation Glide", desc: "Open an ice-cold soda bottle. Tilt the cup slightly and pour ~170 ml of soda slowly directly over the highest ice cube. The clear soda will layer beautifully on top of the golden mango anchor." },
+          { time: "33 – 45s", title: "The High-Contrast Crown", desc: "Slap a fresh mint sprig against your hand to release the aromatic bouquet and drop it on top of the ice alongside a thin lime wheel. Snap the dome lid on firmly, insert a wide straw, and serve." }
+        ],
+        tips: [
+          { title: "Never Skip the Kala Namak", desc: "Ripe mango can taste flatly sweet or syrupy on its own. A tiny pinch of black salt creates an irresistible 'Aam Panna' inspired complexity that cuts through the thickness and keeps customers hooked." },
+          { title: "Calibrate Heavy Pumps", desc: "Because mango crush is thick, cheap pourers or slow pumps will slow you down. Use a wide-nozzle 10 ml syrup pump (3 pumps for mango, 1 pump for sugar syrup) for immediate, consistent measurements." },
+          { title: "Use High-Pulp Crush", desc: "Avoid cheap, watery mango 'syrups' that look like yellow food dye. Invest in an authentic Alphonso or King Mango Fruit Crush (like Mapro or Mala's) containing real fruit mass." },
+          { title: "Pre-Squeeze Your Limes", desc: "Keep fresh lime juice stored in clean squeeze bottles sitting in an ice chest. Squeezing individual fruits during rush hour will destroy your throughput." },
+          { title: "Sub-Zero Soda Temperature", desc: "Warm soda causes the dense mango base to churn and mix instantly, turning the whole drink flat and cloudy. Keep your sodas in a deep ice-salt slurry." },
+          { title: "Keep Ice Dry and Solid", desc: "Watery, melting ice will dilute the mango flavors immediately before the customer even takes a sip. Keep your ice chest highly insulated." },
+          { title: "The 'Slow Glide' Pour", desc: "Train your staff to glide the soda down the inner wall of the cup or over a high ice cube rather than splashing it aggressively down the center." },
+          { title: "The Interactive Pitch", desc: "Instruct your staff to say: 'Please give it a deep stir from the bottom up with your straw to unlock the mango flavor before drinking!' tasting experience." },
+          { title: "Linear Layout Setup", desc: "Arrange the workstation from left to right: Cups -> Mango & Clear Syrups -> Citrus & Salt -> Solid Ice -> Cold Soda -> Lids & Straws." },
+          { title: "Keep Spoons Clean", desc: "Wipe down the bar spoon with a clean, wet cloth between orders to prevent thick mango pulp residue from contaminating subsequent drinks (like a clear Mint Mojito)." }
+        ],
+        mistakes: [
+          { title: "Using thin straws", desc: "Customers hate struggling to drink pulp through a narrow straw. Always provide wide-bore beverage straws." },
+          { title: "Over-sweetening the base", desc: "Mango pulp already contains massive amounts of sugar. Keep your plain sugar syrup strictly capped at 10 ml, and ensure the fresh lime juice is sharp enough to cut through the weight." },
+          { title: "Letting drinks sit pre-made", desc: "If built too early, the heavy mango pulp will slowly bleed upward into the soda, losing its crisp, premium layered contrast. Always build it fresh in under 45 seconds right in front of the customer." }
+        ],
+        variations: [
+          { badge: "budget", title: "Mango Shaker Nimbu Paani", desc: "Swap out carbonated soda for ice-cold filtered water. Combine ingredients directly inside a cocktail shaker, shake vigorously for 5 seconds and pour. Creates a frothy golden head that resembles fresh juice." },
+          { badge: "kids", title: "Mango Jelly Blast", desc: "Replace carbonated soda with Sprite or 7Up, completely eliminate black salt, and drop fresh lime juice down to 5 ml. Intensely sweet, bubbly candy-style drink kids love." }
+        ]
+      },
+      "spicy-kala-khatta": {
+        title: "Spicy Kala Khatta Fizz",
+        subtitle: "Premium Spiced Jamun",
+        flavorProfile: "An intense, nostalgic explosion of sweet, deeply tangy, and salty flavors. The jamun-like fruitiness is hit with sharp Indian spices, a heavy punch of citrus, and a crisp sparkling finish.",
+        metrics: [
+          { label: "Sweetness", val: "5.5 / 10" },
+          { label: "Acidity", val: "8.5 / 10" },
+          { label: "Prep Ease", val: "Very Easy" },
+          { label: "Food Cost", val: "₹10 to ₹12", highlight: "green" },
+          { label: "Selling Price", val: "₹50 to ₹60", highlight: "gold" }
+        ],
+        ingredients: [
+          { name: "Premium Kala Khatta Syrup", qty: "25 ml", note: "Deep purple, tart syrup (e.g., Mala's, Mapro, or Manama)" },
+          { name: "Plain Sugar Syrup", qty: "10 ml", note: "1:1 ratio, clear and transparent (balances the intense salt/sour spices)" },
+          { name: "Fresh Lime Juice", qty: "15 ml", note: "Squeezed fresh (approx. 1 medium lime)" },
+          { name: "Kala Khatta Secret Spice Mix", qty: "1 flat tsp (~3g)", note: "Pre-blended mix of Black Salt, Chat Masala, and Roasted Cumin (Bhuna Jeera)" },
+          { name: "Fresh Mint Leaves", qty: "3 to 4 leaves", note: "Gently clapped for aroma" },
+          { name: "Lime Wheel", qty: "1 thin slice", note: "For visual garnish" },
+          { name: "Carbonated Water (Soda)", qty: "~180 ml", note: "Chilled, hard-carbonation soda" },
+          { name: "Ice Cubes", qty: "120 grams", note: "Solid, clear ice cubes filled to the top" }
+        ],
+        layers: [
+          { title: "Top Layer (Crystal Sparkle)", desc: "Crystal-clear, bubbling carbonated soda topped with a bright green mint leaf, a lime wheel, and a faint dusting of the spice mix.", type: "clear" },
+          { title: "Middle Layer (Neon Ombré)", desc: "A dense pack of solid ice cubes. As the soda is poured, a natural gradient forms, fading from midnight purple at the bottom to a beautiful translucent violet in the middle.", type: "ombre" },
+          { title: "Bottom Layer (Midnight Base)", desc: "Kala Khatta syrup, clear sugar syrup, fresh lime juice, and the spice blend. This forms a heavy, dark, opaque purple foundation at the bottom.", type: "blue" }
+        ],
+        steps: [
+          { time: "0 – 10s", title: "The Spice & Syrup Base", desc: "Pour 25 ml Kala Khatta Syrup, 10 ml plain sugar syrup, and 15 ml fresh lime juice into the 350 ml cup. Add 1 flat teaspoon of the Secret Spice Mix. Stir rapidly for 3 seconds with a long bar spoon to dissolve the spices into the syrup." },
+          { time: "11 – 15s", title: "The Mint Release", desc: "Take 3–4 fresh mint leaves, place them in your palm, and slap them sharply once to release the oils. Drop them directly into the dark purple base." },
+          { time: "16 – 22s", title: "The Ice Lock", desc: "Fill the glass completely to the top with 120g of solid ice cubes. Ensure the cubes are packed tightly to create a sturdy physical barrier." },
+          { time: "23 – 35s", title: "The Slow Carbonation Glide", desc: "Open a fresh, ice-cold soda bottle. Tilt the cup slightly and pour ~180 ml of soda slowly directly over the highest ice cube. Watch the clear soda settle beautifully on top." },
+          { time: "36 – 45s", title: "The Crown & Dusting", desc: "Drop a thin lime wheel on top of the ice. Add a tiny pinch of the spice mix right over the dome lid opening for a fragrant, spiced aroma. Snap the dome lid on firmly, insert a wide straw, and serve." }
+        ],
+        tips: [
+          { title: "Pre-Batch the Spice Mix", desc: "Mix your spices ahead of time in bulk: 50% Black Salt (Kala Namak), 30% Chat Masala, and 20% Roasted Cumin Powder (Bhuna Jeera). Store it in a spice shaker with medium holes." },
+          { title: "Calibrate Bottle Pumps", desc: "Fit a standard 10 ml pump to your syrup bottles. 2.5 pumps of Kala Khatta, 1 pump of sugar syrup. This eliminates measuring errors during peak rush hours." },
+          { title: "Pre-Squeeze the Lime", desc: "Keep fresh lime juice ready in a squeeze bottle resting over an ice bed to shave 15 seconds off every order." },
+          { title: "Sub-Zero Soda Temperature", desc: "Warm soda causes the ingredients to churn and mix instantly while losing its fizz. Keep your soda bottles in a deep ice-salt matrix." },
+          { title: "Never Use Powdered Sugar", desc: "Granular or powdered sugar takes too long to dissolve in cold syrup and turns gritty. Stick strictly to your clear 1:1 sugar syrup." },
+          { title: "Keep the Ice Solid", desc: "Watery ice dilutes the intense, tangy punch of Kala Khatta. Use dry, hard ice straight from an insulated chest." },
+          { title: "The 'Slow Glide' Pour", desc: "Teach staff to pour soda gently against the side of the glass or over a high ice cube, rather than rushing it down the middle." },
+          { title: "The Interactive Pitch", desc: "Train your staff to tell the customer: 'Give it a solid mix from the bottom up using your straw to blend the spices before your first sip!'" },
+          { title: "Linear Layout Setup", desc: "Arrange your station left-to-right: Cups -> Syrups & Citrus -> Secret Spice Shaker & Mint -> Solid Ice -> Chilled Soda -> Lids & Straws." },
+          { title: "Keep Stirring Spoon Isolated", desc: "Kala Khatta syrup has an incredibly strong purple pigment. Dedicate one bar spoon only to Kala Khatta so it doesn't accidently stain a clear Mojito or yellow Pineapple Cooler." }
+        ],
+        mistakes: [
+          { title: "Using Warm Ingredients", desc: "Hot sugar syrup or warm soda will melt the ice instantly, leaving a flat, unappealing, diluted purple mess. Ensure everything is thoroughly chilled." },
+          { title: "Forgetting Clear Sugar Syrup", desc: "Kala Khatta syrup is intensely tart and salty. Skipping the plain sugar syrup entirely makes the drink taste unpleasantly harsh. The 10 ml of clear syrup smooths out the edges." },
+          { title: "Over-muddling the mint", desc: "Never muddle the mint in a Kala Khatta soda. The heavy spices combined with crushed chlorophyll from over-muddled mint will make the drink taste like grass. A single slap is all you need." }
+        ],
+        variations: [
+          { badge: "budget", title: "Kala Khatta Shaker", desc: "Replace carbonated soda with ice-cold filtered water. Shake ingredients in a shaker for 5 seconds and pour. Cuts bottled soda costs entirely and generates a beautiful frothy purple head." },
+          { badge: "kids", title: "The Purple Candy Pop", desc: "Swap out carbonated soda for Sprite or 7Up. Completely eliminate the Secret Spice Mix and reduce fresh lime juice to just 5 ml. Tastes exactly like a sweet frozen purple ice-lolly (Kala Khatta Chuski)." }
+        ]
+      },
+      "hazelnut-cold-coffee": {
+        title: "Creamy Hazelnut Frappé / Cold Coffee",
+        subtitle: "Premium Hazelnut Cold Coffee",
+        flavorProfile: "Rich, bold, and deeply aromatic coffee notes paired with a smooth, velvety texture and a distinct, premium toasted hazelnut finish.",
+        metrics: [
+          { label: "Sweetness", val: "6.5 / 10" },
+          { label: "Bitterness", val: "5.0 / 10" },
+          { label: "Prep Ease", val: "Medium" },
+          { label: "Food Cost", val: "₹16 to ₹20", highlight: "green" },
+          { label: "Selling Price", val: "₹70 to ₹90", highlight: "gold" }
+        ],
+        ingredients: [
+          { name: "Instant Coffee Powder", qty: "2 flat tsp (~4g)", note: "Premium commercial blend (e.g., Nescafe Classic or Levista)" },
+          { name: "Hazelnut Syrup", qty: "20 ml", note: "Premium roasted hazelnut syrup (e.g., Monin, Sula, or Mapro)" },
+          { name: "Plain Sugar Syrup", qty: "15 ml", note: "1:1 clear sugar syrup (dissolves instantly unlike granular sugar)" },
+          { name: "Chilled Full-Cream Milk", qty: "180 ml", note: "Packed milk (Amul Taaza or Gold), kept near freezing" },
+          { name: "Chocolate Sauce", qty: "5 ml / 1 squeeze", note: "For lining the inside wall of the plastic glass" },
+          { name: "Ice Cubes", qty: "80 grams", note: "Approx. 4 solid cubes (thickens the blend without watering it down)" }
+        ],
+        layers: [
+          { title: "Top Layer (Crema Foam)", desc: "A thick, dense, velvety layer of aerated coffee-milk foam generated during high-speed blending that sits proudly under the dome lid.", type: "clear" },
+          { title: "Middle Layer (Coffee Emulsion)", desc: "A rich, uniform, creamy light-brown coffee emulsion infused cleanly with hazelnut aromatics.", type: "ombre" },
+          { title: "Bottom Layer (Chocolate Drizzle)", desc: "A zigzag drizzle of rich chocolate sauce down the inside walls of the transparent cup that holds its shape against the cold liquid.", type: "blue" }
+        ],
+        steps: [
+          { time: "0 – 10s", title: "The Flash Decoction", desc: "In a tiny cup or directly in the blender jar, mix 2 teaspoons of coffee powder with 15 ml plain sugar syrup and 20 ml hazelnut syrup. Stir for 3 seconds into a thick, smooth, dark coffee paste." },
+          { time: "11 – 18s", title: "The Cup Dressing", desc: "Take a 350 ml clear cup. Rotate the cup in your hand while applying a quick zigzag drizzle of chocolate sauce along the inside walls. Set it aside." },
+          { time: "19 – 32s", title: "The High-Speed Emulsion", desc: "Pour 180 ml chilled full-cream milk and 80g of solid ice cubes directly into the blender jar over your coffee paste. Secure the lid and blend on high speed for exactly 12 seconds to generate maximum thick foam." },
+          { time: "33 – 45s", title: "The Pour & Cap", desc: "Pour the velvety coffee into the dressed cup, ensuring the thick foam sits beautifully on top. Snap on the dome lid, insert a wide straw, and serve." }
+        ],
+        tips: [
+          { title: "Bulk Decoction Batching", desc: "To achieve speed during rushes, pre-mix 100g coffee powder with 400ml hot water and 400ml sugar syrup. Store in a squeeze bottle. Use exactly 40ml of this 'coffee base' per cup." },
+          { title: "Sub-Zero Milk Storage", desc: "Keep your milk packets inside a deep chiller or salted ice bath. The colder the milk, the thicker and more stable the foam structure will be." },
+          { title: "Calibrate Your Pumps", desc: "Use a calibrated 10 ml pump on your hazelnut syrup bottle. Exactly 2 pumps per drink ensures flawless consistency regardless of who is operating the blender." },
+          { title: "Use Full-Cream Milk", desc: "Never use skimmed or toned milk to save money. Toned milk creates watery coffee that separates quickly. Full-cream milk provides the premium mouthfeel." },
+          { title: "Ice Control", desc: "Never over-ice cold coffee. Excess ice shears the milk proteins and dilutes the fats, ruining the rich texture. Stick strictly to 80g of solid ice." },
+          { title: "Chocolate Wall Temperature", desc: "Keep chocolate sauce bottle at room temperature. If too cold, it won't drizzle smoothly; if too warm, it slides straight to bottom without making a pattern." },
+          { title: "Blender Maintenance", desc: "Keep a jug rinser at your stall. Rinsing the blender jar takes only 3 seconds if done immediately after pouring, keeping your workspace fast and hygienic." },
+          { title: "Avoid Granular Sugar", desc: "Granular sugar does not dissolve completely in cold milk, leaving a crunchy, un-melted layer at bottom. Always use clear 1:1 liquid sugar syrup." },
+          { title: "Vary Blender Speeds", desc: "Start the blender on low for 2 seconds to crack ice cubes, then ramp it up to maximum speed for 10 seconds to whip air into the milk." },
+          { title: "The Speed Setup", desc: "Arrange your station line: Cups -> Coffee Base & Hazelnut Syrup -> Chilled Milk Chest -> Blenders -> Lids & Straws." }
+        ],
+        mistakes: [
+          { title: "Using warm milk", desc: "Blending warm or room-temperature milk melts ice instantly, leaving a lukewarm, watery, flat coffee with zero foam." },
+          { title: "Drizzling chocolate ahead of time", desc: "If you dress cups and let them sit in heat, sauce melts down into an unappealing puddle. Dress glass right before pouring." },
+          { title: "Over-blending", desc: "Blending for more than 20 seconds generates heat from blades, which melts the structure and flattens foam. Stick to strict 12 seconds." }
+        ],
+        variations: [
+          { badge: "budget", title: "Hazelnut Shaker Coffee", desc: "Put coffee decoction, hazelnut syrup, chilled milk, and ice into a heavy-duty stainless steel cocktail shaker. Shake vigorously by hand for 7 seconds and strain over fresh ice. Cuts equipment costs." },
+          { badge: "kids", title: "Hazelnut Chocolate Milkshake", desc: "Completely eliminate coffee powder. Double chocolate sauce drizzle inside cup, use 15ml hazelnut syrup, and add 10ml premium chocolate syrup to milk blend. Creamy Nutella-style milkshake." }
+        ]
+      },
+      "classic-cold-coffee": {
+        title: "Classic Frothy Cold Coffee",
+        subtitle: "Classic Cold Coffee",
+        flavorProfile: "Bold, creamy, and deeply nostalgic coffee punch with a thick, velvety texture and a clean, refreshing sweetness.",
+        metrics: [
+          { label: "Sweetness", val: "6.0 / 10" },
+          { label: "Bitterness", val: "5.5 / 10" },
+          { label: "Prep Ease", val: "Easy" },
+          { label: "Food Cost", val: "₹13 to ₹16", highlight: "green" },
+          { label: "Selling Price", val: "₹60 to ₹80", highlight: "gold" }
+        ],
+        ingredients: [
+          { name: "Instant Coffee Powder", qty: "2.5 flat tsp (~5g)", note: "Strong commercial blend (e.g., Nescafe Classic or Levista)" },
+          { name: "Plain Sugar Syrup", qty: "30 ml", note: "1:1 clear sugar syrup (dissolves instantly in cold milk)" },
+          { name: "Chilled Full-Cream Milk", qty: "180 ml", note: "Packaged milk (Amul Gold or Taaza), kept near-freezing" },
+          { name: "Chocolate Sauce", qty: "5 ml / 1 quick squeeze", note: "For interior glass aesthetics (room temperature)" },
+          { name: "Ice Cubes", qty: "80 grams", note: "Approx. 4 solid, dry ice cubes (for thickening and cooling)" }
+        ],
+        layers: [
+          { title: "Top Layer (Crema Foam Plume)", desc: "A thick, dense, aerated head of coffee-milk foam that rises proudly into the dome lid.", type: "clear" },
+          { title: "Middle Layer (Coffee Emulsion)", desc: "A rich, uniform, velvety light-brown milk and coffee emulsion with zero liquid separation.", type: "ombre" },
+          { title: "Bottom Layer (Chocolate Drizzle)", desc: "A quick, sweeping spiral of chocolate sauce drizzled along the inner walls of the plastic glass.", type: "blue" }
+        ],
+        steps: [
+          { time: "0 – 10s", title: "The Instant Decoction", desc: "Add 2.5 teaspoons of instant coffee powder and 30 ml plain sugar syrup directly into the bottom of the blender jar. Whisk rapidly with a spoon for 3 seconds into a smooth, dark paste." },
+          { time: "11 – 17s", title: "The Cup Dressing", desc: "Take a 350 ml clear plastic cup. Rotate the cup quickly in your hand while applying a light zigzag drizzle of chocolate sauce along the inside walls. Set it aside." },
+          { time: "19 – 32s", title: "The High-Speed Aeration", desc: "Pour 180 ml near-freezing full-cream milk and 80g of solid ice cubes directly into the blender jar over the coffee paste. Secure the lid and blend on high speed for exactly 12 seconds to whip up a dense foam." },
+          { time: "33 – 45s", title: "The Pour & Cap", desc: "Pour the velvety blended coffee into the dressed cup, letting the thick foam stack cleanly at the top. Snap on the dome lid immediately, insert a wide straw, and serve." }
+        ],
+        tips: [
+          { title: "Bulk Decoction Batching", desc: "Mix 100g of coffee powder with 600ml of hot 1:1 sugar syrup ahead of time. Store in a squeeze bottle. Use exactly 35ml of this 'Liquid Coffee Base' per cup." },
+          { title: "Sub-Zero Milk Matrix", desc: "Store your milk packets in a deep cooler box submerged in an ice-salt slurry. The closer the milk is to 1°C, the more stable and thick the foam bubbles will be." },
+          { title: "Strict Ice Caps", desc: "Never throw random handfuls of ice into a cold coffee blender. Too much ice shears the milk proteins and dilutes the milk fat. Stick strictly to 80g (4 solid cubes)." },
+          { title: "Full-Cream Non-Negotiable", desc: "Never use toned, skimmed, or diluted milk to cut costs. Low-fat milk produces weak, watery coffee that loses its foam within 60 seconds. Full-cream milk is non-negotiable." },
+          { title: "Avoid Raw Granular Sugar", desc: "Granular sugar dissolves poorly in ice-cold milk, leaving an un-melted, crunchy layer at the bottom. Stick entirely to transparent 1:1 liquid sugar syrup." },
+          { title: "The Quick-Rinse Station", desc: "Install a pressurized tap jug rinser at your stall. Rinsing the blender jar takes only 3 seconds if done immediately after pouring, keeping your workflow clean and fast." },
+          { title: "Chocolate Temperature Control", desc: "Keep chocolate drizzle sauce at room temperature. If kept in the fridge, it will be too thick to squeeze; if in the direct sun, it turns watery and slides down." },
+          { title: "Vary Blender Speeds", desc: "Start blender on a low pulse for 2 seconds to crack ice cubes, then instantly ramp it up to maximum speed for 10 seconds to inject maximum air into the milk fats." },
+          { title: "Linear Station Assembly", desc: "Cups -> Liquid Coffee Base -> Chilled Milk Bed -> Blender Line -> Lids & Straws. Keep the movement flowing in one direct line." },
+          { title: "Isolate Blender Jars", desc: "Dedicate specific blender jars solely to cold coffee. Residual citrus oils from mocktails will curdle milk instantly if jars are shared without meticulous washing." }
+        ],
+        mistakes: [
+          { title: "Using Room-Temp Milk", desc: "Blending warm milk melts ice instantly, leaving you with a lukewarm, flat, watery beverage with zero foam head." },
+          { title: "Drizzling Chocolate Too Early", desc: "If you dress cups and let them sit out on a warm counter, the sauce will slide down into an unappealing puddle before the coffee is poured. Dress right before pouring." },
+          { title: "Over-Blending", desc: "Blending for more than 20 seconds generates friction heat from the blades. This melts the micro-foam structure and turns the drink flat. Stick to strict 12 seconds." }
+        ],
+        variations: [
+          { badge: "budget", title: "Classic Shaker Coffee", desc: "Eliminate blender. Put coffee decoction, chilled milk, and ice into a heavy-duty stainless steel cocktail shaker. Shake vigorously by hand for 8 seconds and strain over fresh ice." },
+          { badge: "kids", title: "The Sweet Cadbury Choco-Malt", desc: "Completely eliminate coffee powder. Replace with 2 tablespoons of premium chocolate malt powder (like Bournvita or Milo) or chocolate syrup blended straight into milk. Top with colorful straw." }
+        ]
+      },
+      "classic-cafe-frappe": {
+        title: "Classic Café Frappé",
+        subtitle: "Premium Café Frappé",
+        flavorProfile: "Exceptionally smooth, creamy, and decadent. The sharp bitterness of coffee is perfectly rounded out by the rich, velvety texture of a frozen, ice-blended emulsion.",
+        metrics: [
+          { label: "Sweetness", val: "6.5 / 10" },
+          { label: "Bitterness", val: "5.0 / 10" },
+          { label: "Prep Ease", val: "Easy" },
+          { label: "Food Cost", val: "₹18 to ₹22", highlight: "green" },
+          { label: "Selling Price", val: "₹80 to ₹100", highlight: "gold" }
+        ],
+        ingredients: [
+          { name: "Commercial Frappé Base Powder", qty: "1.5 tbsp (~20g)", note: "Premium emulsifying powder containing milk solids, stabilizers, and vanilla notes" },
+          { name: "Instant Coffee Powder", qty: "2 flat tsp (~4g)", note: "Strong commercial blend (e.g., Nescafe Classic or Levista)" },
+          { name: "Plain Sugar Syrup", qty: "20 ml", note: "1:1 clear liquid sugar syrup" },
+          { name: "Chilled Full-Cream Milk", qty: "120 ml", note: "Packaged milk (Amul Gold), kept near-freezing" },
+          { name: "Ice Cubes", qty: "140 grams", note: "Solid, dry ice cubes (approx. 7–8 standard cubes)" },
+          { name: "Chocolate Sauce", qty: "5 ml / 1 quick squeeze", note: "For interior glass aesthetics (room temperature)" }
+        ],
+        layers: [
+          { title: "Top Layer (Frozen Micro-Foam)", desc: "A thick, rich crown of frozen micro-foam that sits proudly up into the dome lid.", type: "clear" },
+          { title: "Middle Layer (Frozen Ice-Blended Emulsion)", desc: "A dense, frosty, light-amber coffee-and-milk slush with zero liquid separation.", type: "ombre" },
+          { title: "Bottom Layer (Chocolate Drizzle)", desc: "A sweeping, precise spiral of chocolate sauce drizzled along the inner walls of the plastic cup right before pouring.", type: "blue" }
+        ],
+        steps: [
+          { time: "0 – 12s", title: "The Dry-to-Liquid Bind", desc: "Add 1.5 tablespoons of Frappé Base Powder, 2 teaspoons of instant coffee powder, and 20 ml plain sugar syrup directly into the blender jar. Pour in 120 ml of chilled full-cream milk. Swirl for 2 seconds to wet powders." },
+          { time: "13 – 20s", title: "The Cup Dressing", desc: "Take a 350 ml clear PET plastic cup. Rotate the cup quickly in your hand while applying a bold zigzag drizzle of chocolate sauce along the inside walls. Set it aside." },
+          { time: "21 – 35s", title: "The High-Speed Frozen Blend", desc: "Dump 140g of solid ice cubes into the blender jar. Start blender on low pulse for 2 seconds to crack ice, then instantly ramp up to maximum speed for 10–12 seconds until smooth." },
+          { time: "36 – 45s", title: "The Slow Pour & Cap", desc: "Pour/thump the thick, frozen, velvety frappé into the dressed cup. It should form a beautiful peak at the top. Snap on the dome lid immediately, insert a wide straw, and serve." }
+        ],
+        tips: [
+          { title: "Strict Liquid Ratios", desc: "Frappé uses less milk (120 ml) and more ice (140g). Do not add more milk than specified, or you will lose the thick, frozen texture and turn it into a standard liquid drink." },
+          { title: "Liquid Sugar Is Essential", desc: "Never use granulated sugar. It cannot dissolve in a thick, frozen ice emulsion, leaving raw, gritty crystals at the bottom of the cup. Stick strictly to clear 1:1 sugar syrup." },
+          { title: "The Liquid Coffee Squeeze", desc: "Dissolve your morning coffee powder straight into your sugar syrup batch (e.g., 50g coffee powder dissolved into 250ml hot sugar syrup). Keep in a squeeze bottle and measure by volume." },
+          { title: "Keep the Milk Sub-Zero", desc: "Store your milk packets submerged in an ice-and-salt bath. Warm milk breaks down the emulsification process, leading to a watery blend." },
+          { title: "Use Solid, Dry Ice Cubes", desc: "Wet, melting ice adds unmeasured water into the blender jar, destroying the precise consistency. Keep your ice chest fully insulated and drain any pooled water regularly." },
+          { title: "The Quick Jar-Rinse Station", desc: "Install a pressurized sink-jug rinser. A 3-second upside-down blast rinses the sticky frappe base cleanly out of the jar, preparing you instantly for the next order." },
+          { title: "Do Not Over-Blend", desc: "Blending a frappé for more than 15 seconds allows blade friction heat to melt micro-ice crystals. Stop as soon as the sound changes to a smooth hum." },
+          { title: "Isolate Coffee Jars", desc: "Keep your coffee blender jars separate from your fruit mocktail jars. Residual citrus juices from mocktails will instantly curdle the milk in your frappé." },
+          { title: "Linear Workspace Setup", desc: "Line up your station: Cups -> Powders & Syrups -> Sub-Zero Milk Chest -> Ice Wells -> Blenders -> Lids & Straws. Keep movement flowing in one direct line." },
+          { title: "The Tap-and-Pour Technique", desc: "Because the frappé is exceptionally thick, tap the bottom of the blender jar firmly against the counter once before pouring to release any air pockets trapped under the blades." }
+        ],
+        mistakes: [
+          { title: "Skimping on Frappé Powder", desc: "Trying to make a frappé without base powder results in an icy, watery mess that separates into layers within 60 seconds. The base powder is non-negotiable." },
+          { title: "Using Standard Narrow Straws", desc: "A thick, ice-blended frappé cannot flow through a standard thin juice straw. Always provide wide-bore beverage straws to avoid customer frustration." },
+          { title: "Pre-Drizzling Cups Early", desc: "If you drizzle chocolate sauce inside cups and let them sit in the heat, the sauce will slide down into a messy puddle before the drink is poured. Always drizzle right before filling." }
+        ],
+        variations: [
+          { badge: "budget", title: "Street-Style Creamy Blend", desc: "Replace frappé base powder with 1.5 tablespoons of standard Dairy Whitener / Milk Powder (Everyday/Amulya) combined with a single drop of vanilla essence." },
+          { badge: "kids", title: "Frozen Oreo-Vanilla Frappé", desc: "Completely eliminate coffee powder. Keep the frappé powder base, milk, sugar syrup, and ice, but add 2 whole Oreo cookies directly into the blender jar before blending." }
+        ]
+      },
+      "blue-strawberry-fizz": {
+        title: "Blue Strawberry Crimson Fizz",
+        subtitle: "The Twilight Sparkler",
+        flavorProfile: "A brilliant, multi-layered berry-citrus explosion. The heavy, sweet berry notes of strawberry at the bottom contrast beautifully with the bright, orange-peel citrus tartness of Blue Curaçao and crisp soda at the top.",
+        metrics: [
+          { label: "Sweetness", val: "7.0 / 10" },
+          { label: "Acidity", val: "6.0 / 10" },
+          { label: "Prep Ease", val: "Very Easy" },
+          { label: "Food Cost", val: "₹14 to ₹17", highlight: "green" },
+          { label: "Selling Price", val: "₹70 to ₹90", highlight: "gold" }
+        ],
+        ingredients: [
+          { name: "Premium Strawberry Crush/Syrup", qty: "25 ml", note: "High-density fruit crush (e.g., Mapro or Mala's)" },
+          { name: "Plain Sugar Syrup", qty: "10 ml", note: "1:1 clear liquid sugar syrup" },
+          { name: "Fresh Lime Juice", qty: "15 ml", note: "Squeezed fresh (approx. 1 medium lime)" },
+          { name: "Blue Curaçao Syrup", qty: "15 ml", note: "Light-density premium syrup (e.g., Monin or Mapro)" },
+          { name: "Carbonated Water (Soda)", qty: "~160 ml", note: "Chilled, hard-carbonation soda" },
+          { name: "Ice Cubes", qty: "130 grams", note: "Solid, clear ice cubes (crushed ice works exceptionally well here)" },
+          { name: "Fresh Mint Leaves", qty: "1 sprig", note: "For top garnish color contrast" }
+        ],
+        layers: [
+          { title: "Top Layer (The Neon Ocean)", desc: "A pre-blended mix of crisp clear soda and Blue Curaçao syrup. This creates a light, carbonated, floating electric-blue layer.", type: "clear" },
+          { title: "Middle Layer (The Ice Barrier)", desc: "Solid ice packed tightly to the very brim, acting as a structural net to slow down liquid blending.", type: "ombre" },
+          { title: "Bottom Layer (The Crimson Base)", desc: "Strawberry crush, clear sugar syrup, and fresh lime juice mixed together into an incredibly thick, heavy, deep-red base.", type: "blue" }
+        ],
+        steps: [
+          { time: "0 – 12s", title: "The Heavy Red Anchor", desc: "Pour 25 ml Strawberry Crush, 10 ml plain sugar syrup, and 15 ml fresh lime juice directly into serving cup. Stir rapidly with a bar spoon for 3 seconds into a dense crimson paste." },
+          { time: "13 – 22s", title: "The Ice Pack Barrier", desc: "Fill the cup completely to the very top with ice cubes or crushed ice (130g). Ensure the ice is tightly packed to pin down the strawberry base." },
+          { time: "23 – 35s", title: "The Electric Blue Float", desc: "In a side beaker, mix 15 ml Blue Curaçao syrup with 160 ml of ice-cold soda. Slowly pour this blue soda mix directly over the highest ice cube to float cleanly." },
+          { time: "36 – 45s", title: "The Crown & Cap", desc: "Slap fresh green mint sprig against hand to release aromatic oils and drop through center of ice. Snap dome lid on firmly, insert wide straw, and serve." }
+        ],
+        tips: [
+          { title: "Never Pour Blue Syrup Directly", desc: "Always mix Blue Curaçao into soda right before pouring. Raw blue syrup will sink straight into the strawberry, ruining the visual split." },
+          { title: "Calibrate Heavy Pumps", desc: "Fit 10 ml pumps to strawberry crush and sugar syrup bottles. 2.5 pumps of strawberry, 1 pump of sugar syrup. Keeps execution flawless." },
+          { title: "Pre-Squeeze the Lime", desc: "Keep lime juice ready in a squeeze bottle resting over an ice bed. Squeezing individual limes during a rush will destroy your speed optimization." },
+          { title: "Keep Soda Near Freezing", desc: "Warm soda causes the layers to churn and bleed together instantly. Keep your soda bottles in a deep ice-salt matrix." },
+          { title: "Use Crushed Ice If Available", desc: "Crushed ice creates a much denser grid barrier than large cubes, which prevents the blue soda from bleeding down too quickly." },
+          { title: "Keep the Ice Solid", desc: "Watery ice dilutes the drink immediately. Use dry, hard ice straight from an insulated chest." },
+          { title: "The 'Slow Glide' Pour", desc: "Pour the blue soda gently against the side of the glass or over a high ice cube, rather than rushing it down the middle." },
+          { title: "The Interactive Pitch", desc: "Train staff to tell customer: 'Give it a deep swirl from the bottom up with your straw to watch the colors mix before your first sip!' Makes it an experience." },
+          { title: "Linear Layout Setup", desc: "Arrange station left-to-right: Cups -> Strawberry & Clear Syrups -> Lime Juice -> Tightly Packed Ice -> Blue Curaçao/Soda Beaker -> Lids & Straws." },
+          { title: "Keep Spoons Clean", desc: "Wipe down stirring bar spoon between orders to prevent red strawberry residue from contaminating other light-colored mocktails." }
+        ],
+        mistakes: [
+          { title: "The Muddy Purple Mess", desc: "If you pour too fast or skip the heavy ice pack, layers will instantly mix into dark, murky purple. Follow sequence strictly." },
+          { title: "Using a Thin Straw", desc: "Strawberry crush contains real fruit pulp and seeds. A narrow straw will clog instantly. Always provide wide-bore beverage straws." },
+          { title: "Over-sweetening the Base", desc: "Strawberry crush is sweet. Keep plain sugar syrup strictly capped at 10 ml, and ensure fresh lime juice is sharp enough to cut through." }
+        ],
+        variations: [
+          { badge: "budget", title: "The Twilight Lemonade Shaker", desc: "Eliminate layered look and soda. Combine strawberry crush, Blue Curaçao, clear sugar syrup, lime juice, ice water, and a pinch of chaat masala in shaker. Shake 5 seconds and pour royal purple lemonade." },
+          { badge: "kids", title: "The Bubblegum Wizard", desc: "Swap carbonated soda for Sprite or 7Up, eliminate fresh lime juice, and drop clear sugar syrup. Layer Sprite-diluted Blue Curaçao over strawberry base and add gummy worm." }
+        ]
+      },
+      "mango-mint-mojito": {
+        title: "Golden Mango Mint Mojito",
+        subtitle: "Premium Mango Mint Mojito",
+        flavorProfile: "A luscious, summer-forward flavor profile. The rich, velvety sweetness of ripe Alphonso mango is sharply broken up by the crisp, cooling burst of fresh mint and zesty lime effervescence.",
+        metrics: [
+          { label: "Sweetness", val: "7.0 / 10" },
+          { label: "Acidity", val: "6.5 / 10" },
+          { label: "Prep Ease", val: "Easy" },
+          { label: "Food Cost", val: "₹13 to ₹16", highlight: "green" },
+          { label: "Selling Price", val: "₹55 to ₹75", highlight: "gold" }
+        ],
+        ingredients: [
+          { name: "Premium Mango Crush/Pulp", qty: "25 ml", note: "High-fruit content pulp crush (e.g., Mala's or Mapro)" },
+          { name: "Green Mint Syrup", qty: "10 ml", note: "Commercial mojito mint syrup (provides the vibrant green color pop)" },
+          { name: "Plain Sugar Syrup", qty: "10 ml", note: "1:1 clear sugar syrup (reduced to balance the sweet mango pulp)" },
+          { name: "Fresh Lime Juice", qty: "15 ml", note: "Squeezed fresh (approx. 1 medium lime)" },
+          { name: "Fresh Mint Leaves", qty: "5 to 6 leaves", note: "Vibrant green, completely unblemished" },
+          { name: "Lime Wedges", qty: "2 small wedges", note: "For a quick, aromatic muddle" },
+          { name: "Carbonated Water (Soda)", qty: "~160 ml", note: "Chilled, hard-carbonation soda" },
+          { name: "Ice Cubes", qty: "120 grams", note: "Solid, clear ice cubes (or crushed ice) filled to the top" }
+        ],
+        layers: [
+          { title: "Top Layer (The Emerald Sparkle)", desc: "Clear carbonated soda gently infused with a 10 ml float of vibrant green mint syrup, topped with a floating lime wheel.", type: "clear" },
+          { title: "Middle Layer (The Mint Matrix)", desc: "A dense column of solid ice trapping slapped green mint leaves flat against the transparent plastic cup walls.", type: "ombre" },
+          { title: "Bottom Layer (The Golden Anchor)", desc: "Mango crush, clear sugar syrup, fresh lime juice, and 2 muddled lime wedges forming a thick, rich, opaque golden-yellow foundation.", type: "blue" }
+        ],
+        steps: [
+          { time: "0 – 12s", title: "The Quick Zesty Muddle", desc: "Drop 2 small lime wedges and 5-6 fresh mint leaves directly into cup. Add 10 ml plain sugar syrup. Muddling firmly down exactly 2 times to release oils." },
+          { time: "13 – 20s", title: "The Golden Foundation", desc: "Pour 25 ml Mango Crush and 15 ml fresh lime juice directly into the muddled base. Swirl for 2 seconds with a bar spoon to integrate pulp with citrus." },
+          { time: "21 – 30s", title: "The Ice Lock", desc: "Fill the glass completely to the very top with 120g of ice cubes to pin down muddled leaves and preserve layering." },
+          { time: "31 – 45s", title: "The Bi-Color Fizz Finish", desc: "Slowly pour 160 ml of ice-cold soda over the ice. Pour 10 ml of Green Mint Syrup directly over the top ice cubes to bleed down elegantly. Cover with dome lid, insert wide straw." }
+        ],
+        tips: [
+          { title: "Never Over-Muddle the Mint", desc: "Pressing mint too hard releases bitter chlorophyll from veins of leaves. Two gentle taps with muddler are more than enough to release pure oils." },
+          { title: "Calibrate Your Pumps", desc: "Fit 10 ml pumps to syrup and crush bottles. 2.5 pumps for mango, 1 pump for mint syrup, 1 pump for sugar syrup. Keeps flavor completely consistent." },
+          { title: "Pre-Squeeze the Lime Juice", desc: "Keep fresh lime juice ready in clean squeeze bottles sitting in ice chest. Squeezing fruits during a peak rush will destroy speed optimization." },
+          { title: "Keep Soda Sub-Zero", desc: "Warm soda will cause heavy mango pulp to expand and churn instantly, destroying layered contrast. Keep sodas in ice-salt slurry." },
+          { title: "Use High-Pulp Crush", desc: "Avoid thin, watery mango syrups. Use real fruit crush (like Mapro or Mala's) containing genuine fruit mass to provide premium mouthfeel." },
+          { title: "Keep Ice Dry and Solid", desc: "Melting, watery ice introduces unmeasured water into the cup, diluting the rich mango profile before the customer takes a sip." },
+          { title: "The Mint Syrup Float", desc: "Always add green mint syrup at the end, pouring directly onto top ice cubes after soda is in. Preserves green-on-top, yellow-on-bottom split." },
+          { title: "The Interactive Pitch", desc: "Train staff to tell customer: 'Please give it a good stir from the bottom up with your straw to blend fresh mint and tropical mango before drinking!'" },
+          { title: "Linear Layout Setup", desc: "Cups -> Mint & Lime Mudder -> Mango & Sugar Syrups -> Ice Wells -> Soda -> Green Mint Float -> Lids." },
+          { title: "Clean Mudding Tools", desc: "Keep a jar of clean water next to muddler station. Dip and rinse muddler after every drink to prevent crushed fibers building up." }
+        ],
+        mistakes: [
+          { title: "Using Thin Straws", desc: "Mango pulp chunks will instantly block thin juice straws. Always provide wide-bore beverage straws to avoid customer frustration." },
+          { title: "Mixing Syrups Early", desc: "If you mix green mint syrup and mango crush together at start, you get a muddy olive-brown color. Keep separated via the ice barrier." },
+          { title: "Pre-Building Drinks", desc: "If built too early, heavy mango pulp slowly bleeds upward into soda, losing crisp layered contrast. Build fresh in under 45 seconds right in front of the customer." }
+        ],
+        variations: [
+          { badge: "budget", title: "Mango Mint Shaker Lemonade", desc: "Swap carbonated soda for ice water. Combine mango crush, mint syrup, sugar syrup, lime juice, mint, and ice directly inside shaker. Shake 5 seconds and pour." },
+          { badge: "kids", title: "The Sweet Mango Pop", desc: "Replace carbonated soda with Sprite or 7Up, eliminate fresh lime wedges and muddle phase, and drop sugar syrup. Tastes like a bubbly sweet tropical candy pop." }
+        ]
+      },
+      "tropical-sunset": {
+        title: "Tropical Sunset Fizz",
+        subtitle: "The Sunset Gradient",
+        flavorProfile: "A vibrant, island-inspired blend. The deep, juicy sweetness of orange blends seamlessly into the tangy, tropical punch of pineapple, balanced with a sharp citrus kick and a crisp sparkling finish.",
+        metrics: [
+          { label: "Sweetness", val: "6.5 / 10" },
+          { label: "Acidity", val: "6.0 / 10" },
+          { label: "Prep Ease", val: "Very Easy" },
+          { label: "Food Cost", val: "₹12 to ₹15", highlight: "green" },
+          { label: "Selling Price", val: "₹55 to ₹75", highlight: "gold" }
+        ],
+        ingredients: [
+          { name: "Premium Orange Syrup/Crush", qty: "20 ml", note: "Heavy-density, deep orange syrup (e.g., Mala's or Mapro)" },
+          { name: "Premium Pineapple Syrup", qty: "15 ml", note: "Golden yellow, tropical syrup (e.g., Monin or Mapro)" },
+          { name: "Plain Sugar Syrup", qty: "10 ml", note: "1:1 clear liquid sugar syrup" },
+          { name: "Fresh Lime Juice", qty: "15 ml", note: "Squeezed fresh (approx. 1 medium lime) to balance the sweet syrups" },
+          { name: "Carbonated Water (Soda)", qty: "~170 ml", note: "Chilled, hard-carbonation soda" },
+          { name: "Ice Cubes", qty: "120 grams", note: "Solid, clear ice cubes filled to the top" },
+          { name: "Fresh Mint Leaves", qty: "1 sprig", note: "For top garnish color contrast" },
+          { name: "Orange or Pineapple Wedge", qty: "1 thin slice", note: "For visual appeal/garnish" }
+        ],
+        layers: [
+          { title: "Top Layer (The Pineapple Crown)", desc: "A pre-blended float of golden-yellow pineapple syrup mixed directly into the final splash of soda.", type: "clear" },
+          { title: "Middle Layer (The Golden Transition)", desc: "A tightly packed column of solid ice cubes. As soda is poured over ice, it dilutes the mid-section into a glowing amber sunset bleed.", type: "ombre" },
+          { title: "Bottom Layer (The Deep Orange Base)", desc: "A mix of orange syrup, clear sugar syrup, and fresh lime juice forming the heaviest, densest, dark orange anchor.", type: "blue" }
+        ],
+        steps: [
+          { time: "0 – 10s", title: "The Orange Anchor", desc: "Pour 20 ml Orange Syrup, 10 ml sugar syrup, and 15 ml fresh lime juice directly into cup. Swirl for 3 seconds into a dense, dark orange base layer." },
+          { time: "11 – 18s", title: "The Ice Pack Net", desc: "Slide a thin orange or pineapple slice flat against cup wall. Fill glass completely with 120g of solid ice cubes to lock it down." },
+          { time: "19 – 32s", title: "The Carbonated Split Pour", desc: "Slowly pour ~120 ml of soda over the top ice cube, leaving the top half of the cup clear." },
+          { time: "33 – 45s", title: "The Golden Pineapple Float", desc: "In a side beaker, mix 15 ml Pineapple Syrup with remaining 50 ml of soda. Pour yellow mixture gently over top ice cubes. Top with mint sprig." }
+        ],
+        tips: [
+          { title: "Pre-Mix the Top Float", desc: "To save seconds during a rush, pre-mix your day's pineapple syrup and soda (at a 1:3 ratio) in a squeeze bottle kept on ice." },
+          { title: "Calibrate Your Syrup Pumps", desc: "Fit standard 10 ml pumps to your syrup bottles. 2 pumps of orange, 1 pump of sugar syrup, and 1.5 pumps of pineapple." },
+          { title: "Pre-Squeeze the Lime Juice", desc: "Keep fresh lime juice ready in clean squeeze bottles in ice chest. Squeezing individual fruits per order will destroy speed." },
+          { title: "Keep Soda Sub-Zero", desc: "Warm soda will cause syrups to expand and mix instantly into a uniform orange liquid. Keep sodas in deep ice-salt slurry." },
+          { title: "Use High-Color Syrups", desc: "Ensure orange syrup has a distinct reddish-orange hue and pineapple syrup is vibrant golden-yellow. Avoid washed-out colors." },
+          { title: "Keep Ice Dry and Packed", desc: "Watery, melting ice dilutes the gradient separation instantly. Use solid, dry ice cubes straight from insulated chest." },
+          { title: "The 'Slow Glide' Pour", desc: "Pour liquids gently down the inner wall of the glass or over a high ice cube rather than splashing aggressively." },
+          { title: "The Interactive Pitch", desc: "Train staff to tell customer: 'Please give it a deep swirl from the bottom up with your straw to mix the sunset flavors before drinking!'" },
+          { title: "Linear Layout Setup", desc: "Cups -> Orange & Sugar Syrups -> Citrus Well -> Ice -> Soda -> Pineapple Float -> Lids & Straws." },
+          { title: "Keep Spoons Isolated", desc: "Wipe down stirring bar spoon between orders to prevent deep orange syrup residue from contaminating clear mocktails." }
+        ],
+        mistakes: [
+          { title: "Pouring Pineapple Syrup Raw", desc: "Pure pineapple syrup will sink straight through soda due to heavy sugar weight. It MUST be diluted with a little soda first to float." },
+          { title: "Using Too Little Ice", desc: "If cup is only half-filled with ice, layers will bleed together instantly upon pouring soda. Fill cup tightly to the brim." },
+          { title: "Over-Sweetening", desc: "Both orange and pineapple contain heavy sugars. Keep clear sugar syrup strictly capped at 10 ml to prevent cloying." }
+        ],
+        variations: [
+          { badge: "budget", title: "Tropical Sunset Shaker Paani", desc: "Swap carbonated soda for ice water. Combine orange, pineapple, sugar, lime juice, water, and ice in shaker. Shake 5 seconds and pour frothy peach-orange juice." },
+          { badge: "kids", title: "The Sunrise Candy Pop", desc: "Replace carbonated soda with Sprite or 7Up, eliminate fresh lime juice, and drop plain sugar syrup. Layer Sprite-diluted pineapple over orange base." }
+        ]
+      },
+      "spiced-kala-khatta-mint": {
+        title: "Spiced Kala Khatta Mint Cooler",
+        subtitle: "The Tri-Color Street Shocker",
+        flavorProfile: "An absolute sensory explosion—intensely tangy, sweet, sour, and punchy, with a powerful cooling wave of fresh mint, hit with sharp local chat spices and a crisp sparkling finish.",
+        metrics: [
+          { label: "Sweetness", val: "5.0 / 10" },
+          { label: "Acidity", val: "8.5 / 10" },
+          { label: "Prep Ease", val: "Very Easy" },
+          { label: "Food Cost", val: "₹11 to ₹13", highlight: "green" },
+          { label: "Selling Price", val: "₹50 to ₹65", highlight: "gold" }
+        ],
+        ingredients: [
+          { name: "Premium Kala Khatta Syrup", qty: "25 ml", note: "Deep purple, tart jamun-flavor syrup (e.g., Mapro or Mala's)" },
+          { name: "Green Mint Syrup", qty: "10 ml", note: "Commercial mojito mint syrup (for that emerald color split)" },
+          { name: "Plain Sugar Syrup", qty: "10 ml", note: "1:1 clear liquid sugar syrup (smooths out the intense spice edges)" },
+          { name: "Fresh Lime Juice", qty: "15 ml", note: "Approx. 1 medium lime, freshly squeezed" },
+          { name: "Odia-Style Spiced Chat Powder", qty: "1 flat tsp (~3g)", note: "Pre-blended mix: 50% Black Salt, 30% Chat Masala, 20% Roasted Cumin" },
+          { name: "Fresh Mint Leaves", qty: "5 to 6 leaves", note: "Vibrant green, completely unblemished" },
+          { name: "Carbonated Water (Soda)", qty: "~160 ml", note: "Chilled, hard-carbonation soda" },
+          { name: "Ice Cubes", qty: "130 grams", note: "Solid, clear ice cubes (or crushed ice) filled to the top" }
+        ],
+        layers: [
+          { title: "Top Layer (The Emerald Cap)", desc: "A final 10 ml float of vibrant green mint syrup poured gently over top ice cubes, bleeding downward into clear soda.", type: "clear" },
+          { title: "Middle Layer (The Crystal Float)", desc: "A tightly packed grid of ice trapping slapped fresh mint leaves, surrounded by crystal-clear bubbling carbonated soda.", type: "ombre" },
+          { title: "Bottom Layer (The Midnight Foundation)", desc: "A heavy, dense mix of Kala Khatta syrup, clear sugar syrup, fresh lime juice, and Spiced Chat Powder stirred into an opaque dark purple anchor.", type: "blue" }
+        ],
+        steps: [
+          { time: "0 – 12s", title: "The Midnight Spice Base", desc: "Pour 25 ml Kala Khatta Syrup, 10 ml plain sugar syrup, 15 ml fresh lime juice, and 1 flat teaspoon of Spiced Chat Powder directly into cup. Stir rapidly for 3 seconds with a long spoon until spices melt into a uniform purple paste." },
+          { time: "13 – 18s", title: "The Mint Slap & Lock", desc: "Place 5-6 fresh mint leaves in your palm and slap them sharply once to shock aromatic oils. Drop into cup and immediately fill completely to the top with 130g of solid ice cubes to trap them." },
+          { time: "19 – 32s", title: "The Carbonated Glide", desc: "Tilt cup slightly. Pour ~160 ml of ice-cold soda slowly directly over highest ice cube, leaving exactly half an inch of space at top." },
+          { time: "33 – 45s", title: "The Emerald Float & Cap", desc: "Gently pour 10 ml of Green Mint Syrup right onto top ice cubes. Watch it sit as a vibrant green layer. Add a tiny extra dust of chat powder over ice. Snap dome lid, insert wide straw, and serve." }
+        ],
+        tips: [
+          { title: "Pre-Batch the Chat Powder", desc: "Mix your spices ahead of time in bulk: 50% Black Salt (Kala Namak), 30% Chat Masala, and 20% Roasted Cumin Powder (Bhuna Jeera). Use a large-hole shaker for fast deployment." },
+          { title: "Calibrate Your Syrup Pumps", desc: "Use standard 10 ml pumps on your syrup bottles (2.5 pumps of Kala Khatta, 1 pump of green mint, 1 pump of sugar syrup) to save time and ensure flavor consistency." },
+          { title: "Pre-Squeeze the Limes", desc: "Store fresh lime juice in clean squeeze bottles in ice chest. Never squeeze individual limes per order during busy peak hours." },
+          { title: "Sub-Zero Soda Temperature", desc: "Warm soda will cause layers to mix instantly and lose fizz. Keep soda bottles packed in deep ice-salt matrix." },
+          { title: "Never Use Raw Granular Sugar", desc: "Granulated sugar dissolves terribly in cold liquids. Stick strictly to clear 1:1 liquid sugar syrup." },
+          { title: "Keep Ice Dry and Solid", desc: "Watery ice dilutes the intense, tangy punch of Kala Khatta. Use dry, solid ice straight from insulated chest." },
+          { title: "Isolate the Stirring Spoon", desc: "Kala Khatta contains deep purple pigments. Dedicate one bar spoon strictly to this drink station so it doesn't stain clear mocktails." },
+          { title: "The Interactive Pitch", desc: "Tell the customer: 'Give it a solid mix from the bottom up using your straw to watch the colors blend before your first sip!'" },
+          { title: "Linear Layout Setup", desc: "Cups -> Kala Khatta & Spices -> Clear Syrup & Citrus -> Fresh Mint & Ice Wells -> Cold Soda -> Green Mint Float -> Lids & Straws." },
+          { title: "Keep Mint Wrapped", desc: "Store picked mint leaves in airtight container lined with damp paper towels in cooler. Heat turns mint black and droopy." }
+        ],
+        mistakes: [
+          { title: "The Muddy Olive Mistake", desc: "If staff pours green mint syrup directly into Kala Khatta syrup at start, they mix into a muddy brown color. Keep separated using the ice and soda barrier." },
+          { title: "Over-muddling the fresh mint", desc: "Never smash mint leaves with a heavy tool. Combining torn chlorophyll with intense chat masala makes the drink taste like raw grass. A single slap is sufficient." },
+          { title: "Skimping on Ice", desc: "If you use too little ice, layers bleed together instantly into a dark, unappealing liquid. Fill cup tightly to the brim." }
+        ],
+        variations: [
+          { badge: "budget", title: "Kala Khatta Mint Water Shaker", desc: "Replace carbonated soda with cold water. Shake Kala Khatta, green mint, sugar, lime, chat powder, mint, water, and ice in cocktail shaker for 5 seconds and pour. Lowers cost, adds frothy purple-green head." },
+          { badge: "kids", title: "The Sweet Purple Pop", desc: "Swap carbonated soda for Sprite or 7Up. Completely eliminate chat powder, reduce lime juice to 5 ml, and drop fresh mint leaves. Tastes like a sweet frozen purple ice-lolly (Chuski)." }
+        ]
+      },
+      "blue-pineapple-ocean": {
+        title: "Blue Pineapple Ocean Punch",
+        subtitle: "The Tropical Ocean Effect",
+        flavorProfile: "Pure tropical vacation in a cup. The rich, tangy sweetness of pineapple is balanced by the sharp, orange-peel citrus brightness of Blue Curaçao and a crisp carbonated fizz.",
+        metrics: [
+          { label: "Sweetness", val: "6.5 / 10" },
+          { label: "Acidity", val: "6.0 / 10" },
+          { label: "Prep Ease", val: "Very Easy" },
+          { label: "Food Cost", val: "₹12 to ₹15", highlight: "green" },
+          { label: "Selling Price", val: "₹55 to ₹75", highlight: "gold" }
+        ],
+        ingredients: [
+          { name: "Premium Pineapple Syrup/Crush", qty: "25 ml", note: "Golden yellow, thick fruit crush or syrup (e.g., Mapro or Mala's)" },
+          { name: "Blue Curaçao Syrup", qty: "15 ml", note: "Electric blue, light-density syrup (e.g., Monin or Mapro)" },
+          { name: "Plain Sugar Syrup", qty: "10 ml", note: "1:1 clear liquid sugar syrup" },
+          { name: "Fresh Lime Juice", qty: "15 ml", note: "Squeezed fresh (approx. 1 medium lime) to cut through heavy sugars" },
+          { name: "Carbonated Water (Soda)", qty: "~170 ml", note: "Chilled, hard-carbonation soda" },
+          { name: "Ice Cubes", qty: "120 grams", note: "Solid, clear ice cubes filled to the top" },
+          { name: "Fresh Mint Leaves", qty: "1 sprig", note: "For top garnish color contrast" },
+          { name: "Pineapple Wedge", qty: "1 thin slice", note: "For visual appeal/garnish (optional)" }
+        ],
+        layers: [
+          { title: "Top Layer (The Deep Blue Sea)", desc: "A pre-blended mix of crisp clear soda and Blue Curaçao syrup that floats beautifully as an electric neon-blue layer.", type: "clear" },
+          { title: "Middle Layer (The Turquoise Shimmer)", desc: "Packed solid ice cubes where yellow and blue liquids naturally bleed together slightly to create a glowing tropical green/turquoise transition.", type: "ombre" },
+          { title: "Bottom Layer (The Golden Sand Foundation)", desc: "A heavy, dense mix of pineapple syrup (or crush), clear sugar syrup, and fresh lime juice forming the heaviest golden base.", type: "blue" }
+        ],
+        steps: [
+          { time: "0 – 10s", title: "The Golden Anchor", desc: "Pour 25 ml Pineapple Syrup/Crush, 10 ml sugar syrup, and 15 ml fresh lime juice directly into cup. Swirl for 3 seconds to combine into a dense base layer." },
+          { time: "11 – 18s", title: "The Ice Pack Barrier", desc: "Slide a thin pineapple wedge flat against cup wall. Fill glass completely to top with 120g of solid ice cubes to lock wedge and base down." },
+          { time: "19 – 32s", title: "The Clear Fizz Fill", desc: "Slowly pour ~120 ml of cold soda over top ice cube. The top half of cup remains completely clear." },
+          { time: "33 – 45s", title: "The Ocean Blue Float", desc: "In a side beaker, mix 15 ml Blue Curaçao Syrup with remaining 50 ml of cold soda. Pour yellow-blue mixture gently over top ice cubes. Top with mint sprig and dome lid." }
+        ],
+        tips: [
+          { title: "Never Pour Blue Syrup Raw", desc: "Always mix Blue Curaçao into a little soda before pouring. Raw syrup will plunge straight through soda due to heavy sugar weight and mix with yellow at the bottom, turning it flat green." },
+          { title: "Calibrate Your Syrup Pumps", desc: "Fit standard 10 ml pumps to syrup bottles. 2.5 pumps of pineapple, 1 pump of sugar syrup, and 1.5 pumps of Blue Curaçao." },
+          { title: "Pre-Squeeze the Lime Juice", desc: "Keep fresh lime juice in clean squeeze bottles in ice chest to preserve execution speed." },
+          { title: "Keep Soda Sub-Zero", desc: "Warm soda causes syrups to expand and mix instantly into a uniform dull green. Keep sodas in ice-salt slurry." },
+          { title: "Use High-Pulp Pineapple Crush", desc: "Using thick fruit crush instead of thin syrup for bottom layer adds fruit texture and provides a much heavier density anchor." },
+          { title: "Keep Ice Dry and Packed", desc: "Melting ice dilutes gradient separation. Use solid, dry ice cubes straight from insulated chest." },
+          { title: "The 'Slow Glide' Pour", desc: "Pour liquids gently down inner wall of glass or over high ice cube rather than splashing aggressively." },
+          { title: "The Interactive Pitch", desc: "Tell customer: 'Please give it a deep swirl from the bottom up with your straw to mix the ocean flavors before drinking!'" },
+          { title: "Linear Layout Setup", desc: "Cups -> Pineapple & Sugar Syrups -> Citrus Well -> Solid Ice Chest -> Soda Station -> Blue Curaçao Float -> Lids." },
+          { title: "Keep Spoons Isolated", desc: "Wipe down stirring spoon between orders to prevent syrup residue from contaminating clear mocktails." }
+        ],
+        mistakes: [
+          { title: "Using Too Little Ice", desc: "If cup is only half-filled with ice, layers will bleed together instantly upon pouring blue soda. Fill cup tightly to the brim." },
+          { title: "Over-Sweetening", desc: "Both pineapple and Blue Curaçao syrups contain heavy sugars. Keep sugar syrup strictly capped at 10 ml to prevent cloying." },
+          { title: "Using Pale, Weak Syrups", desc: "Cheap Blue Curaçao that looks pale blue results in a murky yellow-green look. Use premium, highly pigmented syrups." }
+        ],
+        variations: [
+          { badge: "budget", title: "Tropical Ocean Shaker Paani", desc: "Swap carbonated soda for cold filtered water. Shake pineapple, Blue Curaçao, sugar, lime juice, water, and ice in shaker. Shake 5 seconds and pour frothy sea-green head." },
+          { badge: "kids", title: "The Mermaid Bubblegum Pop", desc: "Replace carbonated soda with Sprite or 7Up, eliminate lime juice and sugar syrup. Layer Sprite-diluted Blue Curaçao over pineapple base. Tastes like a bubbly tropical candy." }
+        ]
+      },
+      "orange-blue-twist": {
+        title: "Electric Orange Blue Twist",
+        subtitle: "The Fire & Ice Effect",
+        flavorProfile: "A sharp, deeply refreshing citrus-forward profile. The warm, juicy sweetness of orange at the bottom contrasts with the crisp, slightly bitter orange-peel tartness of Blue Curaçao and carbonated soda at top.",
+        metrics: [
+          { label: "Sweetness", val: "6.5 / 10" },
+          { label: "Acidity", val: "6.5 / 10" },
+          { label: "Prep Ease", val: "Very Easy" },
+          { label: "Food Cost", val: "₹12 to ₹15", highlight: "green" },
+          { label: "Selling Price", val: "₹55 to ₹75", highlight: "gold" }
+        ],
+        ingredients: [
+          { name: "Premium Orange Syrup/Crush", qty: "25 ml", note: "Deep orange, high-density syrup (e.g., Mala's or Mapro)" },
+          { name: "Blue Curaçao Syrup", qty: "15 ml", note: "Electric blue, light-density syrup (e.g., Monin or Mapro)" },
+          { name: "Plain Sugar Syrup", qty: "10 ml", note: "1:1 clear liquid sugar syrup" },
+          { name: "Fresh Lime Juice", qty: "15 ml", note: "Squeezed fresh (approx. 1 medium lime) to cut through heavy sugars" },
+          { name: "Carbonated Water (Soda)", qty: "~170 ml", note: "Chilled, hard-carbonation soda" },
+          { name: "Ice Cubes", qty: "120 grams", note: "Solid, clear ice cubes filled to the top" },
+          { name: "Fresh Mint Leaves", qty: "1 sprig", note: "For top garnish color contrast" },
+          { name: "Orange Wheel", qty: "1 thin slice", note: "For visual decoration against cup wall" }
+        ],
+        layers: [
+          { title: "Top Layer (The Ice Cap)", desc: "A pre-blended float of Blue Curaçao syrup mixed directly into a splash of soda. Sits as a crisp, floating electric-blue layer.", type: "clear" },
+          { title: "Middle Layer (The Neon Transition)", desc: "Packed ice column. As blue soda is poured, a tiny bit of natural bleeding happens where layers meet, creating a glowing neon-green line.", type: "ombre" },
+          { title: "Bottom Layer (The Fire Base)", desc: "A mix of orange syrup, clear sugar syrup, and fresh lime juice forming the heaviest, densest, bright orange anchor.", type: "blue" }
+        ],
+        steps: [
+          { time: "0 – 10s", title: "The Orange Anchor", desc: "Pour 25 ml Orange Syrup/Crush, 10 ml sugar syrup, and 15 ml lime juice directly into cup. Swirl for 3 seconds to combine into a dense base layer." },
+          { time: "11 – 18s", title: "The Ice Wall Lock", desc: "Slide a thin orange wheel flat against cup wall. Fill glass completely to top with 120g of solid ice cubes to lock orange slice and base down." },
+          { time: "19 – 32s", title: "The Clear Soda Fill", desc: "Slowly pour ~120 ml of cold soda over top ice cube, leaving the top half of the cup completely clear." },
+          { time: "33 – 45s", title: "The Blue Float Finish", desc: "In a side beaker, mix 15 ml Blue Curaçao Syrup with remaining 50 ml of cold soda. Pour yellow-blue mixture gently over top ice cubes. Top with mint sprig and dome lid." }
+        ],
+        tips: [
+          { title: "Pre-Mix the Top Blue Float", desc: "To save time during peak hours, pre-mix your day's Blue Curaçao syrup and soda (at a 1:3 ratio) in a small squeeze bottle kept on ice." },
+          { title: "Calibrate Your Syrup Pumps", desc: "Fit standard 10 ml pumps to syrup bottles. 2.5 pumps of orange, 1 pump of sugar syrup, and 1.5 pumps of Blue Curaçao." },
+          { title: "Pre-Squeeze the Lime Juice", desc: "Keep fresh lime juice in clean squeeze bottles in ice chest to shave off prep time." },
+          { title: "Keep Soda Near Freezing", desc: "Warm soda will cause syrups to expand and mix instantly, turning the entire drink brown. Keep sodas in deep ice-salt slurry." },
+          { title: "Use High-Color Syrups", desc: "Ensure orange syrup has a rich, deep hue and Blue Curaçao is vibrant electric blue. Avoid pale, washed-out colors." },
+          { title: "Keep Ice Dry and Packed", desc: "Watery, melting ice dilutes the layer separation instantly. Use solid, dry ice cubes straight from insulated chest." },
+          { title: "The 'Slow Glide' Pour", desc: "Pour liquids gently down inner wall of glass or over high ice cube rather than splashing aggressively." },
+          { title: "The Interactive Pitch", desc: "Tell customer: 'Please give it a deep swirl from the bottom up with your straw to watch the colors change before your first sip!'" },
+          { title: "Linear Layout Setup", desc: "Cups -> Orange & Sugar Syrups -> Citrus Well -> Solid Ice Chest -> Soda Station -> Blue Curaçao Float -> Lids." },
+          { title: "Keep Spoons Isolated", desc: "Wipe down stirring spoon between orders to prevent syrup residue from contaminating clear mocktails." }
+        ],
+        mistakes: [
+          { title: "Pouring Blue Syrup Raw", desc: "Pure blue syrup will sink straight through soda due to heavy sugar weight and mix with orange at the bottom, turning the drink brown. Dilute with a little soda first." },
+          { title: "Using Too Little Ice", desc: "If cup is only half-filled with ice, layers will bleed together instantly upon pouring blue soda. Fill cup tightly to the brim." },
+          { title: "Skipping the Lime Juice", desc: "Orange and Blue Curaçao are sweet. Fresh lime juice is critical to provide tartness and prevent it from tasting cloying." }
+        ],
+        variations: [
+          { badge: "budget", title: "Electric Citrus Shaker Paani", desc: "Swap carbonated soda for ice-cold filtered water. Shake orange, Blue Curaçao, sugar, lime juice, water, and ice in cocktail shaker for 5 seconds and pour. Blends into unique frothy emerald-green lemonade." },
+          { badge: "kids", title: "The Fire & Ice Candy Pop", desc: "Replace carbonated soda with Sprite or 7Up, eliminate lime juice and sugar syrup. Layer Sprite-diluted Blue Curaçao over orange base. Sweet candy treat kids love." }
+        ]
+      },
+      "strawberry-mango-blast": {
+        title: "Strawberry Mango Sunset Blast",
+        subtitle: "The Sunset Burst Effect",
+        flavorProfile: "An indulgent, high-impact tropical berry fusion. The rich, velvety sweetness of mango perfectly pairs with the bright, juicy tartness of strawberry, cut sharply with lime and finished with a crisp, bubbly fizz.",
+        metrics: [
+          { label: "Sweetness", val: "7.5 / 10" },
+          { label: "Acidity", val: "6.0 / 10" },
+          { label: "Prep Ease", val: "Very Easy" },
+          { label: "Food Cost", val: "₹14 to ₹17", highlight: "green" },
+          { label: "Selling Price", val: "₹65 to ₹85", highlight: "gold" }
+        ],
+        ingredients: [
+          { name: "Premium Strawberry Crush/Syrup", qty: "20 ml", note: "High-density fruit crush (e.g., Mapro or Mala's)" },
+          { name: "Premium Mango Crush/Pulp", qty: "20 ml", note: "Thick Alphonso mango fruit crush (e.g., Mala's or Mapro)" },
+          { name: "Plain Sugar Syrup", qty: "10 ml", note: "1:1 clear liquid sugar syrup" },
+          { name: "Fresh Lime Juice", qty: "15 ml", note: "Squeezed fresh (approx. 1 medium lime) to balance heavy sugars" },
+          { name: "Carbonated Water (Soda)", qty: "~160 ml", note: "Chilled, hard-carbonation soda" },
+          { name: "Ice Cubes", qty: "120 grams", note: "Solid, clear ice cubes filled to top" },
+          { name: "Fresh Mint Leaves", qty: "1 sprig", note: "For top garnish color contrast" }
+        ],
+        layers: [
+          { title: "Top Layer (The Mango Crown)", desc: "A pre-blended mix of mango crush, fresh lime juice, and a splash of cold soda floating as a bright, opaque golden-yellow layer.", type: "clear" },
+          { title: "Middle Layer (The Gold Transition)", desc: "Packed solid ice cubes. As top mango layer is poured, it slowly bleeds downward creating a vibrant orange gradient in the center.", type: "ombre" },
+          { title: "Bottom Layer (The Crimson Anchor)", desc: "Strawberry crush and plain sugar syrup mixed together forming the heaviest, densest, deep-red foundation at the very bottom.", type: "blue" }
+        ],
+        steps: [
+          { time: "0 – 10s", title: "The Crimson Foundation", desc: "Pour 20 ml Strawberry Crush and 10 ml plain sugar syrup directly into cup. Swirl with bar spoon for 2 seconds to combine into a uniform red base layer." },
+          { time: "11 – 18s", title: "The Ice Pack Barrier", desc: "Fill glass completely to the very top with 120g of solid ice cubes. Pack tightly to act as a physical net separating layers." },
+          { time: "19 – 30s", title: "The Soda Buffer Fill", desc: "Slowly pour ~110 ml of soda directly over the highest ice cube. The top half remains completely clear." },
+          { time: "31 – 45s", title: "The Golden Mango Float", desc: "In a side cup, rapidly stir 20 ml Mango Crush, 15 ml lime juice, and 50 ml of cold soda. Pour yellow mixture slowly over top ice cubes. Watch it bleed beautifully. Top with mint sprig, dome lid, and serve." }
+        ],
+        tips: [
+          { title: "Never Pour Mango Crush Raw", desc: "Pure mango crush is thick and heavy. Pouring it raw causes it to sink as a big lump. Pre-dilute with lime juice and a splash of soda in a side beaker so it floats." },
+          { title: "Calibrate Heavy Pumps", desc: "Fit standard 10 ml pumps to fruit crush bottles. 2 pumps of strawberry, 2 pumps of mango, and 1 pump of sugar syrup." },
+          { title: "Pre-Squeeze the Lime Juice", desc: "Keep fresh lime juice ready in clean squeeze bottles in ice chest to maintain high speed." },
+          { title: "Keep Soda Sub-Zero", desc: "Warm soda causes thick fruit pulps to expand and churn aggressively, blending layers instantly. Keep sodas in ice-salt slurry." },
+          { title: "Use High-Pulp Fruit Crushes", desc: "Avoid thin, synthetic syrups. Invest in genuine fruit crushes containing real fruit mass to give premium 5-star texture." },
+          { title: "Keep Ice Dry and Solid", desc: "Melting ice dilutes rich fruit profile before drinking. Use dry, solid ice straight from insulated chest." },
+          { title: "The 'Slow Glide' Pour", desc: "Pour top mango mixture gently down inner wall of glass or over high ice cube rather than splashing aggressively." },
+          { title: "The Interactive Pitch", desc: "Tell customer: 'Please give it a deep swirl from the bottom up with your straw to unlock the strawberry-mango fusion before drinking!'" },
+          { title: "Linear Layout Setup", desc: "Cups -> Strawberry & Sugar Syrups -> Solid Ice Wells -> Clear Soda -> Mango/Lime Mixing Beaker -> Lids." },
+          { title: "Keep Spoons Isolated", desc: "Wipe stirring spoon between orders to prevent deep red strawberry residue from contaminating clear mocktails." }
+        ],
+        mistakes: [
+          { title: "Using Thin Straws", desc: "Strawberry and mango crushes contain real fruit pulp and seeds. A standard narrow straw clogs instantly. Always provide wide-bore straws." },
+          { title: "Skipping the Lime Juice", desc: "Strawberry and mango are intensely sweet. Skipping fresh lime juice makes the drink taste heavy and cloying. Citric acidity is critical." },
+          { title: "Pre-Building Layers", desc: "If built too early, fruit densities slowly bleed into each other, losing contrast. Build fresh in under 45 seconds." }
+        ],
+        variations: [
+          { badge: "budget", title: "Tropical Berry Shaker Lemonade", desc: "Replace soda with ice water. Combine strawberry crush, mango crush, sugar, lime juice, water, and ice in shaker. Shake vigorously 5 seconds and pour frothy peach-pink head." },
+          { badge: "kids", title: "The Sweet Summer Slush Pop", desc: "Swap carbonated soda for Sprite or 7Up, eliminate lime juice and sugar syrup. Layer Sprite-diluted mango crush over strawberry base. Sweet bubble-candy pop kids love." }
+        ]
+      },
+      "tiranga-electric-fizz": {
+        title: "Tiranga Electric Fizz",
+        subtitle: "The Flag-Inspired Tricolour Soda",
+        flavorProfile: "A patriotic flag-inspired drink leveraging sugar density weight to separate a heavy Green bottom, a light White middle, and a pre-diluted Saffron top.",
+        metrics: [
+          { label: "Sweetness", val: "6.5 / 10" },
+          { label: "Acidity", val: "7.0 / 10" },
+          { label: "Prep Ease", val: "Medium" },
+          { label: "Food Cost", val: "₹14 to ₹17", highlight: "green" },
+          { label: "Selling Price", val: "₹70 to ₹90", highlight: "gold" }
+        ],
+        ingredients: [
+          { name: "Blue Curaçao Syrup", qty: "10 ml", note: "Heavy density blue syrup (mixes with orange for heavy green)" },
+          { name: "Premium Orange Syrup", qty: "25 ml", note: "Split: 10 ml in bottom green base, 15 ml in top saffron layer" },
+          { name: "Plain Sugar Syrup", qty: "10 ml", note: "1:1 clear sugar syrup in green base to maximize density weight" },
+          { name: "Premium Strawberry Crush", qty: "2 ml", note: "Just a tiny splash mixed with top orange syrup for proud saffron tint" },
+          { name: "Fresh Lime Juice", qty: "15 ml", note: "Squeezed fresh over ice for zesty middle layer" },
+          { name: "Carbonated Soda", qty: "~170 ml", note: "Split: ~120 ml in middle layer, ~50 ml in top saffron dilution" },
+          { name: "Ice Cubes", qty: "130 grams", note: "Solid, clear ice cubes packed tightly to the brim" },
+          { name: "Fresh Mint Leaves", qty: "1 sprig", note: "Placed right at top center as garnish" }
+        ],
+        layers: [
+          { title: "Top Layer (Saffron Crown)", desc: "A pre-blended mix of orange syrup, a touch of strawberry, and cold soda that floats flawlessly as a bold saffron-orange crown.", type: "clear" },
+          { title: "Middle Layer (White Band)", desc: "Packed ice with fresh lime juice and crystal-clear carbonated soda. Being completely sugar-free, it floats effortlessly above the green base.", type: "ombre" },
+          { title: "Bottom Layer (Green Base)", desc: "A dense, high-sugar blend of Blue Curaçao, Orange Syrup, and Sugar Syrup forming a heavy dark-green anchor at the bottom.", type: "blue" }
+        ],
+        steps: [
+          { time: "0 – 15s", title: "The Heavy Green Base", desc: "Pour 10 ml Blue Curaçao, 10 ml orange syrup, and 10 ml plain sugar syrup into bottom of glass. Stir rapidly for 3 seconds until it blends into a uniform electric-green anchor layer." },
+          { time: "16 – 22s", title: "The Ice Mesh Lock", desc: "Fill glass completely to the very top with 130g of solid ice cubes. Pack tightly. Ice acts as physical buffer keeping middle and bottom layers separate." },
+          { time: "23 – 35s", title: "The White Soda Buffer", desc: "Pour 15 ml fresh lime juice over ice. Open ice-cold soda and slowly pour ~120 ml directly over top ice cube. Displays crystal-clear bubbling white band. Leave 1 inch space at top." },
+          { time: "36 – 50s", title: "The Floating Saffron Squeeze", desc: "In a tiny side beaker, mix 15 ml orange syrup, 2 ml strawberry syrup, and 50 ml of cold soda. Stir quickly, then pour gently over top ice cubes. Float mint sprig in center and serve." }
+        ],
+        tips: [
+          { title: "Pre-Batch the Saffron Mix", desc: "During massive crowds (like Independence or Republic Day), pre-mix orange, tiny drop of strawberry, and soda in a large squeeze bottle kept on ice." },
+          { title: "Calibrate Syrup Pumps", desc: "Fit standard 10 ml pumps to syrup bottles to eliminate measuring errors entirely during high-volume event rushes." },
+          { title: "Pre-Squeeze the Lime Juice", desc: "Keep fresh lime juice in clean squeeze bottles in ice chest to save 15 seconds per order." },
+          { title: "Sub-Zero Soda Is Mandatory", desc: "If soda is warm, it causes layers to bleed instantly into brown. Keep soda bottles packed in deep ice-salt matrix." },
+          { title: "Pack Ice to the Brim", desc: "Ice cubes act as a physical net that stops liquids from crashing into each other. Skimping on ice causes layering to fail." },
+          { title: "The 'Slow Glide' Pour", desc: "Pour middle and top layers gently down inner wall of glass or over high ice cube rather than splashing aggressively." },
+          { title: "The Interactive Pitch", desc: "Instruct staff to say: 'Happy Independence/Republic Day! Please give it a thorough mix from the bottom up to blend citrus flavors before first sip!'" },
+          { title: "Linear Layout Setup", desc: "Cups -> Green Base Syrups -> Solid Ice Chest -> Lime Juice Well -> Clear Soda Station -> Saffron Float -> Lids." },
+          { title: "Keep Spoons Isolated", desc: "Meticulously wipe down stirring bar spoon between orders so blue pigment doesn't accidentally ruin clear sodas." },
+          { title: "Pre-Pluck Your Mint", desc: "Keep fresh mint sprigs in airtight container lined with damp paper towels in cooler so they stay vibrant green." }
+        ],
+        mistakes: [
+          { title: "The Muddy Brown Disaster", desc: "Pouring raw orange syrup directly onto ice causes it to sink due to sugar weight and crash into green base, turning the drink brown. Pre-dilute with soda first." },
+          { title: "Skipping the Lime Juice", desc: "Orange, strawberry, and Blue Curaçao are sweet. Fresh lime juice in middle layer is critical to provide acidity and make drink refreshing." },
+          { title: "Moving Cups Too Quickly", desc: "Jarring or shaking cup violently right after building will bleed layers. Slide cup gently across counter to customer." }
+        ],
+        variations: [
+          { badge: "budget", title: "Tricolour Shaker Combo Pack", desc: "Eliminate layered pouring. Offer Tiranga Combo Pack of three mini 100ml cups pre-mixed separately: Green (Mint), White (Lime Soda), and Saffron (Orange Lemonade)." },
+          { badge: "kids", title: "The Tiranga Candy Pop", desc: "Replace soda with Sprite or 7Up, eliminate lime juice and sugar syrup. Layer Sprite-diluted orange over Sprite-filled middle and green base. Bubbly candy kids love." }
+        ]
+      },
+      "roasted-hazelnut-frappe": {
+        title: "Roasted Hazelnut Frappé",
+        subtitle: "Premium Toasted Hazelnut Café Frappé",
+        flavorProfile: "Luxuriously creamy, cold, and thick. The bold punch of coffee is elevated by the rich, aromatic sweetness of premium toasted hazelnuts, completely rounded out into a velvety frozen dessert-like experience.",
+        metrics: [
+          { label: "Sweetness", val: "7.0 / 10" },
+          { label: "Bitterness", val: "4.5 / 10" },
+          { label: "Prep Ease", val: "Easy" },
+          { label: "Food Cost", val: "₹20 to ₹24", highlight: "green" },
+          { label: "Selling Price", val: "₹90 to ₹120", highlight: "gold" }
+        ],
+        ingredients: [
+          { name: "Commercial Frappé Base Powder", qty: "1.5 tbsp (~20g)", note: "Premium base containing milk solids, emulsifiers, and stabilizers" },
+          { name: "Hazelnut Syrup", qty: "20 ml", note: "Premium roasted hazelnut syrup (e.g., Monin, Sula, or Mapro)" },
+          { name: "Instant Coffee Powder", qty: "2 flat tsp (~4g)", note: "Strong commercial blend (e.g., Nescafe Classic or Levista)" },
+          { name: "Plain Sugar Syrup", qty: "10 ml", note: "1:1 clear liquid sugar syrup (reduced to balance the hazelnut syrup)" },
+          { name: "Chilled Full-Cream Milk", qty: "120 ml", note: "Packaged milk (Amul Gold), kept near-freezing" },
+          { name: "Ice Cubes", qty: "140 grams", note: "Solid, dry ice cubes (approx. 7–8 standard cubes)" },
+          { name: "Chocolate Sauce", qty: "5 ml / 1 quick squeeze", note: "For interior glass aesthetics" }
+        ],
+        layers: [
+          { title: "Top Layer (Frozen Micro-Foam)", desc: "A thick, rich crown of frozen micro-foam that sits proudly up into the dome lid.", type: "clear" },
+          { title: "Middle Layer (Frozen Ice-Blended Emulsion)", desc: "A dense, frosty, light-amber coffee, milk, and hazelnut slush that holds its structure without separating.", type: "ombre" },
+          { title: "Bottom Layer (Chocolate Drizzle)", desc: "A sweeping, precise zigzag of rich chocolate sauce drizzled along the inner walls of the plastic cup right before pouring.", type: "blue" }
+        ],
+        steps: [
+          { time: "0 – 12s", title: "The Base Fusion", desc: "Add 1.5 tablespoons of Frappé Base Powder, 2 teaspoons of instant coffee powder, 20 ml hazelnut syrup, and 10 ml plain sugar syrup directly into blender jar. Pour in 120 ml of chilled full-cream milk. Swirl with a spoon for 2 seconds." },
+          { time: "13 – 20s", title: "The Cup Dressing", desc: "Take clear PET cup. Rotate quickly while applying a bold zigzag drizzle of chocolate sauce along the inside walls. Set aside." },
+          { time: "21 – 35s", title: "The High-Speed Frozen Blend", desc: "Dump 140g of solid ice cubes into blender jar. Secure lid. Blend on low pulse for 2 seconds, then instantly ramp up to maximum speed for 10-12 seconds until smooth hum." },
+          { time: "36 – 45s", title: "The Pour & Cap", desc: "Pour velvety hazelnut frappé into dressed cup forming clean peak. Snap dome lid, insert wide straw, and serve." }
+        ],
+        tips: [
+          { title: "Maintain Strict Ratios", desc: "Frappés require less milk (120 ml) and more ice (140g). Adding too much milk will liquefy the frozen thickness." },
+          { title: "Calibrate Your Syrup Pumps", desc: "Use standard 10 ml pump on hazelnut syrup bottle. Exactly 2 pumps per drink ensures flawless consistency." },
+          { title: "Pre-Batch the Coffee Base", desc: "To save time during rushes, dissolve coffee powder directly into sugar syrup batch (e.g., 50g coffee powder dissolved into 250ml hot sugar syrup). Measure by volume." },
+          { title: "Sub-Zero Milk Matrix", desc: "Store milk packets in deep cooler submerged in ice-salt bath. Warm milk breaks down emulsification, resulting in watery blend." },
+          { title: "Use Solid, Dry Ice Cubes", desc: "Wet, melting ice dilutes the precise consistency. Insulate chest and drain water regularly." },
+          { title: "The 3-Second Jar-Rinse Station", desc: "Install pressurized sink rinser. A 3-second upside-down blast rinses the sticky base cleanly out of the jar." },
+          { title: "Do Not Over-Blend", desc: "Blending for more than 15 seconds allows blade friction heat to melt micro-ice crystals. Stop as soon as chunks disappear." },
+          { title: "Avoid Granular Sugar", desc: "Granular sugar cannot dissolve in a thick, ice-cold emulsion, leaving crunchy crystals. Stick strictly to clear 1:1 sugar syrup." },
+          { title: "Linear Workspace Setup", desc: "Line up: Cups -> Powders & Syrups -> Sub-Zero Milk Chest -> Ice Wells -> Blenders -> Lids & Straws." },
+          { title: "The Tap-and-Pour Technique", desc: "Tap the bottom of the blender jar firmly against counter once before pouring to release any air pockets." }
+        ],
+        mistakes: [
+          { title: "Skimping on Frappé Powder", desc: "Blending without base powder results in an icy, watery mess that separates within 60 seconds. Stabilizing base powder is non-negotiable." },
+          { title: "Using Standard Narrow Straws", desc: "Thick ice-blended frappé cannot flow through a thin straw. Always provide wide-bore beverage straws." },
+          { title: "Drizzling Chocolate Sauce Too Early", desc: "Drizzling cups ahead of time causes sauce to slide down in warm counters. Always dress glass right before pouring." }
+        ],
+        variations: [
+          { badge: "budget", title: "Street Hazelnut Cream Blend", desc: "Replace expensive frappé powder with 1.5 tablespoons of standard Dairy Whitener / Milk Powder combined with a single drop of vanilla essence." },
+          { badge: "kids", title: "The Frozen Nutella-Style Blast", desc: "Completely eliminate coffee powder. Add 1 heavy tablespoon of chocolate syrup to the blender jar along with hazelnut syrup and milk. Kids love this nutella taste." }
+        ]
+      },
+      "mango-coffee-frappe": {
+        title: "Alphonso Coffee Frappé",
+        subtitle: "Exotic Mango & Espresso Blend",
+        flavorProfile: "An unexpected, award-winning flavor contrast. The rich, velvety, tropical sweetness of mango cuts the initial bitterness of the coffee, while the robust roasted coffee notes ground the fruit, leaving a smooth, complex, dessert-like finish.",
+        metrics: [
+          { label: "Sweetness", val: "7.0 / 10" },
+          { label: "Bitterness", val: "4.0 / 10" },
+          { label: "Prep Ease", val: "Easy" },
+          { label: "Food Cost", val: "₹22 to ₹26", highlight: "green" },
+          { label: "Selling Price", val: "₹95 to ₹130", highlight: "gold" }
+        ],
+        ingredients: [
+          { name: "Premium Mango Crush/Pulp", qty: "25 ml", note: "Thick Alphonso mango fruit crush (e.g., Mala's or Mapro)" },
+          { name: "Commercial Frappé Base Powder", qty: "1.5 tbsp (~20g)", note: "Emulsifying powder base with milk solids and stabilizers" },
+          { name: "Instant Coffee Powder", qty: "1.5 flat tsp (~3g)", note: "Smooth commercial blend (slightly reduced to avoid overpowering the mango)" },
+          { name: "Plain Sugar Syrup", qty: "10 ml", note: "1:1 clear liquid sugar syrup (reduced to balance the mango sweetness)" },
+          { name: "Chilled Full-Cream Milk", qty: "110 ml", note: "Packaged milk (Amul Gold), kept near-freezing" },
+          { name: "Ice Cubes", qty: "140 grams", note: "Solid, dry ice cubes (approx. 7–8 standard cubes)" },
+          { name: "Mango Crush (For Dressing)", qty: "5 ml / 1 quick squeeze", note: "Used to line the inside wall of the serving cup" }
+        ],
+        layers: [
+          { title: "Top Layer (Frozen Crema Foam)", desc: "A thick crown of aerated micro-foam peak that sits up cleanly under the dome lid.", type: "clear" },
+          { title: "Middle Layer (Mango-Coffee Emulsion)", desc: "A dense, frosty, rich ochre-tan frozen blend. Unique caramel-hued body of yellow mango pulp and brown coffee.", type: "ombre" },
+          { title: "Bottom Layer (Mango Drizzle)", desc: "A bold, horizontal zigzag drizzle of golden mango crush down the inner walls of the plastic cup right before pouring.", type: "blue" }
+        ],
+        steps: [
+          { time: "0 – 12s", title: "The Fusion Load", desc: "Add 1.5 tablespoons of Frappé Base Powder, 1.5 teaspoons of instant coffee powder, 25 ml Mango Crush, and 10 ml plain sugar syrup directly into blender jar. Pour in 110 ml of chilled full-cream milk. Stir with a spoon for 2 seconds." },
+          { time: "13 – 20s", title: "The Tropical Cup Dressing", desc: "Take a 350 ml clear cup. Rotate quickly while applying a sweeping zigzag drizzle of mango crush along the inside walls. Set aside." },
+          { time: "21 – 35s", title: "The High-Speed Frozen Blend", desc: "Dump 140g of solid ice cubes into blender jar. Secure lid. Start blender on low pulse for 2 seconds to crack ice, then ramp to maximum speed for 10-12 seconds until smooth." },
+          { time: "36 – 45s", title: "The Pour & Cap", desc: "Pour golden-caramel frappé into dressed cup letting it form a clean peak. Snap dome lid, insert wide straw, and serve." }
+        ],
+        tips: [
+          { title: "Maintain Strict Ratios", desc: "Uses less milk (110 ml) and more ice (140g). Too much milk will liquefy the texture and ruin the premium frozen frappé feel." },
+          { title: "Calibrate Pumps", desc: "Use wide-nozzle 10 ml pumps. Exactly 2.5 pumps of mango crush and 1 pump of sugar syrup ensures identical flavor." },
+          { title: "Use Sub-Zero Milk", desc: "Cold milk blends thicker and whips up into a much more stable foam structure. Store milk in ice-salt bath." },
+          { title: "Never Use Granular Sugar", desc: "Granular sugar cannot dissolve in ice-cold emulsion, leaving gritty residue at bottom. Use clear 1:1 sugar syrup." },
+          { title: "Use High-Pulp Mango Crush", desc: "Avoid cheap, watery mango syrups. Use authentic Alphonso crush containing real fruit mass to preserve flavor against coffee." },
+          { title: "Use Solid, Dry Ice Cubes", desc: "Melting ice adds unmeasured water into blender, destroying precise consistency. Insulate chest and drain water regularly." },
+          { title: "The 3-Second Jar-Rinse Station", desc: "A pressurized jug rinser upside-down blast rinses the thick mango-coffee base cleanly out of the jar." },
+          { title: "Do Not Over-Blend", desc: "Blending for more than 15 seconds allows blade friction heat to melt micro-ice crystals. Stop as soon as chunks disappear." },
+          { title: "Linear Workspace Setup", desc: "Line up: Cups -> Powders, Mango Crush & Syrups -> Sub-Zero Milk Chest -> Ice Wells -> Blenders -> Lids." },
+          { title: "The Tap-and-Pour Technique", desc: "Tap the bottom of the blender jar firmly against counter once before pouring to release air pockets." }
+        ],
+        mistakes: [
+          { title: "Over-adding Coffee Powder", desc: "Too much coffee completely overpowers delicate mango aroma. Keep coffee strictly measured at 1.5 teaspoons to preserve balance." },
+          { title: "Skipping the Frappé Powder Base", desc: "Acidity of mango and milk proteins will curdle and separate within 2 minutes without an emulsifier. Base powder stabilizers protect milk proteins." },
+          { title: "Using Standard Narrow Straws", desc: "Thick fruit pulp and ice-blended crystals will instantly block narrow straws. Always provide wide straws." }
+        ],
+        variations: [
+          { badge: "budget", title: "Alphonso Coffee Cream Blend", desc: "Replace frappé base powder with 1.5 tablespoons of standard Dairy Whitener / Milk Powder combined with a single drop of vanilla essence." },
+          { badge: "kids", title: "The Frozen Mango-Vanilla Shake", desc: "Completely eliminate coffee powder. Keep frappé base powder, mango crush, milk, sugar syrup, and ice the same. Creamy mango shake kids adore." }
+        ]
+      },
+      "strawberry-frappe": {
+        title: "Velvet Strawberry Crimson Frappé",
+        subtitle: "Premium Creamy Berry Frappé",
+        flavorProfile: "Luxuriously creamy, cold, and thick. It delivers an intense, jammy strawberry sweetness that is perfectly rounded out by a smooth, velvety milk profile and a clean, gourmet dessert finish.",
+        metrics: [
+          { label: "Sweetness", val: "7.0 / 10" },
+          { label: "Acidity", val: "4.0 / 10" },
+          { label: "Prep Ease", val: "Easy" },
+          { label: "Food Cost", val: "₹19 to ₹23", highlight: "green" },
+          { label: "Selling Price", val: "₹85 to ₹110", highlight: "gold" }
+        ],
+        ingredients: [
+          { name: "Commercial Frappé Base Powder", qty: "1.5 tbsp (~20g)", note: "Premium base containing milk solids, emulsifiers, and stabilizers" },
+          { name: "Premium Strawberry Crush/Pulp", qty: "25 ml", note: "High-fruit content pulp crush (e.g., Mapro, Mala's, or Monin)" },
+          { name: "Plain Sugar Syrup", qty: "10 ml", note: "1:1 clear liquid sugar syrup (reduced to balance the sweet fruit crush)" },
+          { name: "Chilled Full-Cream Milk", qty: "120 ml", note: "Packaged milk (Amul Gold), kept near-freezing" },
+          { name: "Ice Cubes", qty: "140 grams", note: "Solid, dry ice cubes (approx. 7–8 standard cubes)" },
+          { name: "Strawberry Crush (For Dressing)", qty: "5 ml / 1 quick squeeze", note: "Extracted from the main bottle to dress the inner glass walls" }
+        ],
+        layers: [
+          { title: "Top Layer (Frozen Pink Micro-Foam)", desc: "A thick, rich crown of frozen pink micro-foam that sits proudly up into the dome lid.", type: "clear" },
+          { title: "Middle Layer (Frozen Strawberry Emulsion)", desc: "A dense, frosty, beautiful pastel-pink strawberry and milk slush that holds its structure without separating.", type: "ombre" },
+          { title: "Bottom Layer (Strawberry Drizzle)", desc: "A sweeping, vertical zigzag of rich red strawberry crush drizzled along the inner walls of the plastic cup right before pouring.", type: "blue" }
+        ],
+        steps: [
+          { time: "0 – 12s", title: "The Base Fusion", desc: "Add 1.5 tablespoons of Frappé Base Powder, 25 ml Strawberry Crush, and 10 ml plain sugar syrup directly into blender jar. Pour in 120 ml of chilled full-cream milk. Swirl with spoon for 2 seconds." },
+          { time: "13 – 20s", title: "The Crimson Cup Dressing", desc: "Take a 350 ml clear cup. Rotate quickly while applying a bold zigzag drizzle of strawberry crush along the inside walls. Set aside." },
+          { time: "21 – 35s", title: "The High-Speed Frozen Blend", desc: "Dump 140g of solid ice cubes into blender jar. Secure lid. Start blender on low pulse for 2 seconds to crack ice, then instantly ramp up to maximum speed for 10-12 seconds until smooth hum." },
+          { time: "36 – 45s", title: "The Pour & Cap", desc: "Pour velvety pink frappé into dressed cup forming clean peak. Snap dome lid, insert wide straw, and serve." }
+        ],
+        tips: [
+          { title: "Maintain Strict Ratios", desc: "Frappés require less milk (120 ml) and more ice (140g). Adding too much milk will ruin frozen thickness, turning it into running liquid." },
+          { title: "Calibrate Your Syrup Pumps", desc: "Use wide-nozzle 10 ml pump on strawberry crush bottle. Exactly 2.5 pumps per drink ensures flawless consistency." },
+          { title: "Sub-Zero Milk Matrix", desc: "Store milk packets in deep cooler box submerged in ice-salt bath. Warm milk breaks down emulsification." },
+          { title: "Use High-Pulp Fruit Crush", desc: "Avoid cheap, clear syrups that look like cough medicine. Use fruit crush containing real fruit pieces and seeds." },
+          { title: "Use Solid, Dry Ice Cubes", desc: "Wet, melting ice adds unmeasured water, destroying precise consistency. Insulate chest and drain water regularly." },
+          { title: "The 3-Second Jar-Rinse Station", desc: "A quick upside-down blast rinses the sticky base cleanly out of the jar, preparing you instantly for the next order." },
+          { title: "Do Not Over-Blend", desc: "Blending for more than 15 seconds allows blade friction heat to melt micro-ice crystals. Stop as soon as chunks disappear." },
+          { title: "Avoid Granular Sugar", desc: "Granular sugar cannot dissolve in a thick, ice-cold emulsion, leaving crunchy crystals. Stick strictly to clear 1:1 sugar syrup." },
+          { title: "Linear Workspace Setup", desc: "Line up: Cups -> Powders & Syrups -> Sub-Zero Milk Chest -> Ice Wells -> Blenders -> Lids & Straws." },
+          { title: "The Tap-and-Pour Technique", desc: "Tap the bottom of the blender jar firmly against counter once before pouring to release air pockets." }
+        ],
+        mistakes: [
+          { title: "Skimping on Frappé Powder", desc: "Blending fruit crush with cold milk without an emulsifier causes milk proteins to curdle and separate within 90 seconds. Base powder is non-negotiable." },
+          { title: "Using Standard Narrow Straws", desc: "Thick ice-blended frappé containing real strawberry pulp cannot flow through thin juice straw. Always provide wide straws." },
+          { title: "Drizzling Fruit Crush Too Early", desc: "Drizzling cups ahead of time causes crush to slide down in warm counters. Always dress glass right before pouring." }
+        ],
+        variations: [
+          { badge: "budget", title: "Street Strawberry Cream Blend", desc: "Replace expensive frappé powder with 1.5 tablespoons of standard Dairy Whitener / Milk Powder combined with a single drop of vanilla essence." },
+          { badge: "kids", title: "The Strawberry Bubblegum Slush", desc: "Line bottom of cup with 3-4 strawberry jelly candies before pouring frappé. Swap out standard straw for bright neon-colored one." }
+        ]
+      },
+      "roasted-hazelnut-iced-coffee": {
+        title: "Roasted Hazelnut Iced Coffee",
+        subtitle: "Premium Layered Iced Coffee",
+        flavorProfile: "Bold, clean, and deeply aromatic. The robust roast of the coffee is beautifully complemented by the nutty, sweet warmth of premium toasted hazelnut, delivering a smooth finish over ice.",
+        metrics: [
+          { label: "Sweetness", val: "6.5 / 10" },
+          { label: "Bitterness", val: "5.5 / 10" },
+          { label: "Prep Ease", val: "Very Easy" },
+          { label: "Food Cost", val: "₹15 to ₹18", highlight: "green" },
+          { label: "Selling Price", val: "₹65 to ₹85", highlight: "gold" }
+        ],
+        ingredients: [
+          { name: "Instant Coffee Powder", qty: "2.5 flat tsp (~5g)", note: "Strong commercial blend (e.g., Nescafe Classic or Levista)" },
+          { name: "Hazelnut Syrup", qty: "20 ml", note: "Premium roasted hazelnut syrup (e.g., Monin, Sula, or Mapro)" },
+          { name: "Plain Sugar Syrup", qty: "15 ml", note: "1:1 clear liquid sugar syrup (keeps the base uniform)" },
+          { name: "Chilled Full-Cream Milk", qty: "160 ml", note: "Packaged milk (Amul Gold), kept near-freezing" },
+          { name: "Ice Cubes", qty: "130 grams", note: "Solid, dry ice cubes (approx. 7–8 standard cubes)" },
+          { name: "Hot Water", qty: "20 ml", note: "Just enough to completely dissolve the coffee powder" }
+        ],
+        layers: [
+          { title: "Top Layer (The Espresso Float)", desc: "A highly concentrated, dark coffee espresso shot poured gently over the top ice cubes, floating beautifully on top.", type: "clear" },
+          { title: "Middle Layer (The Marble Transition)", desc: "Solid ice cubes serving as physical net. As espresso shot melts down, it creates stunning visual marbling white-to-brown.", type: "ombre" },
+          { title: "Bottom Layer (The Sweet Milky Base)", desc: "Chilled full-cream milk pre-mixed with clear sugar syrup and hazelnut syrup forming a dense creamy white anchor.", type: "blue" }
+        ],
+        steps: [
+          { time: "0 – 12s", title: "The Hot Coffee Shot", desc: "In a side beaker, mix 2.5 teaspoons of coffee powder with 20 ml of hot water. Stir rapidly for 3 seconds into completely smooth, lump-free intense dark coffee shot. Set aside." },
+          { time: "11 – 22s", title: "The Sweet Hazelnut Milk Base", desc: "In main clear cup, pour 20 ml hazelnut syrup, 15 ml sugar syrup, and 160 ml cold milk. Swirl with bar spoon for 3 seconds to thoroughly blend." },
+          { time: "23 – 32s", title: "The Ice Lock", desc: "Fill cup completely to the very top with 130g of solid ice cubes. Pack tightly to prevent coffee shot from dropping to bottom." },
+          { time: "33 – 45s", title: "The Marble Float Finish", desc: "Pour hot coffee shot slowly directly over highest ice cube. Watch intense dark coffee settle perfectly on top. Snap dome lid, insert straw, and serve." }
+        ],
+        tips: [
+          { title: "Pre-Batch the Coffee Shot", desc: "Do not dissolve coffee powder per order during rushes. Mix 100g coffee into 400ml hot water in morning. Keep in warm thermos and use exactly 20ml per cup." },
+          { title: "Calibrate Syrup Pumps", desc: "Fit standard 10 ml pumps to syrup bottles. Exactly 2 pumps of hazelnut, 1.5 pumps of sugar syrup. This eliminates measuring errors." },
+          { title: "Sub-Zero Milk Matrix", desc: "Store milk packets in deep cooler box submerged in ice-salt bath. Warm milk instantly mixes with coffee shot, destroying layers." },
+          { title: "Full-Cream Milk is Non-Negotiable", desc: "Never use toned or skimmed milk. Low-fat milk lacks the density required to float the coffee shot properly." },
+          { title: "Pack Ice to the Brim", desc: "Ice cubes act as a physical baffle that diffuses the velocity of the poured coffee shot. Skimping causes layering to fail." },
+          { title: "The 'Slow Glide' Pour", desc: "Train staff to pour coffee shot gently over a high ice cube rather than splashing aggressively down the center." },
+          { title: "Never Use Granular Sugar", desc: "Granular sugar cannot dissolve in ice-cold milk. Stick strictly to clear 1:1 liquid sugar syrup." },
+          { title: "The Interactive Pitch", desc: "Instruct staff to say: 'Please give it a thorough stir from bottom up with your straw to lock hazelnut and coffee flavors together!'" },
+          { title: "Linear Station Assembly", desc: "Cups -> Syrups & Cold Milk -> Solid Ice Wells -> Pre-batched Coffee Squeeze Bottle -> Lids & Straws." },
+          { title: "Keep Pouring Beaker Clean", desc: "Rinse mini coffee beaker under tap between orders to prevent stale coffee residue from bittering next fresh drink." }
+        ],
+        mistakes: [
+          { title: "The Muddy Blended Mess", desc: "Pouring coffee shot into milk before adding ice causes liquids to instantly mix. Always pack ice first to serve as barrier." },
+          { title: "Un-dissolved Coffee Lumps", desc: "Dry coffee powder in cold milk forms sticky, bitter lumps. Always dissolve coffee completely in hot water first." },
+          { title: "Watery Over-Dilution", desc: "If hot water portion exceeds 20 ml, it melts ice instantly, leaving lukewarm, watery iced coffee. Keep water minimized." }
+        ],
+        variations: [
+          { badge: "budget", title: "Street Hazelnut Shaker Iced Coffee", desc: "Instead of layering, combine dissolved coffee shot, hazelnut syrup, sugar syrup, cold milk, and ice in cocktail shaker. Shake 5 seconds and pour frothy crema head." },
+          { badge: "kids", title: "The Sweet Nutella Iced Milk", desc: "Completely eliminate coffee powder. Replace top float with rich chocolate sauce drizzle over ice, keeping hazelnut milk base exactly the same." }
+        ]
+      }
+    };
+
+    // DOM Elements
+    const recipeDropdown = document.getElementById("recipeDropdown");
+    const recipeSearch = document.getElementById("recipeSearch");
+    const recipeContent = document.getElementById("recipeContent");
+
+    // Dynamic Simulation Timer state
+    let simInterval = null;
+    let simSecs = 0;
+    let simTotal = 45;
+
+    // Render active recipe
+    function renderRecipe() {
+      const activeKey = recipeDropdown.value;
+      const recipe = recipeDb[activeKey];
+      const query = recipeSearch.value.toLowerCase().trim();
+
+      if (!recipe) return;
+
+      // Style helper variables for dynamic cup visuals
+      let topBg = 'rgba(224, 242, 254, 0.4)';
+      let topColor = '#0369a1';
+      let topText = 'Clear';
+      let topBorder = 'border-bottom: 2px dashed rgba(2, 132, 199, 0.2);';
+
+      let middleBg = 'linear-gradient(to top, rgba(14, 165, 233, 0.8), rgba(224, 242, 254, 0.4))';
+      let middleColor = '#0369a1';
+      let middleText = 'Transition';
+      let middleBorder = 'border-bottom: 2px dashed rgba(2, 132, 199, 0.4);';
+
+      let bottomBg = '#0284c7';
+      let bottomColor = '#ffffff';
+      let bottomText = 'Blue Syrup';
+      let bottomBorder = '';
+
+      if (activeKey === 'classic-green-mojito') {
+        topBg = 'rgba(209, 250, 229, 0.4)'; topColor = '#047857'; topText = 'Sparkling Clear'; topBorder = 'border-bottom: 2px dashed rgba(16, 185, 129, 0.2);';
+        middleBg = 'linear-gradient(to top, rgba(16, 185, 129, 0.7), rgba(209, 250, 229, 0.4))'; middleColor = '#047857'; middleText = 'Ice Suspension'; middleBorder = 'border-bottom: 2px dashed rgba(16, 185, 129, 0.4);';
+        bottomBg = '#10b981'; bottomColor = '#ffffff'; bottomText = 'Muddle & Syrup';
+      } else if (activeKey === 'strawberry-crimson-fizz') {
+        topBg = 'rgba(254, 226, 226, 0.4)'; topColor = '#b91c1c'; topText = 'Crystal Sparkle'; topBorder = 'border-bottom: 2px dashed rgba(239, 68, 68, 0.2);';
+        middleBg = 'linear-gradient(to top, rgba(239, 68, 68, 0.7), rgba(254, 226, 226, 0.4))'; middleColor = '#b91c1c'; middleText = 'Crimson Gradient'; middleBorder = 'border-bottom: 2px dashed rgba(239, 68, 68, 0.4);';
+        bottomBg = '#dc2626'; bottomColor = '#ffffff'; bottomText = 'Crimson Base';
+      } else if (activeKey === 'golden-pineapple-cooler') {
+        topBg = 'rgba(254, 243, 199, 0.4)'; topColor = '#d97706'; topText = 'Island Sparkle'; topBorder = 'border-bottom: 2px dashed rgba(234, 179, 8, 0.2);';
+        middleBg = 'linear-gradient(to top, rgba(234, 179, 8, 0.7), rgba(254, 243, 199, 0.4))'; middleColor = '#d97706'; middleText = 'Sunburst Gradient'; middleBorder = 'border-bottom: 2px dashed rgba(234, 179, 8, 0.4);';
+        bottomBg = '#d97706'; bottomColor = '#ffffff'; bottomText = 'Golden Base';
+      } else if (activeKey === 'citrus-orange-splash') {
+        topBg = 'rgba(254, 237, 222, 0.4)'; topColor = '#c2410c'; topText = 'Crystal Sparkle'; topBorder = 'border-bottom: 2px dashed rgba(249, 115, 22, 0.2);';
+        middleBg = 'linear-gradient(to top, rgba(249, 115, 22, 0.7), rgba(254, 237, 222, 0.4))'; middleColor = '#c2410c'; middleText = 'Sunset Burst Gradient'; middleBorder = 'border-bottom: 2px dashed rgba(249, 115, 22, 0.4);';
+        bottomBg = '#f97316'; bottomColor = '#ffffff'; bottomText = 'Orange Base';
+      } else if (activeKey === 'mango-madness') {
+        topBg = 'rgba(254, 243, 199, 0.4)'; topColor = '#b45309'; topText = 'Effervescent Crown'; topBorder = 'border-bottom: 2px dashed rgba(245, 158, 11, 0.2);';
+        middleBg = 'linear-gradient(to top, rgba(245, 158, 11, 0.7), rgba(254, 243, 199, 0.4))'; middleColor = '#b45309'; middleText = 'Sun-Bleed Gradient'; middleBorder = 'border-bottom: 2px dashed rgba(245, 158, 11, 0.4);';
+        bottomBg = '#f59e0b'; bottomColor = '#ffffff'; bottomText = 'Mango Base';
+      } else if (activeKey === 'spicy-kala-khatta') {
+        topBg = 'rgba(243, 232, 255, 0.4)'; topColor = '#701a75'; topText = 'Crystal Sparkle'; topBorder = 'border-bottom: 2px dashed rgba(168, 85, 247, 0.2);';
+        middleBg = 'linear-gradient(to top, rgba(168, 85, 247, 0.7), rgba(243, 232, 255, 0.4))'; middleColor = '#701a75'; middleText = 'Neon Ombré'; middleBorder = 'border-bottom: 2px dashed rgba(168, 85, 247, 0.4);';
+        bottomBg = '#4c1d95'; bottomColor = '#ffffff'; bottomText = 'Midnight Base';
+      } else if (activeKey === 'hazelnut-cold-coffee' || activeKey === 'classic-cold-coffee' || activeKey === 'classic-cafe-frappe') {
+        topBg = 'rgba(253, 248, 245, 0.95)'; topColor = '#78350f'; topText = activeKey === 'hazelnut-cold-coffee' ? 'Crema Foam' : activeKey === 'classic-cold-coffee' ? 'Crema Foam Plume' : 'Frozen Micro-Foam'; topBorder = 'border-bottom: 2px dashed rgba(120, 53, 15, 0.3);';
+        middleBg = 'linear-gradient(to top, rgba(120, 53, 15, 0.95), rgba(253, 248, 245, 0.8))'; middleColor = '#78350f'; middleText = activeKey === 'classic-cafe-frappe' ? 'Frozen Ice-Blended Emulsion' : 'Coffee Emulsion'; middleBorder = 'border-bottom: 2px dashed rgba(120, 53, 15, 0.4);';
+        bottomBg = '#451a03'; bottomColor = '#ffffff'; bottomText = 'Chocolate Drizzle';
+      } else if (activeKey === 'blue-strawberry-fizz') {
+        topBg = 'rgba(14, 165, 233, 0.85)'; topColor = '#ffffff'; topText = 'Neon Ocean'; topBorder = '';
+        middleBg = 'linear-gradient(to top, rgba(220, 38, 38, 0.75), rgba(14, 165, 233, 0.85))'; middleColor = '#ffffff'; middleText = 'Twilight Blend'; middleBorder = '';
+        bottomBg = '#b91c1c'; bottomColor = '#ffffff'; bottomText = 'Crimson Anchor';
+      } else if (activeKey === 'mango-mint-mojito') {
+        topBg = 'rgba(16, 185, 129, 0.85)'; topColor = '#ffffff'; topText = 'Emerald Sparkle'; topBorder = '';
+        middleBg = 'rgba(16, 185, 129, 0.45)'; middleColor = '#047857'; middleText = 'Mint Matrix'; middleBorder = '';
+        bottomBg = '#f59e0b'; bottomColor = '#ffffff'; bottomText = 'Golden Anchor';
+      } else if (activeKey === 'tropical-sunset') {
+        topBg = 'rgba(234, 179, 8, 0.85)'; topColor = '#ffffff'; topText = 'Pineapple Crown'; topBorder = '';
+        middleBg = 'linear-gradient(to top, rgba(249, 115, 22, 0.75), rgba(234, 179, 8, 0.8))'; middleColor = '#ffffff'; middleText = 'Sunset Transition'; middleBorder = '';
+        bottomBg = '#f97316'; bottomColor = '#ffffff'; bottomText = 'Orange Anchor';
+      } else if (activeKey === 'spiced-kala-khatta-mint') {
+        topBg = 'rgba(16, 185, 129, 0.85)'; topColor = '#ffffff'; topText = 'Emerald Cap'; topBorder = '';
+        middleBg = 'rgba(241, 245, 249, 0.5)'; middleColor = 'var(--text-muted)'; middleText = 'Crystal Float'; middleBorder = '';
+        bottomBg = '#3b0764'; bottomColor = '#ffffff'; bottomText = 'Midnight Foundation';
+      } else if (activeKey === 'blue-pineapple-ocean') {
+        topBg = 'rgba(14, 165, 233, 0.85)'; topColor = '#ffffff'; topText = 'Deep Blue Sea'; topBorder = '';
+        middleBg = 'linear-gradient(to top, rgba(16, 185, 129, 0.6), rgba(14, 165, 233, 0.7))'; middleColor = '#ffffff'; middleText = 'Turquoise Shimmer'; middleBorder = '';
+        bottomBg = '#d97706'; bottomColor = '#ffffff'; bottomText = 'Golden Sand Base';
+      } else if (activeKey === 'orange-blue-twist') {
+        topBg = 'rgba(14, 165, 233, 0.85)'; topColor = '#ffffff'; topText = 'Ice Cap'; topBorder = '';
+        middleBg = 'linear-gradient(to top, rgba(14, 165, 233, 0.7), rgba(249, 115, 22, 0.6))'; middleColor = '#ffffff'; middleText = 'Neon Transition'; middleBorder = '';
+        bottomBg = '#ea580c'; bottomColor = '#ffffff'; bottomText = 'Fire Base';
+      } else if (activeKey === 'strawberry-mango-blast') {
+        topBg = 'rgba(234, 179, 8, 0.95)'; topColor = '#ffffff'; topText = 'Mango Crown'; topBorder = '';
+        middleBg = 'linear-gradient(to top, rgba(234, 179, 8, 0.8), rgba(220, 38, 38, 0.75))'; middleColor = '#ffffff'; middleText = 'Sunset Transition'; middleBorder = '';
+        bottomBg = '#dc2626'; bottomColor = '#ffffff'; bottomText = 'Crimson Anchor';
+      } else if (activeKey === 'tiranga-electric-fizz') {
+        topBg = 'rgba(249, 115, 22, 0.95)'; topColor = '#ffffff'; topText = 'Saffron Crown'; topBorder = '';
+        middleBg = 'rgba(255, 255, 255, 0.6)'; middleColor = 'var(--text-muted)'; middleText = 'White Band'; middleBorder = '';
+        bottomBg = '#15803d'; bottomColor = '#ffffff'; bottomText = 'Green Base';
+      } else if (activeKey === 'roasted-hazelnut-frappe') {
+        topBg = 'rgba(253, 248, 245, 0.95)'; topColor = '#78350f'; topText = 'Frozen Micro-Foam'; topBorder = 'border-bottom: 2px dashed rgba(120, 53, 15, 0.3);';
+        middleBg = 'linear-gradient(to top, rgba(120, 53, 15, 0.95), rgba(253, 248, 245, 0.8))'; middleColor = '#78350f'; middleText = 'Frozen Ice-Blended Emulsion'; middleBorder = 'border-bottom: 2px dashed rgba(120, 53, 15, 0.4);';
+        bottomBg = '#451a03'; bottomColor = '#ffffff'; bottomText = 'Chocolate Drizzle';
+      } else if (activeKey === 'mango-coffee-frappe') {
+        topBg = 'rgba(254, 243, 199, 0.95)'; topColor = '#b45309'; topText = 'Frozen Crema Foam'; topBorder = 'border-bottom: 2px dashed rgba(234, 179, 8, 0.3);';
+        middleBg = 'linear-gradient(to top, rgba(120, 53, 15, 0.9), rgba(234, 179, 8, 0.75))'; middleColor = '#b45309'; middleText = 'Mango-Coffee Emulsion'; middleBorder = 'border-bottom: 2px dashed rgba(234, 179, 8, 0.4);';
+        bottomBg = '#eab308'; bottomColor = '#ffffff'; bottomText = 'Mango Drizzle';
+      } else if (activeKey === 'strawberry-frappe') {
+        topBg = 'rgba(254, 226, 226, 0.95)'; topColor = '#b91c1c'; topText = 'Frozen Pink Micro-Foam'; topBorder = 'border-bottom: 2px dashed rgba(220, 38, 38, 0.3);';
+        middleBg = 'linear-gradient(to top, rgba(220, 38, 38, 0.75), rgba(254, 226, 226, 0.8))'; middleColor = '#b91c1c'; middleText = 'Frozen Strawberry Emulsion'; middleBorder = 'border-bottom: 2px dashed rgba(220, 38, 38, 0.4);';
+        bottomBg = '#dc2626'; bottomColor = '#ffffff'; bottomText = 'Strawberry Drizzle';
+      } else if (activeKey === 'roasted-hazelnut-iced-coffee') {
+        topBg = 'rgba(69, 26, 3, 0.95)'; topColor = '#ffffff'; topText = 'Espresso Float'; topBorder = 'border-bottom: 2px dashed rgba(69, 26, 3, 0.3);';
+        middleBg = 'linear-gradient(to top, rgba(255, 255, 255, 0.95), rgba(69, 26, 3, 0.75))'; middleColor = '#451a03'; middleText = 'Marble Transition'; middleBorder = 'border-bottom: 2px dashed rgba(255, 255, 255, 0.4);';
+        bottomBg = 'rgba(255, 255, 255, 0.95)'; bottomColor = '#451a03'; bottomText = 'Sweet Milky Base';
+      }
+
+      // Filter steps, ingredients, or tips based on search (safeguarded and optimized)
+      const filteredIngredients = query ? recipe.ingredients.filter(ing => 
+        ing.name.toLowerCase().includes(query) || ing.note.toLowerCase().includes(query)
+      ) : recipe.ingredients;
+
+      const filteredSteps = query ? recipe.steps.filter(step => 
+        step.title.toLowerCase().includes(query) || step.desc.toLowerCase().includes(query)
+      ) : recipe.steps;
+
+      const filteredTips = query ? recipe.tips.filter(tip => 
+        tip.title.toLowerCase().includes(query) || tip.desc.toLowerCase().includes(query)
+      ) : recipe.tips;
+
+      const filteredMistakes = query ? recipe.mistakes.filter(m => 
+        m.title.toLowerCase().includes(query) || m.desc.toLowerCase().includes(query)
+      ) : recipe.mistakes;
+
+      // Build HTML
+      let html = `
+        <!-- 1. Drink Overview -->
+        <div class="overview-header">
+          <h2 class="drink-title">${recipe.title} </h2>
+          <div class="drink-flavor">${recipe.flavorProfile}</div>
+        </div>
+
+        <div class="overview-grid">
+          ${recipe.metrics.map(m => `
+            <div class="overview-card">
+              <div class="card-lbl">${m.label}</div>
+              <div class="card-val ${m.highlight === 'green' ? 'val-green' : m.highlight === 'gold' ? 'val-gold' : ''}">${m.val}</div>
+            </div>
+          `).join("")}
+        </div>
+
+        <!-- 2. Ingredients measurements -->
+        <h3 class="section-title">
+          <svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+          Ingredient Measurements (Per 350 ml)
+        </h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Ingredient</th>
+                <th>Measurement</th>
+                <th>Operational Form / Note</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${filteredIngredients.length > 0 ? filteredIngredients.map(ing => `
+                <tr>
+                  <td class="td-highlight">${ing.name}</td>
+                  <td><strong>${ing.qty}</strong></td>
+                  <td style="color:var(--text-muted)">${ing.note}</td>
+                </tr>
+              `).join("") : `<tr><td colspan="3" style="text-align:center; color:var(--text-light)">No matching ingredients found.</td></tr>`}
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 3. Layer Structure Visual -->
+        <h3 class="section-title">
+          <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+          Layer Structure (Visual Hook)
+        </h3>
+        <div class="layer-section">
+          <div class="glass-visual">
+            <div class="mock-cup">
+              <div class="cup-straw" style="${
+                (activeKey === 'hazelnut-cold-coffee' || activeKey === 'classic-cold-coffee' || activeKey === 'classic-cafe-frappe' || activeKey === 'roasted-hazelnut-frappe' || activeKey === 'mango-coffee-frappe' || activeKey === 'roasted-hazelnut-iced-coffee')
+                  ? 'background: #270e00; width: 14px; left: 83px;'
+                  : (activeKey === 'strawberry-frappe')
+                  ? 'background: repeating-linear-gradient(-45deg, #fda4af, #fda4af 6px, #ffffff 6px, #ffffff 12px); width: 14px; left: 83px;'
+                  : ''
+              }"></div>
+              <div class="cup-mint" style="${(activeKey === 'classic-green-mojito' || activeKey === 'spicy-kala-khatta' || activeKey === 'blue-strawberry-fizz' || activeKey === 'mango-mint-mojito' || activeKey === 'tropical-sunset' || activeKey === 'spiced-kala-khatta-mint' || activeKey === 'blue-pineapple-ocean' || activeKey === 'orange-blue-twist' || activeKey === 'strawberry-mango-blast' || activeKey === 'tiranga-electric-fizz') ? '' : 'display: none;'}"></div>
+              <div class="cup-lime-top" style="${(activeKey === 'hazelnut-cold-coffee' || activeKey === 'classic-cold-coffee' || activeKey === 'classic-cafe-frappe' || activeKey === 'roasted-hazelnut-frappe' || activeKey === 'mango-coffee-frappe' || activeKey === 'strawberry-frappe' || activeKey === 'roasted-hazelnut-iced-coffee') ? 'display: none;' : ''}"></div>
+              <div class="cup-lime-middle" style="${(activeKey === 'hazelnut-cold-coffee' || activeKey === 'classic-cold-coffee' || activeKey === 'classic-cafe-frappe' || activeKey === 'roasted-hazelnut-frappe' || activeKey === 'mango-coffee-frappe' || activeKey === 'strawberry-frappe' || activeKey === 'roasted-hazelnut-iced-coffee') ? 'display: none;' : ''}"></div>
+              <div class="cup-chocolate-drizzle" style="${
+                (activeKey === 'hazelnut-cold-coffee' || activeKey === 'classic-cold-coffee' || activeKey === 'classic-cafe-frappe' || activeKey === 'roasted-hazelnut-frappe')
+                  ? 'display: block;'
+                  : (activeKey === 'mango-coffee-frappe')
+                  ? 'display: block; background: repeating-linear-gradient(135deg, transparent, transparent 15px, rgba(234, 179, 8, 0.5) 15px, rgba(234, 179, 8, 0.5) 22px);'
+                  : (activeKey === 'strawberry-frappe')
+                  ? 'display: block; background: repeating-linear-gradient(135deg, transparent, transparent 15px, rgba(220, 38, 38, 0.5) 15px, rgba(220, 38, 38, 0.5) 22px);'
+                  : 'display: none;'
+              }"></div>
+              <div class="layer-top" style="${topBg ? `background: ${topBg}; color: ${topColor}; ${topBorder}` : ''}">
+                ${topText}
+              </div>
+              <div class="layer-middle" style="${middleBg ? `background: ${middleBg}; color: ${middleColor}; ${middleBorder}` : ''}">
+                ${middleText}
+              </div>
+              <div class="layer-bottom" style="${bottomBg ? `background: ${bottomBg}; color: ${bottomColor}; ${bottomBorder}` : ''}">
+                ${bottomText}
+              </div>
+            </div>
+          </div>
+          <div class="layer-info-list">
+            ${recipe.layers.map(layer => {
+              let dotStyle = '';
+              if (layer.type === 'clear') {
+                dotStyle = `background: ${topBg.includes('linear-gradient') ? 'rgba(224, 242, 254, 0.4)' : topBg}; border: 1px solid var(--border-color);`;
+              } else if (layer.type === 'ombre') {
+                dotStyle = `background: ${middleBg}; border: 1px solid var(--border-color);`;
+              } else if (layer.type === 'blue') {
+                dotStyle = `background: ${bottomBg};`;
+              }
+              return `
+                <div class="layer-info-item">
+                  <div class="layer-dot" style="${dotStyle}"></div>
+                  <div>
+                    <div class="layer-title-text">${layer.title}</div>
+                    <div class="layer-desc-text">${layer.desc}</div>
+                  </div>
+                </div>
+              `;
+            }).join("")}
+          </div>
+        </div>
+
+        <!-- 4. Professional Preparation Timeline -->
+        <h3 class="section-title">
+          <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          Operational Timeline (45-Sec Target)
+        </h3>
+        
+        <!-- Simulation Timer Bar -->
+        <div class="sim-bar">
+          <button class="sim-btn" id="simPlayBtn" onclick="toggleSim()">
+            <svg style="width:14px;height:14px;stroke:currentColor;fill:currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            <span>Simulate Prep</span>
+          </button>
+          <div class="sim-progress-track">
+            <div class="sim-progress-fill" id="simProgress"></div>
+          </div>
+          <div class="sim-timer-val" id="simTimer">00s</div>
+        </div>
+
+        <div class="timeline" id="timelineList">
+          ${filteredSteps.map((step, idx) => `
+            <div class="timeline-item" id="step-${idx}">
+              <div class="timeline-badge"></div>
+              <div class="time-lbl">Seconds ${step.time}</div>
+              <div class="step-title">${step.title}</div>
+              <div class="step-desc">${step.desc}</div>
+            </div>
+          `).join("")}
+        </div>
+
+        <!-- 5. Tips & Mistakes Grid -->
+        <div class="tips-mistakes-grid" style="margin-top: 3.5rem;">
+          <!-- Tips -->
+          <div class="card-list-box box-tips">
+            <div class="box-title title-tips">
+              <svg style="width:20px;height:20px;stroke:currentColor;fill:none;" viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Operational Pro Tips
+            </div>
+            <ul class="bullet-list">
+              ${filteredTips.length > 0 ? filteredTips.map(tip => `
+                <li class="bullet-item">
+                  <span class="bullet-marker mark-tip">✓</span>
+                  <div>
+                    <div class="bullet-header">${tip.title}</div>
+                    <div class="bullet-desc">${tip.desc}</div>
+                  </div>
+                </li>
+              `).join("") : `<li style="color:var(--text-light); font-size:0.85rem">No matching pro tips found.</li>`}
+            </ul>
+          </div>
+
+          <!-- Mistakes -->
+          <div class="card-list-box box-mistakes">
+            <div class="box-title title-mistakes">
+              <svg style="width:20px;height:20px;stroke:currentColor;fill:none;" viewBox="0 0 24 24" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              Common Mistakes to Avoid
+            </div>
+            <ul class="bullet-list">
+              ${filteredMistakes.length > 0 ? filteredMistakes.map(m => `
+                <li class="bullet-item">
+                  <span class="bullet-marker mark-mistake">✗</span>
+                  <div>
+                    <div class="bullet-header">${m.title}</div>
+                    <div class="bullet-desc">${m.desc}</div>
+                  </div>
+                </li>
+              `).join("") : `<li style="color:var(--text-light); font-size:0.85rem">No matching common mistakes found.</li>`}
+            </ul>
+          </div>
+        </div>
+
+        <!-- 6. Drink Variations -->
+        <h3 class="section-title">
+          <svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 2.248c5.385 0 9.75 4.365 9.75 9.75s-4.365 9.75-9.75 9.75-9.75-4.365-9.75-9.75 4.365-9.75 9.75-9.75z"></path></svg>
+          Operational Menu Variations
+        </h3>
+        <div class="variations-grid">
+          ${recipe.variations.map(v => `
+            <div class="variation-card">
+              <span class="var-badge ${v.badge === 'budget' ? 'badge-budget' : 'badge-kids'}">${v.badge === 'budget' ? 'High Volume / Low Cost' : 'Child Friendly'}</span>
+              <h4 class="var-title">${v.title}</h4>
+              <p class="var-desc">${v.desc}</p>
+            </div>
+          `).join("")}
+        </div>
+      `;
+
+      recipeContent.innerHTML = html;
+      resetSimState();
+    }
+
+    // Toggle Preparation Timeline simulation
+    function toggleSim() {
+      const playBtn = document.getElementById("simPlayBtn");
+      
+      if (simInterval) {
+        // Pause
+        clearInterval(simInterval);
+        simInterval = null;
+        playBtn.querySelector("span").innerText = "Resume Prep";
+        playBtn.querySelector("polygon").setAttribute("points", "5 3 19 12 5 21 5 3");
+      } else {
+        // Start/Play
+        if (simSecs >= simTotal) {
+          simSecs = 0;
+        }
+        playBtn.querySelector("span").innerText = "Pause Prep";
+        // Change icon to pause two-bars
+        playBtn.querySelector("polygon").parentElement.innerHTML = `<rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>`;
+        
+        simInterval = setInterval(() => {
+          simSecs++;
+          updateSimUI();
+          
+          if (simSecs >= simTotal) {
+            clearInterval(simInterval);
+            simInterval = null;
+            resetSimState();
+          }
+        }, 1000); // Real-time speed (1000ms = 1 actual second)
+      }
+    }
+
+    function resetSimState() {
+      simSecs = 0;
+      updateSimUI();
+      const playBtn = document.getElementById("simPlayBtn");
+      if (playBtn) {
+        playBtn.innerHTML = `
+          <svg style="width:14px;height:14px;stroke:currentColor;fill:currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          <span>Simulate Prep</span>
+        `;
+      }
+    }
+
+    function updateSimUI() {
+      const progress = document.getElementById("simProgress");
+      const timerVal = document.getElementById("simTimer");
+      
+      if (!progress || !timerVal) return;
+
+      const percentage = (simSecs / simTotal) * 100;
+      progress.style.width = `${percentage}%`;
+      timerVal.innerText = `${simSecs.toString().padStart(2, '0')}s`;
+
+      // Highlight corresponding steps
+      const activeKey = recipeDropdown.value;
+      const recipe = recipeDb[activeKey];
+      if (!recipe) return;
+
+      recipe.steps.forEach((step, idx) => {
+        const stepEl = document.getElementById(`step-${idx}`);
+        if (!stepEl) return;
+
+        // Parse step timing
+        // Example "0 – 10s" -> [0, 10]
+        const times = step.time.replace("s", "").split("–").map(t => parseInt(t.trim()));
+        const start = times[0];
+        const end = times[1];
+
+        if (simSecs >= start && simSecs <= end) {
+          stepEl.classList.add("active");
+          stepEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else {
+          stepEl.classList.remove("active");
+        }
+      });
+    }
+
+    // Category Filter Helpers
+    function getRecipeCategory(key) {
+      if (['hazelnut-cold-coffee', 'classic-cafe-frappe', 'roasted-hazelnut-frappe', 'mango-coffee-frappe', 'strawberry-frappe'].includes(key)) {
+        return 'frappe';
+      }
+      if (['classic-cold-coffee', 'roasted-hazelnut-iced-coffee'].includes(key)) {
+        return 'iced-coffee';
+      }
+      return 'cooler';
+    }
+
+    const allOptions = Array.from(recipeDropdown.options).map(opt => ({
+      value: opt.value,
+      text: opt.text,
+      category: getRecipeCategory(opt.value)
+    }));
+
+    function filterRecipesByCategory(category) {
+      const previousValue = recipeDropdown.value;
+      const filtered = allOptions.filter(opt => category === 'all' || opt.category === category);
+      
+      recipeDropdown.innerHTML = '';
+      filtered.forEach(opt => {
+        const el = document.createElement('option');
+        el.value = opt.value;
+        el.text = opt.text;
+        recipeDropdown.appendChild(el);
+      });
+
+      // Keep selection if it still exists in the filtered list, otherwise select the first one
+      const match = filtered.find(opt => opt.value === previousValue);
+      if (match) {
+        recipeDropdown.value = previousValue;
+      } else if (filtered.length > 0) {
+        recipeDropdown.value = filtered[0].value;
+      }
+
+      renderRecipe();
+    }
+
+    // Wire up Category Filter Pills
+    document.querySelectorAll('.filter-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        filterRecipesByCategory(pill.getAttribute('data-category'));
+      });
+    });
+
+    // Event Handlers
+    recipeDropdown.onchange = renderRecipe;
+    recipeSearch.oninput = renderRecipe;
+
+    // Initial load
+    renderRecipe();
+  </script>
+</body>
+</html>
