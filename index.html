@@ -9,6 +9,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <noscript>
+        <style>
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        </style>
+    </noscript>
 </head>
 <body>
     <!-- Animated Background -->
@@ -47,7 +55,7 @@
     <!-- Search Bar -->
     <section id="search-section">
         <div class="search-container">
-            <div class="search-box">
+            <div class="search-box reveal">
                 <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="11" cy="11" r="8"></circle>
                     <path d="M21 21l-4.35-4.35"></path>
@@ -60,7 +68,7 @@
 
     <!-- Category Tabs -->
     <nav id="category-nav">
-        <div class="category-tabs">
+        <div class="category-tabs reveal">
             <button class="cat-tab active" data-category="all">
                 <span class="cat-tab-emoji">🍹</span>
                 <span class="cat-tab-text">All Drinks</span>
@@ -104,22 +112,22 @@
     <!-- Operational Framework Section -->
     <section id="ops-framework" class="ops-framework">
         <div class="ops-inner">
-            <h2 class="ops-title">
+            <h2 class="ops-title reveal">
                 <span class="ops-title-icon">💡</span>
                 Operational Framework for the Station
             </h2>
             <div class="ops-cards">
-                <div class="ops-card">
+                <div class="ops-card reveal">
                     <div class="ops-card-icon">🧊</div>
                     <h3>The Ice Staircase Rule</h3>
                     <p id="ops-ice-rule"></p>
                 </div>
-                <div class="ops-card">
+                <div class="ops-card reveal">
                     <div class="ops-card-icon">🍫</div>
                     <h3>Garnishes & Add-ons</h3>
                     <p id="ops-garnishes"></p>
                 </div>
-                <div class="ops-card">
+                <div class="ops-card reveal">
                     <div class="ops-card-icon">📸</div>
                     <h3>The Instagram Directive</h3>
                     <p id="ops-instagram"></p>
@@ -130,7 +138,7 @@
 
     <!-- Footer -->
     <footer id="footer">
-        <div class="footer-inner">
+        <div class="footer-inner reveal">
             <p>ARS — Authentic Recipe Station &copy; 2025</p>
             <p class="footer-sub">48 Premium Drinks · All Rights Reserved</p>
         </div>

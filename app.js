@@ -10,6 +10,7 @@
     let currentCategory = 'all';
     let searchQuery = '';
     let activeTimers = {}; // { 'drink-1-step-2': { interval, remaining, total, running } }
+    let revealObserver = null;
 
     // ── DOM References ─────────────────────────────────
     const drinkGrid = document.getElementById('drink-grid');
@@ -22,9 +23,11 @@
 
     // ── Initialize ─────────────────────────────────────
     function init() {
+        initRevealObserver();
         renderDrinks();
         renderOperationalFramework();
         bindEvents();
+        observeElements();
     }
 
     // ── Render All Drinks ──────────────────────────────
@@ -61,7 +64,7 @@
 
             // Category Header
             html += `
-                <div class="category-header">
+                <div class="category-header reveal">
                     <div class="category-header-emoji">${category.emoji}</div>
                     <div class="category-header-text">
                         <h2>${category.name}</h2>
@@ -76,7 +79,7 @@
                 if (drink.subcategory !== currentSub) {
                     currentSub = drink.subcategory;
                     html += `
-                        <div class="subcategory-header">
+                        <div class="subcategory-header reveal">
                             <h3>${currentSub}</h3>
                         </div>
                     `;
@@ -100,6 +103,9 @@
                 openDrinkModal(drinkId);
             });
         });
+
+        // Observe newly rendered dynamic elements
+        observeElements();
     }
 
     function renderDrinkCard(drink, catId) {
@@ -108,7 +114,7 @@
         const badgeClass = hasRecipe ? 'has-recipe' : '';
 
         return `
-            <div class="drink-card" data-drink-id="${drink.id}" style="--card-accent: ${drink.colorAccent};">
+            <div class="drink-card reveal" data-drink-id="${drink.id}" style="--card-accent: ${drink.colorAccent};">
                 <div class="drink-card-top">
                     <span class="drink-number">#${String(drink.id).padStart(2, '0')}</span>
                     <span class="drink-badge ${badgeClass}">${badgeText}</span>
@@ -645,6 +651,57 @@
         document.getElementById('modal-tabs').addEventListener('click', (e) => {
             const tab = e.target.closest('.modal-tab');
             if (tab) setActiveTab(tab.dataset.tab);
+        });
+    }
+
+    // ── Scroll Reveal Observer ────────────────────────
+    function initRevealObserver() {
+        if ('IntersectionObserver' in window) {
+            revealObserver = new IntersectionObserver((entries, observer) => {
+                let delay = 0;
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = entry.target;
+                        
+                        // Set stagger delay if multiple elements intersect at once
+                        target.style.transitionDelay = `${delay}ms`;
+                        target.classList.add('revealed');
+                        
+                        // Clean up reveal classes and styles on transition completion
+                        const onTransitionEnd = (e) => {
+                            if (e.propertyName === 'transform' || e.propertyName === 'opacity') {
+                                cleanup();
+                            }
+                        };
+                        const cleanup = () => {
+                            target.classList.remove('reveal', 'revealed');
+                            target.style.transitionDelay = '';
+                            target.removeEventListener('transitionend', onTransitionEnd);
+                            clearTimeout(timeoutId);
+                        };
+                        const timeoutId = setTimeout(cleanup, 800); // 700ms transition + 100ms safety
+                        target.addEventListener('transitionend', onTransitionEnd);
+                        
+                        // Stop observing this element
+                        observer.unobserve(target);
+                        delay += 40; // Increment delay for stagger effect
+                    }
+                });
+            }, {
+                root: null, // use viewport
+                rootMargin: '0px 0px -40px 0px', // start transition slightly before entering viewport
+                threshold: 0.1 // 10% visible
+            });
+        }
+    }
+
+    function observeElements() {
+        if (!revealObserver) return;
+        
+        // Target all unrevealed elements
+        const elements = document.querySelectorAll('.reveal:not(.revealed)');
+        elements.forEach(el => {
+            revealObserver.observe(el);
         });
     }
 

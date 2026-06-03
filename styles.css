@@ -1440,29 +1440,19 @@ footer {
     }
 }
 
-/* ── Utility Animations ─────────────────────────────── */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(16px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* ── Scroll Reveal (Lazy Load Text & Cards) ────────── */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.215, 0.61, 0.355, 1), 
+                transform 0.7s cubic-bezier(0.215, 0.61, 0.355, 1);
+    will-change: opacity, transform;
 }
 
-.drink-card {
-    animation: fadeInUp 0.5s ease both;
+.reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
 }
-
-.drink-card:nth-child(2) { animation-delay: 0.02s; }
-.drink-card:nth-child(3) { animation-delay: 0.04s; }
-.drink-card:nth-child(4) { animation-delay: 0.06s; }
-.drink-card:nth-child(5) { animation-delay: 0.08s; }
-.drink-card:nth-child(6) { animation-delay: 0.10s; }
-.drink-card:nth-child(7) { animation-delay: 0.12s; }
-.drink-card:nth-child(8) { animation-delay: 0.14s; }
 
 /* Global Timer Controls */
 .global-timer-controls {
