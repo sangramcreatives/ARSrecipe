@@ -1505,3 +1505,368 @@ footer {
     font-weight: 700;
     color: var(--text-accent);
 }
+
+/* ── Station Selector Toggle ── */
+.station-selector-section {
+    padding: var(--space-md) var(--space-xl) var(--space-xs);
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.station-selector-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-subtle);
+    padding: 6px;
+    border-radius: var(--radius-xl);
+}
+
+.station-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    text-align: left;
+    transition: var(--transition-smooth);
+}
+
+.station-btn:hover {
+    background: var(--bg-glass-hover);
+}
+
+.station-btn.active {
+    background: var(--bg-card);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border-glow);
+}
+
+#station-btn-drinks.active {
+    border-color: rgba(37, 99, 235, 0.4);
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.08);
+}
+
+#station-btn-food.active {
+    border-color: rgba(12, 131, 31, 0.4);
+    box-shadow: 0 4px 20px rgba(12, 131, 31, 0.08);
+}
+
+.station-emoji {
+    font-size: 28px;
+    background: var(--bg-secondary);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    transition: var(--transition-base);
+}
+
+.station-btn.active .station-emoji {
+    background: rgba(12, 131, 31, 0.1);
+}
+
+#station-btn-drinks.active .station-emoji {
+    background: rgba(37, 99, 235, 0.1);
+}
+
+.station-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.station-title {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.station-subtitle {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.station-btn.active .station-title {
+    color: var(--text-primary);
+}
+
+/* ── Table Styles for Cost & Margins ── */
+.cost-table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin: var(--space-md) 0 var(--space-lg);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+}
+
+.cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 13px;
+}
+
+.cost-table th {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-weight: 700;
+    padding: 12px var(--space-md);
+    border-bottom: 2px solid var(--border-subtle);
+}
+
+.cost-table td {
+    padding: 12px var(--space-md);
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+}
+
+.cost-table tr:last-child td {
+    border-bottom: none;
+}
+
+.cost-table tr:nth-child(even) td {
+    background: rgba(0, 0, 0, 0.01);
+}
+
+.cost-table tr.total-row td {
+    font-weight: 700;
+    background: rgba(12, 131, 31, 0.03);
+    color: var(--accent-green);
+}
+
+.cost-table tr.margin-row td {
+    font-weight: 700;
+    background: rgba(12, 131, 31, 0.06);
+    color: var(--accent-green);
+    border-top: 1px solid rgba(12, 131, 31, 0.15);
+}
+
+.cost-table tr.foodcost-row td {
+    font-weight: 700;
+    background: rgba(37, 99, 235, 0.04);
+    color: var(--accent-blue);
+    border-top: 1px solid rgba(37, 99, 235, 0.1);
+}
+
+/* Callout cards for storage and portion control */
+.info-callout {
+    background: rgba(12, 131, 31, 0.05);
+    border-left: 4px solid var(--accent-green);
+    padding: var(--space-md);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    margin-bottom: var(--space-lg);
+}
+
+.info-callout-title {
+    font-weight: 700;
+    color: var(--accent-green);
+    font-size: 13px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-callout-text {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* Responsive adjust */
+@media (max-width: 600px) {
+    .station-selector-container {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+}
+
+/* ── Day/Night (Dark Mode) Override Styles ──────────── */
+:root.dark-mode, .dark-mode {
+    --bg-primary: #0b0f19;
+    --bg-secondary: #111827;
+    --bg-card: #1f2937;
+    --bg-glass: rgba(31, 41, 55, 0.7);
+    --bg-glass-hover: rgba(55, 65, 81, 0.8);
+    --bg-modal: #111827;
+
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --text-muted: #9ca3af;
+    --text-accent: #34d399; /* Brighter green for dark mode visibility */
+
+    --border-subtle: #374151;
+    --border-glow: #4b5563;
+
+    --gradient-card: linear-gradient(145deg, #1f2937, #111827);
+    
+    --shadow-card: 0 8px 16px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-modal: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Translucent Dark Header in Dark Mode */
+.dark-mode header {
+    background: rgba(17, 24, 39, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.dark-mode .logo-text h1 {
+    color: #ffffff;
+}
+.dark-mode .logo-sub {
+    color: rgba(255, 255, 255, 0.7);
+}
+.dark-mode .stat-pill {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.dark-mode .stat-num {
+    color: #ffffff;
+}
+.dark-mode .stat-label {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Dynamic active state overlays for categories in dark mode */
+.dark-mode .cat-tab.active {
+    background: rgba(52, 211, 153, 0.1);
+    color: #34d399;
+    border-color: #34d399;
+}
+.dark-mode .cat-tab.active .cat-tab-count {
+    background: #34d399;
+    color: #0b0f19;
+}
+
+/* Modal close button in dark mode */
+.dark-mode .modal-close {
+    background: rgba(255, 255, 255, 0.08);
+}
+.dark-mode .modal-close:hover {
+    background: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+}
+
+/* Table styling for dark mode */
+.dark-mode .cost-table th {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+}
+.dark-mode .cost-table tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.02);
+}
+.dark-mode .cost-table tr:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* Step-timer bar for dark mode */
+.dark-mode .step-timer-bar {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.06);
+}
+.dark-mode .timer-btn-reset {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-secondary);
+}
+.dark-mode .timer-btn-reset:hover {
+    background: rgba(255, 255, 255, 0.18);
+    color: var(--text-primary);
+}
+.dark-mode .timer-progress-track {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* Smooth transitions for theme switching */
+body, header, .drink-card, .modal-container, .search-box input, .cat-tab, .ops-card, .theme-toggle-container label, .theme-toggle-container label::after, .cost-table th, .cost-table tr {
+    transition: background-color var(--transition-base), background var(--transition-base), color var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+/* Scaled Theme Toggle */
+.theme-toggle-container {
+    display: flex;
+    align-items: center;
+    margin-right: var(--space-sm);
+}
+
+.theme-toggle-container label {
+    width: 66px;
+    height: 28px;
+    position: relative;
+    display: block;
+    background: #ebebeb;
+    border-radius: 28px;
+    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.2),
+                inset 0px -1px 3px rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.theme-toggle-container label::after {
+    content: "";
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    background: linear-gradient(180deg, #ffcc89, #d8860b);
+    border-radius: 22px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+    transition: 0.3s;
+}
+
+.theme-toggle-container label svg {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 6px;
+    z-index: 10;
+    transition: 0.3s;
+}
+
+.theme-toggle-container label svg.sun {
+    left: 6px;
+    fill: #fff;
+}
+
+.theme-toggle-container label svg.moon {
+    left: 44px;
+    fill: #7e7e7e;
+}
+
+.theme-toggle-container input {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+    position: absolute;
+}
+
+.theme-toggle-container input:checked + label {
+    background: #242424;
+}
+
+.theme-toggle-container input:checked + label::after {
+    left: 41px; /* 66px width - 22px knob width - 3px margin = 41px */
+    background: linear-gradient(180deg, #777, #3a3a3a);
+}
+
+.theme-toggle-container input:checked + label svg.sun {
+    fill: #7e7e7e;
+}
+
+.theme-toggle-container input:checked + label svg.moon {
+    fill: #fff;
+}
+
+.theme-toggle-container input:active + label::after {
+    width: 32px;
+}

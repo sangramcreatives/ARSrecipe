@@ -7,6 +7,7 @@
     'use strict';
 
     // ── State ──────────────────────────────────────────
+    let currentStation = 'drinks';
     let currentCategory = 'all';
     let searchQuery = '';
     let activeTimers = {}; // { 'drink-1-step-2': { interval, remaining, total, running } }
@@ -16,7 +17,6 @@
     const drinkGrid = document.getElementById('drink-grid');
     const searchInput = document.getElementById('search-input');
     const searchClear = document.getElementById('search-clear');
-    const categoryTabs = document.querySelectorAll('.cat-tab');
     const modal = document.getElementById('drink-modal');
     const modalClose = document.getElementById('modal-close');
     const noResults = document.getElementById('no-results');
@@ -24,14 +24,201 @@
     // ── Initialize ─────────────────────────────────────
     function init() {
         initRevealObserver();
+        initStationSelector();
+        initStationSubtitles();
+        updateStats();
+        renderCategoryTabs();
         renderDrinks();
         renderOperationalFramework();
         bindEvents();
         observeElements();
     }
 
-    // ── Render All Drinks ──────────────────────────────
+    function updateStats() {
+        const drinksData = window.ARS_DATA;
+        const foodData = window.ARS_FOOD_DATA;
+        
+        let drinksCount = 48;
+        let foodCount = 54;
+        let categoriesCount = 10;
+        
+        if (drinksData) {
+            drinksCount = drinksData.categories.reduce((sum, cat) => sum + cat.subcategories.reduce((subSum, sub) => subSum + sub.drinks.length, 0), 0);
+        }
+        if (foodData) {
+            foodCount = foodData.recipes.length;
+        }
+        categoriesCount = (drinksData ? drinksData.categories.length : 4) + (foodData ? foodData.categories.length : 6);
+        
+        const countDrinksEl = document.getElementById('stat-count-drinks');
+        const countFoodEl = document.getElementById('stat-count-food');
+        const countCategoriesEl = document.getElementById('stat-count-categories');
+        
+        if (countDrinksEl) countDrinksEl.textContent = String(drinksCount);
+        if (countFoodEl) countFoodEl.textContent = String(foodCount);
+        if (countCategoriesEl) countCategoriesEl.textContent = String(categoriesCount);
+        
+        const logoEmoji = document.querySelector('.logo-emoji');
+        if (logoEmoji) {
+            logoEmoji.textContent = currentStation === 'drinks' ? '🥤' : '🍔';
+        }
+    }
+
+    function initStationSelector() {
+        const btnDrinks = document.getElementById('station-btn-drinks');
+        const btnFood = document.getElementById('station-btn-food');
+
+        if (btnDrinks && btnFood) {
+            btnDrinks.addEventListener('click', () => {
+                if (currentStation === 'drinks') return;
+                currentStation = 'drinks';
+                btnDrinks.classList.add('active');
+                btnFood.classList.remove('active');
+                currentCategory = 'all';
+                searchQuery = '';
+                searchInput.value = '';
+                searchClear.style.display = 'none';
+                
+                updateStats();
+                searchInput.placeholder = 'Search drinks, ingredients, or categories...';
+                
+                renderCategoryTabs();
+                renderOperationalFramework();
+                renderDrinks();
+            });
+
+            btnFood.addEventListener('click', () => {
+                if (currentStation === 'food') return;
+                currentStation = 'food';
+                btnFood.classList.add('active');
+                btnDrinks.classList.remove('active');
+                currentCategory = 'all';
+                searchQuery = '';
+                searchInput.value = '';
+                searchClear.style.display = 'none';
+                
+                updateStats();
+                searchInput.placeholder = 'Search foods, ingredients, or categories...';
+                
+                renderCategoryTabs();
+                renderOperationalFramework();
+                renderDrinks();
+            });
+        }
+    }
+
+    function initStationSubtitles() {
+        const foodSub = document.querySelector('#station-btn-food .station-subtitle');
+        const drinkSub = document.querySelector('#station-btn-drinks .station-subtitle');
+        
+        if (drinkSub && window.ARS_DATA) {
+            const data = window.ARS_DATA;
+            const drinksCount = data.categories.reduce((sum, cat) => sum + cat.subcategories.reduce((subSum, sub) => subSum + sub.drinks.length, 0), 0);
+            drinkSub.textContent = `${drinksCount} Premium Mocktails`;
+        }
+        if (foodSub && window.ARS_FOOD_DATA) {
+            const data = window.ARS_FOOD_DATA;
+            const foodsCount = data.recipes.length;
+            foodSub.textContent = `${foodsCount} Street Food Classics`;
+        }
+    }
+
+    function initTheme() {
+        const toggleInput = document.getElementById('darkmode-toggle');
+        const isCurrentlyDark = document.documentElement.classList.contains('dark-mode');
+        
+        if (toggleInput) {
+            toggleInput.checked = isCurrentlyDark;
+            
+            toggleInput.addEventListener('change', () => {
+                const isDark = toggleInput.checked;
+                if (isDark) {
+                    document.documentElement.classList.add('dark-mode');
+                } else {
+                    document.documentElement.classList.remove('dark-mode');
+                }
+                try {
+                    localStorage.setItem('ars-theme', isDark ? 'dark' : 'light');
+                } catch (e) {
+                    console.warn('localStorage access blocked:', e);
+                }
+            });
+        }
+    }
+
+    function renderCategoryTabs() {
+        const categoryTabsContainer = document.getElementById('category-tabs');
+        if (!categoryTabsContainer) return;
+
+        let html = '';
+        if (currentStation === 'drinks') {
+            const data = window.ARS_DATA;
+            if (!data) return;
+
+            html += `
+                <button class="cat-tab ${currentCategory === 'all' ? 'active' : ''}" data-category="all">
+                    <span class="cat-tab-emoji">🍹</span>
+                    <span class="cat-tab-text">All Drinks</span>
+                    <span class="cat-tab-count">${data.categories.reduce((sum, cat) => sum + cat.subcategories.reduce((subSum, sub) => subSum + sub.drinks.length, 0), 0)}</span>
+                </button>
+            `;
+            data.categories.forEach(cat => {
+                let count = 0;
+                cat.subcategories.forEach(sub => { count += sub.drinks.length; });
+                html += `
+                    <button class="cat-tab ${currentCategory === cat.id ? 'active' : ''}" data-category="${cat.id}">
+                        <span class="cat-tab-emoji">${cat.emoji}</span>
+                        <span class="cat-tab-text">${cat.name}</span>
+                        <span class="cat-tab-count">${count}</span>
+                    </button>
+                `;
+            });
+        } else {
+            const data = window.ARS_FOOD_DATA;
+            if (!data) return;
+
+            html += `
+                <button class="cat-tab ${currentCategory === 'all' ? 'active' : ''}" data-category="all">
+                    <span class="cat-tab-emoji">🍔</span>
+                    <span class="cat-tab-text">All Foods</span>
+                    <span class="cat-tab-count">${data.recipes.length}</span>
+                </button>
+            `;
+            data.categories.forEach(cat => {
+                const count = data.recipes.filter(r => r.categoryId === cat.id).length;
+                html += `
+                    <button class="cat-tab ${currentCategory === cat.id ? 'active' : ''}" data-category="${cat.id}">
+                        <span class="cat-tab-emoji">${cat.emoji}</span>
+                        <span class="cat-tab-text">${cat.name}</span>
+                        <span class="cat-tab-count">${count}</span>
+                    </button>
+                `;
+            });
+        }
+
+        categoryTabsContainer.innerHTML = html;
+
+        // Bind clicks
+        categoryTabsContainer.querySelectorAll('.cat-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                categoryTabsContainer.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                currentCategory = tab.dataset.category;
+                renderDrinks();
+            });
+        });
+    }
+
+    // ── Render All Items ───────────────────────────────
     function renderDrinks() {
+        if (currentStation === 'drinks') {
+            renderDrinkStation();
+        } else {
+            renderFoodStation();
+        }
+    }
+
+    function renderDrinkStation() {
         const data = window.ARS_DATA;
         if (!data) {
             drinkGrid.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:40px;">Loading drink data...</p>';
@@ -44,10 +231,8 @@
         data.categories.forEach(category => {
             const catId = category.id;
 
-            // Filter by category
             if (currentCategory !== 'all' && currentCategory !== catId) return;
 
-            // Collect all drinks in this category
             let catDrinks = [];
             category.subcategories.forEach(sub => {
                 sub.drinks.forEach(drink => {
@@ -55,14 +240,12 @@
                 });
             });
 
-            // Filter by search
             if (searchQuery) {
                 catDrinks = catDrinks.filter(d => matchesSearch(d, searchQuery));
             }
 
             if (catDrinks.length === 0) return;
 
-            // Category Header
             html += `
                 <div class="category-header reveal">
                     <div class="category-header-emoji">${category.emoji}</div>
@@ -73,7 +256,6 @@
                 </div>
             `;
 
-            // Group by subcategory
             let currentSub = '';
             catDrinks.forEach(drink => {
                 if (drink.subcategory !== currentSub) {
@@ -91,20 +273,57 @@
         });
 
         drinkGrid.innerHTML = html;
-
-        // Show/hide no results
         noResults.style.display = visibleCount === 0 ? 'block' : 'none';
         drinkGrid.style.display = visibleCount === 0 ? 'none' : 'grid';
 
-        // Bind card clicks
-        drinkGrid.querySelectorAll('.drink-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const drinkId = parseInt(card.dataset.drinkId);
-                openDrinkModal(drinkId);
+        bindCardClicks();
+        observeElements();
+    }
+
+    function renderFoodStation() {
+        const data = window.ARS_FOOD_DATA;
+        if (!data) {
+            drinkGrid.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:40px;">Loading food data...</p>';
+            return;
+        }
+
+        let html = '';
+        let visibleCount = 0;
+
+        data.categories.forEach(category => {
+            const catId = category.id;
+
+            if (currentCategory !== 'all' && currentCategory !== catId) return;
+
+            let catRecipes = data.recipes.filter(r => r.categoryId === catId);
+
+            if (searchQuery) {
+                catRecipes = catRecipes.filter(r => matchesFoodSearch(r, searchQuery));
+            }
+
+            if (catRecipes.length === 0) return;
+
+            html += `
+                <div class="category-header reveal">
+                    <div class="category-header-emoji">${category.emoji}</div>
+                    <div class="category-header-text">
+                        <h2>${category.name}</h2>
+                        <p>${category.tagline}</p>
+                    </div>
+                </div>
+            `;
+
+            catRecipes.forEach(recipe => {
+                html += renderFoodCard(recipe);
+                visibleCount++;
             });
         });
 
-        // Observe newly rendered dynamic elements
+        drinkGrid.innerHTML = html;
+        noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        drinkGrid.style.display = visibleCount === 0 ? 'none' : 'grid';
+
+        bindCardClicks();
         observeElements();
     }
 
@@ -136,6 +355,55 @@
         `;
     }
 
+    function renderFoodCard(recipe) {
+        const hasRecipe = recipe.steps && recipe.steps.length > 0;
+        const badgeText = hasRecipe ? '📖 Full Recipe' : '📋 Quick Formula';
+        const badgeClass = hasRecipe ? 'has-recipe' : '';
+        const priceText = recipe.prices.join(' / ');
+
+        return `
+            <div class="drink-card reveal" data-drink-id="${recipe.id}" style="--card-accent: ${recipe.colorAccent};">
+                <div class="drink-card-top">
+                    <span class="drink-number">#${String(recipe.id).substring(1)}</span>
+                    <span class="drink-badge ${badgeClass}">${badgeText}</span>
+                </div>
+                <div class="drink-card-body">
+                    <h3>${recipe.name}</h3>
+                    <p class="drink-card-mix" style="color:var(--accent-green);font-weight:700;margin-bottom:8px;">${priceText}</p>
+                    <p class="drink-card-mix">${recipe.quickMix}</p>
+                </div>
+                <div class="drink-card-footer">
+                    <div class="drink-color-dot" style="background: ${recipe.colorAccent}; box-shadow: 0 0 8px ${recipe.colorAccent};"></div>
+                    <span class="drink-view-btn">
+                        View Recipe
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"></path>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+        `;
+    }
+
+    function bindCardClicks() {
+        drinkGrid.querySelectorAll('.drink-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const itemId = parseInt(card.dataset.drinkId);
+                openDrinkModal(itemId);
+            });
+        });
+    }
+
+    function matchesFoodSearch(recipe, query) {
+        const q = query.toLowerCase();
+        return (
+            recipe.name.toLowerCase().includes(q) ||
+            recipe.quickMix.toLowerCase().includes(q) ||
+            (recipe.description && recipe.description.toLowerCase().includes(q)) ||
+            (recipe.ingredients && recipe.ingredients.some(i => i.toLowerCase().includes(q)))
+        );
+    }
+
     function getCategoryLabel(catId) {
         const labels = {
             'classics': '🥤 Classic',
@@ -159,20 +427,29 @@
 
     // ── Modal ──────────────────────────────────────────
     function openDrinkModal(drinkId) {
-        const drink = findDrinkById(drinkId);
-        if (!drink) return;
+        const isFood = (drinkId > 100);
+        const item = isFood ? findFoodById(drinkId) : findDrinkById(drinkId);
+        if (!item) return;
 
-        const hasDetailedRecipe = drink.ingredients && drink.ingredients.length > 0;
+        const hasDetailedRecipe = item.ingredients && item.ingredients.length > 0;
 
         // Set header
-        document.getElementById('modal-badge').textContent = `#${String(drink.id).padStart(2, '0')} — ${drink.name}`;
-        document.getElementById('modal-title').textContent = drink.name;
-        document.getElementById('modal-subtitle').textContent = drink.subtitle || '';
-        document.getElementById('modal-subtitle').style.display = drink.subtitle ? 'block' : 'none';
-        document.getElementById('modal-quick-mix').innerHTML = `<strong>Quick Mix:</strong> ${drink.quickMix}`;
+        const formattedId = isFood ? `#${String(item.id).substring(1)}` : `#${String(item.id).padStart(2, '0')}`;
+        document.getElementById('modal-badge').textContent = `${formattedId} — ${item.name}`;
+        document.getElementById('modal-title').textContent = item.name;
+        
+        if (isFood) {
+            document.getElementById('modal-subtitle').innerHTML = `<span style="color:var(--accent-green);font-weight:700;">Price: ${item.prices.join(' / ')}</span>`;
+            document.getElementById('modal-subtitle').style.display = 'block';
+            document.getElementById('modal-quick-mix').innerHTML = `<strong>Concept:</strong> ${item.quickMix}`;
+        } else {
+            document.getElementById('modal-subtitle').textContent = item.subtitle || '';
+            document.getElementById('modal-subtitle').style.display = item.subtitle ? 'block' : 'none';
+            document.getElementById('modal-quick-mix').innerHTML = `<strong>Quick Mix:</strong> ${item.quickMix}`;
+        }
 
         // Set accent color
-        document.querySelector('.modal-header').style.setProperty('--modal-accent-color', hexToRgba(drink.colorAccent, 0.15));
+        document.querySelector('.modal-header').style.setProperty('--modal-accent-color', hexToRgba(item.colorAccent, 0.15));
 
         const tabsContainer = document.getElementById('modal-tabs');
         const panels = {
@@ -184,33 +461,27 @@
             basic: document.getElementById('panel-basic'),
         };
 
-        // Clear all timers for previous drink
+        // Clear all timers for previous item
         clearAllTimers();
+
+        // Render Tabs dynamically
+        renderModalTabs(isFood);
 
         if (hasDetailedRecipe) {
             tabsContainer.style.display = 'flex';
             panels.basic.style.display = 'none';
 
-            // Render Ingredients
-            panels.ingredients.innerHTML = renderIngredients(drink.ingredients);
-
-            // Render Steps with Timers
-            panels.steps.innerHTML = renderSteps(drink);
-
-            // Render Notes
-            panels.notes.innerHTML = drink.notes ? renderNotes(drink.notes) : '<p class="basic-info-text">No specific notes for this drink.</p>';
-
-            // Render Hacks
-            panels.hacks.innerHTML = drink.hacks ? renderHacks(drink.hacks) : '<p class="basic-info-text">No hacks available yet.</p>';
-
-            // Render Kids Version
-            panels.kids.innerHTML = drink.kidsVersion ? renderKidsVersion(drink.kidsVersion) : '<p class="basic-info-text">No kids version available yet.</p>';
+            if (isFood) {
+                renderFoodPanels(item, panels);
+            } else {
+                renderDrinkPanels(item, panels);
+            }
 
             // Set first tab active
             setActiveTab('ingredients');
 
             // Bind timer buttons
-            bindTimerButtons(drink);
+            bindTimerButtons(item);
         } else {
             tabsContainer.style.display = 'none';
             Object.keys(panels).forEach(key => {
@@ -220,11 +491,11 @@
 
             panels.basic.innerHTML = `
                 <div class="basic-info-panel">
-                    <div class="basic-info-icon">🍹</div>
-                    <p class="basic-info-text">Detailed recipe with step-by-step instructions coming soon!</p>
+                    <div class="basic-info-icon">${isFood ? '🍳' : '🍹'}</div>
+                    <p class="basic-info-text">Detailed recipe coming soon!</p>
                     <div class="basic-info-mix">
-                        <h4>Quick Mix Formula</h4>
-                        <p>${drink.quickMix}</p>
+                        <h4>Formula / Description</h4>
+                        <p>${item.quickMix}</p>
                     </div>
                 </div>
             `;
@@ -234,6 +505,151 @@
         // Open modal
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
+    }
+
+    function renderModalTabs(isFood) {
+        const tabsContainer = document.getElementById('modal-tabs');
+        if (isFood) {
+            tabsContainer.innerHTML = `
+                <button class="modal-tab active" data-tab="ingredients">🧪 Ingredients & Portion</button>
+                <button class="modal-tab" data-tab="steps">📋 Steaming/Fry Steps</button>
+                <button class="modal-tab" data-tab="notes">💰 Cost & Margins</button>
+                <button class="modal-tab" data-tab="hacks">💡 Hacks & Secrets</button>
+                <button class="modal-tab" data-tab="kids">🛡️ Storage & Waste</button>
+            `;
+        } else {
+            tabsContainer.innerHTML = `
+                <button class="modal-tab active" data-tab="ingredients">🧪 Ingredients</button>
+                <button class="modal-tab" data-tab="steps">📋 Steps</button>
+                <button class="modal-tab" data-tab="notes">⚠️ Notes</button>
+                <button class="modal-tab" data-tab="hacks">💡 Hacks</button>
+                <button class="modal-tab" data-tab="kids">👶 Kids</button>
+            `;
+        }
+    }
+
+    function renderDrinkPanels(drink, panels) {
+        panels.ingredients.innerHTML = renderIngredients(drink.ingredients);
+        panels.steps.innerHTML = renderSteps(drink);
+        panels.notes.innerHTML = drink.notes ? renderNotes(drink.notes) : '<p class="basic-info-text">No specific notes for this drink.</p>';
+        panels.hacks.innerHTML = drink.hacks ? renderHacks(drink.hacks) : '<p class="basic-info-text">No hacks available yet.</p>';
+        panels.kids.innerHTML = drink.kidsVersion ? renderKidsVersion(drink.kidsVersion) : '<p class="basic-info-text">No kids version available yet.</p>';
+    }
+
+    function renderFoodPanels(food, panels) {
+        let ingHtml = '';
+        if (food.description) {
+            ingHtml += `<p class="basic-info-text" style="font-size:14px;margin-bottom:var(--space-md);line-height:1.6;color:var(--text-secondary);">${food.description.replace(/\n/g, '<br>')}</p>`;
+        }
+        if (food.portionControl) {
+            ingHtml += `
+                <div class="info-callout">
+                    <div class="info-callout-title">📏 Portion Control Matrix</div>
+                    <div class="info-callout-text">${food.portionControl.replace(/\n/g, '<br>')}</div>
+                </div>
+            `;
+        }
+        ingHtml += '<h4 style="margin-top:var(--space-md);margin-bottom:var(--space-sm);font-weight:700;">Ingredient Base & Batter ratios:</h4>';
+        ingHtml += renderIngredients(food.ingredients);
+        panels.ingredients.innerHTML = ingHtml;
+
+        panels.steps.innerHTML = renderSteps(food);
+        panels.notes.innerHTML = renderCostTable(food.costBreakdown);
+        panels.hacks.innerHTML = renderFoodHacks(food.hacks);
+
+        let storageHtml = '';
+        if (food.storageAndWaste) {
+            storageHtml += `
+                <div class="note-list">
+                    <div class="note-item">
+                        <span class="note-icon">🛡️</span>
+                        <p class="note-text" style="line-height:1.7;">${food.storageAndWaste.replace(/\n\n/g, '</p></div><div class="note-item"><span class="note-icon">🛡️</span><p class="note-text" style="line-height:1.7;">').replace(/\n/g, '<br>')}</p>
+                    </div>
+                </div>
+            `;
+        } else {
+            storageHtml = '<p class="basic-info-text">No storage protocols documented.</p>';
+        }
+        panels.kids.innerHTML = storageHtml;
+    }
+
+    function renderFoodHacks(hacks) {
+        if (!hacks || hacks.length === 0) {
+            return '<p class="basic-info-text">No operational hacks documented.</p>';
+        }
+
+        let html = '<div class="hack-list">';
+        hacks.forEach(hack => {
+            html += `
+                <div class="hack-item">
+                    <div class="hack-top">
+                        <span class="hack-icon">💡</span>
+                        <span class="hack-title">${hack.title}</span>
+                    </div>
+                    <p class="hack-text">${hack.text}</p>
+                </div>
+            `;
+        });
+        html += '</div>';
+        return html;
+    }
+
+    function renderCostTable(costLines) {
+        if (!costLines || costLines.length === 0) {
+            return '<p class="basic-info-text">No commercial cost breakdown available.</p>';
+        }
+
+        let tableHtml = '<div class="cost-table-container"><table class="cost-table">';
+        let hasHeader = false;
+
+        costLines.forEach(line => {
+            const trimmed = line.trim();
+            if (trimmed === '') return;
+
+            let cols = [];
+            if (trimmed.includes('|')) {
+                cols = trimmed.split('|').map(c => c.trim()).filter((c, idx, arr) => {
+                    return c !== '' || (idx !== 0 && idx !== arr.length - 1);
+                });
+                if (cols.length > 0 && cols[0].match(/^:?-+:?$/)) {
+                    return;
+                }
+            } else if (trimmed.includes('\t')) {
+                cols = trimmed.split('\t').map(c => c.trim());
+            } else {
+                cols = trimmed.split(/\s{2,}/).map(c => c.trim());
+            }
+
+            if (cols.length === 0) return;
+
+            let rowClass = '';
+            const lowerFirstCol = cols[0].toLowerCase();
+            if (lowerFirstCol.includes('total') || lowerFirstCol.includes('production cost')) {
+                rowClass = 'total-row';
+            } else if (lowerFirstCol.includes('gross profit') || lowerFirstCol.includes('margin')) {
+                rowClass = 'margin-row';
+            } else if (lowerFirstCol.includes('food cost percentage') || lowerFirstCol.includes('food cost')) {
+                rowClass = 'foodcost-row';
+            }
+
+            if (!hasHeader) {
+                tableHtml += '<thead><tr>';
+                cols.forEach(col => {
+                    tableHtml += `<th>${col}</th>`;
+                });
+                tableHtml += '</tr></thead><tbody>';
+                hasHeader = true;
+            } else {
+                tableHtml += `<tr class="${rowClass}">`;
+                cols.forEach(col => {
+                    tableHtml += `<td>${col}</td>`;
+                });
+                tableHtml += '</tr>';
+            }
+        });
+
+        tableHtml += '</tbody></table></div>';
+        return tableHtml;
     }
 
     function closeDrinkModal() {
@@ -571,7 +987,7 @@
         });
     }
 
-    // ── Find Drink ─────────────────────────────────────
+    // ── Find Recipe ────────────────────────────────────
     function findDrinkById(id) {
         const data = window.ARS_DATA;
         if (!data) return null;
@@ -585,15 +1001,53 @@
         return null;
     }
 
+    function findFoodById(id) {
+        const data = window.ARS_FOOD_DATA;
+        if (!data) return null;
+        return data.recipes.find(r => r.id === id);
+    }
+
     // ── Operational Framework ──────────────────────────
     function renderOperationalFramework() {
-        const data = window.ARS_DATA;
-        if (!data || !data.operationalFramework) return;
-
-        const ops = data.operationalFramework;
-        document.getElementById('ops-ice-rule').textContent = ops.iceStaircaseRule;
-        document.getElementById('ops-garnishes').textContent = ops.garnishesAndAddons;
-        document.getElementById('ops-instagram').textContent = ops.instagramDirective;
+        if (currentStation === 'drinks') {
+            const data = window.ARS_DATA;
+            if (!data || !data.operationalFramework) return;
+            const ops = data.operationalFramework;
+            
+            document.querySelector('.ops-title').innerHTML = `<span class="ops-title-icon">💡</span> Operational Framework for the Station`;
+            
+            const cards = document.querySelectorAll('.ops-card');
+            if (cards.length >= 3) {
+                cards[0].querySelector('.ops-card-icon').textContent = '🧊';
+                cards[0].querySelector('h3').textContent = 'The Ice Staircase Rule';
+                cards[0].querySelector('p').textContent = ops.iceStaircaseRule;
+                
+                cards[1].querySelector('.ops-card-icon').textContent = '🍫';
+                cards[1].querySelector('h3').textContent = 'Garnishes & Add-ons';
+                cards[1].querySelector('p').textContent = ops.garnishesAndAddons;
+                
+                cards[2].querySelector('.ops-card-icon').textContent = '📸';
+                cards[2].querySelector('h3').textContent = 'The Instagram Directive';
+                cards[2].querySelector('p').textContent = ops.instagramDirective;
+            }
+        } else {
+            document.querySelector('.ops-title').innerHTML = `<span class="ops-title-icon">🍳</span> Commercial Operational Framework`;
+            
+            const cards = document.querySelectorAll('.ops-card');
+            if (cards.length >= 3) {
+                cards[0].querySelector('.ops-card-icon').textContent = '🌶️';
+                cards[0].querySelector('h3').textContent = 'The Master Gravy Rule';
+                cards[0].querySelector('p').textContent = "By engineering one base 'Master Chilli Gravy', your line cook only needs to ladle the base into a hot wok, drop in the flash-fried protein, and toss. This locks in 60%+ margins and reduces ticket times to under 3 minutes.";
+                
+                cards[1].querySelector('.ops-card-icon').textContent = '🔥';
+                cards[1].querySelector('h3').textContent = 'The 2.5L Fryer Warning';
+                cards[1].querySelector('p').textContent = "Never dump cold raw ingredients or a full portion into the compact 2.5L fryer all at once. The oil temperature will collapse, making the batter soggy and slide off. Always drop pieces individually and fry in split, rapid back-to-back batches.";
+                
+                cards[2].querySelector('.ops-card-icon').textContent = '🛡️';
+                cards[2].querySelector('h3').textContent = 'Zero-Waste Prep Protocol';
+                cards[2].querySelector('p').textContent = "Never mix raw proteins, vegetables, salt, and flours in bulk for storage. Keep pre-cut raw ingredients dry in the chiller and only combine a single portion with the flour/batter when the order ticket prints. Upcycle unsold cooked items.";
+            }
+        }
     }
 
     // ── Utility ────────────────────────────────────────
@@ -606,15 +1060,7 @@
 
     // ── Event Bindings ─────────────────────────────────
     function bindEvents() {
-        // Category tabs
-        categoryTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                categoryTabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                currentCategory = tab.dataset.category;
-                renderDrinks();
-            });
-        });
+        // Category tabs are bound dynamically inside renderCategoryTabs()
 
         // Search
         let searchDebounce;
